@@ -58,7 +58,7 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.isequalwith": "^4.4.0",
     "lodash.shuffle": "^4.2.0",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "node-notifier": "^5.1.2",
     "prettier": "^1.17.0",
     "rc-slider": "^8.5.0",
