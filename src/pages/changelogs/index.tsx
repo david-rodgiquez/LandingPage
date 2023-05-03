@@ -3,18 +3,18 @@ import { InferGetServerSidePropsType } from "next";
 import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 
-export default function Home({
+export default function ChangelogPage({
   header: { menus, logo },
   footer: { menus: footerMenus },
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Changelogs</title>
       </Head>
       <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
         <div className="w-full h-40 bg-gray-200 my-8 flex justify-center items-center">
-          <h1>Home content</h1>
+          <h1>Changelog content</h1>
         </div>
       </Layout>
     </>
