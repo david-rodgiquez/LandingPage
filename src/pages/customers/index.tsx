@@ -13,7 +13,7 @@ export default function CustomersPage({
         <title>Customers</title>
       </Head>
       <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
-        <div className="w-full h-40 bg-gray-200 my-8 flex justify-center items-center">
+        <div className="w-full h-40 bg-gray-200 py-8 flex justify-center items-center">
           <h1>Customers content</h1>
         </div>
       </Layout>
