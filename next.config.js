@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["landingpage-strapi-production.up.railway.app"],
+    domains: ["s.gravatar.com", "strapi-landingpage-production.up.railway.app"],
   },
 };
 
