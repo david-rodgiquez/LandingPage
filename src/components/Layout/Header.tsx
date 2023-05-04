@@ -4,6 +4,7 @@ import AvatarDefault from "../../../public/img/avatar-default.png";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import IconSpinner from "../icons/IconSpinner";
 import useToggle from "@/hooks/useToggle";
+import { STRAPI_BASE_URL } from "@/config";
 
 export type HeaderLogo = {
   url: string;
@@ -102,7 +103,7 @@ export default function Header({
           <Image
             priority
             className="h-10 w-auto"
-            src={`${process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL}${logo.url}`}
+            src={`${STRAPI_BASE_URL}${logo.url}`}
             alt="logo"
             height={logo.height}
             width={logo.width}

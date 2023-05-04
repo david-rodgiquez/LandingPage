@@ -4,6 +4,7 @@ import type { InferGetServerSidePropsType } from "next";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { ReactNode } from "react";
+import Head from "next/head";
 
 function DetailLine({ title, value }: { title: string; value: ReactNode }) {
   return (
@@ -22,16 +23,21 @@ export default function UserProfilePage({
   user: UserProfile;
 }) {
   return (
-    <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
-      <div className="w-full h-40 py-8 flex flex-col gap-8">
-        <h1 className="text-3xl font-semibold">User Profile</h1>
-        <div className="w-full flex flex-col gap-2 p-6 border rounded-lg">
-          <DetailLine title="Nickname" value={user.nickname} />
-          <DetailLine title="Name" value={user.name} />
-          <DetailLine title="Email" value={user.email} />
+    <>
+      <Head>
+        <title>Profile</title>
+      </Head>
+      <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
+        <div className="w-full h-40 py-8 flex flex-col gap-8">
+          <h1 className="text-3xl font-semibold">User Profile</h1>
+          <div className="w-full flex flex-col gap-2 p-6 border rounded-lg">
+            <DetailLine title="Nickname" value={user.nickname} />
+            <DetailLine title="Name" value={user.name} />
+            <DetailLine title="Email" value={user.email} />
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 
