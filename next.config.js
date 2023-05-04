@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["strapi-production-8990.up.railway.app"],
+    domains: [
+      "s.gravatar.com",
+      new URL(process.env.NEXT_PUBLIC_STRAPI_BASE_URL).host,
+    ],
   },
 };
 
