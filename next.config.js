@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["strapi-production-8990.up.railway.app"],
+    domains: ["landingpage-strapi-production.up.railway.app"],
   },
 };
 
