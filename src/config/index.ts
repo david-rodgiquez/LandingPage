@@ -1,7 +1,8 @@
-export const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_BASE_URL;
+export const STRAPI_BASE_URL = process.env
+  .NEXT_PUBLIC_STRAPI_BASE_URL as string;
 
-export const AUTH0_SECRET = process.env.AUTH0_SECRET;
-export const AUTH0_BASE_URL = process.env.AUTH0_BASE_URL;
-export const AUTH0_ISSUER_BASE_URL = process.env.AUTH0_ISSUER_BASE_URL;
-export const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID;
-export const AUTH0_CLIENT_SECRET = process.env.AUTH0_CLIENT_SECRET;
+export const STYTCH_PROJECT_ENV = process.env.STYTCH_PROJECT_ENV as string;
+export const STYTCH_PROJECT_ID = process.env.STYTCH_PROJECT_ID as string;
+export const STYTCH_PUBLIC_TOKEN = process.env
+  .NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN as string;
+export const STYTCH_SECRET = process.env.STYTCH_SECRET as string;

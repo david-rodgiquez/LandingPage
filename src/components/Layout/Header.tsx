@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import AvatarDefault from "../../../public/img/avatar-default.png";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import IconSpinner from "../icons/IconSpinner";
 import useToggle from "@/hooks/useToggle";
 import { STRAPI_BASE_URL } from "@/config";
+import { useStytchSession } from "@stytch/nextjs";
+import loadStytch from "@/lib/loadStytch";
+import { OrgService } from "@/lib/orgService";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Organization } from "stytch";
+import { Member } from "@stytch/vanilla-js";
 
 export type HeaderLogo = {
   url: string;
@@ -18,43 +24,44 @@ export type HeaderMenu = {
   title: string;
 };
 
-function UserAvatar() {
-  const { user, error, isLoading } = useUser();
+function UserAvatar({
+  user,
+  organization,
+}: {
+  user?: Member | null;
+  organization?: Organization | null;
+}) {
   const [isOpenFloatingMenu, toggleOpenFloatingMenu, setIsOpenFloatingMenu] =
     useToggle();
 
   return (
     <div className="flex items-center relative">
-      <div className="flex items-center ">
-        {isLoading ? (
-          <IconSpinner className="h-8 w-8 text-indigo-600" />
-        ) : error ? (
-          <p>{error.message}</p>
-        ) : user ? (
+      <div className="flex items-center">
+        {organization && (
+          <Link
+            title={organization.organization_name}
+            href={`/${organization.organization_slug}/dashboard`}
+          >
+            <div className="h-8 w-8 bg-sky-600 text-white flex items-center justify-center rounded-full overflow-hidden relative">
+              {organization.organization_name[0]}
+            </div>
+          </Link>
+        )}
+        {user ? (
           <button
             type="button"
             onClick={toggleOpenFloatingMenu}
             className="flex gap-3 items-center relative"
           >
-            <p className="font-medium text-sm">{user.nickname}</p>
+            <p className="font-medium text-sm">{user.name}</p>
             <div className="h-8 w-8 rounded-full overflow-hidden relative">
-              {user.picture ? (
-                <Image
-                  priority
-                  src={user.picture}
-                  alt={user.nickname ?? "user"}
-                  height={480}
-                  width={480}
-                />
-              ) : (
-                <Image
-                  priority
-                  src={AvatarDefault}
-                  alt="user"
-                  height={360}
-                  width={360}
-                />
-              )}
+              <Image
+                priority
+                src={AvatarDefault}
+                alt="user"
+                height={360}
+                width={360}
+              />
             </div>
             {isOpenFloatingMenu && (
               <div
@@ -62,23 +69,23 @@ function UserAvatar() {
                 className="bg-white flex w-full text-left divide-y flex-col min-w-[100px] absolute border shadow-xl z-10 top-10 rounded-lg text-sm font-medium right-0"
               >
                 <Link
-                  href="/user/profile"
+                  href={`/${organization?.organization_slug}/dashboard`}
                   className="hover:text-indigo-600 transition-colors py-2 px-4"
                 >
                   Profile
                 </Link>
-                <Link
-                  href="/api/auth/logout"
+                {/* <Link
+                  href="/logout"
                   className="hover:text-indigo-600 transition-colors py-2 px-4"
                 >
                   Logout
-                </Link>
+                </Link> */}
               </div>
             )}
           </button>
         ) : (
           <Link
-            href="/api/auth/login"
+            href="/login"
             className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
           >
             Login
@@ -92,9 +99,13 @@ function UserAvatar() {
 export default function Header({
   logo,
   menus,
+  user,
+  organization,
 }: {
   logo: HeaderLogo;
   menus: HeaderMenu[];
+  organization?: Organization | null;
+  user?: Member | null;
 }) {
   return (
     <header className="w-full border-b">
@@ -117,7 +128,7 @@ export default function Header({
               </Link>
             ))}
           </div>
-          <UserAvatar />
+          <UserAvatar organization={organization} user={user} />
         </div>
       </div>
     </header>
