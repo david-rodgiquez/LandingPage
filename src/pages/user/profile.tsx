@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout/Layout";
 import { getFooter, getHeader } from "@/services/header";
 import type { InferGetServerSidePropsType } from "next";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { ReactNode } from "react";
 import Head from "next/head";
 
@@ -18,10 +16,7 @@ function DetailLine({ title, value }: { title: string; value: ReactNode }) {
 export default function UserProfilePage({
   header: { menus, logo },
   footer: { menus: footerMenus },
-  user,
-}: InferGetServerSidePropsType<typeof getServerSideProps> & {
-  user: UserProfile;
-}) {
+}: InferGetServerSidePropsType<typeof getServerSideProps> & {}) {
   return (
     <>
       <Head>
@@ -31,9 +26,9 @@ export default function UserProfilePage({
         <div className="w-full h-40 py-8 flex flex-col gap-8">
           <h1 className="text-3xl font-semibold">User Profile</h1>
           <div className="w-full flex flex-col gap-2 p-6 border rounded-lg">
-            <DetailLine title="Nickname" value={user.nickname} />
+            {/* <DetailLine title="Nickname" value={user.nickname} />
             <DetailLine title="Name" value={user.name} />
-            <DetailLine title="Email" value={user.email} />
+            <DetailLine title="Email" value={user.email} /> */}
           </div>
         </div>
       </Layout>
@@ -41,19 +36,17 @@ export default function UserProfilePage({
   );
 }
 
-export const getServerSideProps = withPageAuthRequired({
-  getServerSideProps: async () => {
-    const [header, footer] = await Promise.all([getHeader(), getFooter()]);
-    return {
-      props: {
-        header: {
-          menus: header.menu,
-          logo: header.logo.data.attributes,
-        },
-        footer: {
-          menus: footer.menus,
-        },
+export const getServerSideProps = async () => {
+  const [header, footer] = await Promise.all([getHeader(), getFooter()]);
+  return {
+    props: {
+      header: {
+        menus: header.menu,
+        logo: header.logo.data.attributes,
       },
-    };
-  },
-});
+      footer: {
+        menus: footer.menus,
+      },
+    },
+  };
+};
