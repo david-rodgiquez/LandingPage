@@ -74,12 +74,12 @@ function UserAvatar({
                 >
                   Profile
                 </Link>
-                {/* <Link
-                  href="/logout"
+                <Link
+                  href="/api/logout"
                   className="hover:text-indigo-600 transition-colors py-2 px-4"
                 >
                   Logout
-                </Link> */}
+                </Link>
               </div>
             )}
           </button>

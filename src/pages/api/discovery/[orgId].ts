@@ -5,6 +5,8 @@ import {
   getDiscoverySessionData,
   setSession,
 } from "../../../lib/sessionService";
+import { StytchError } from "stytch";
+import { OrgService } from "@/lib/orgService";
 
 const stytchClient = loadStytch();
 
@@ -13,7 +15,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (discoverySessionData.error) {
     console.log("No session tokens found...");
-    return { redirect: { statusCode: 307, destination: `/login` } };
+    return res.redirect(307, "/login");
   }
 
   const orgId = req.query.orgId;
@@ -40,8 +42,17 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
     setSession(req, res, session_jwt);
     clearIntermediateSession(req, res);
     return res.redirect(307, `/${organization.organization_slug}/dashboard`);
-  } catch (error) {
+  } catch (err) {
+    const error = err as StytchError;
     console.error("Could not authenticate in callback", error);
+
+    // This action or feature is not supported by your billing tier. Please visit https://stytch.com/dashboard/settings/pricing-plans for more information.
+    if (error.error_type === "unauthorized_billing_permissions") {
+      const result = await OrgService.findByID(orgId);
+      if (result?.organization_slug) {
+        return res.redirect(307, `/${result.organization_slug}/dashboard`);
+      }
+    }
 
     return res.redirect(307, "/discovery");
   }

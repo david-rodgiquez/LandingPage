@@ -10,7 +10,7 @@ export default function LoginPage({
   return (
     <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
       <div className="w-full flex items-center justify-center ">
-        <div className="mt-24 max-w-xl w-full border p-4 rounded-lg">
+        <div className="my-24 max-w-xl w-full border p-8 rounded-lg">
           <LoginDiscoveryForm />
         </div>
       </div>

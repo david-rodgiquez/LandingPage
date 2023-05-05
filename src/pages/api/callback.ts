@@ -17,10 +17,9 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (exchangeResult.kind === "login") {
       setSession(req, res, exchangeResult.token);
       return res.redirect(307, `/${slug}/dashboard`);
-    } else {
-      setIntermediateSession(req, res, exchangeResult.token);
-      return res.redirect(307, `/discovery`);
     }
+    setIntermediateSession(req, res, exchangeResult.token);
+    return res.redirect(307, `/discovery`);
   } catch (error) {
     console.error("Could not authenticate in callback", error);
     return res.redirect(307, "/login");

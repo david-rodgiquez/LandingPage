@@ -49,29 +49,31 @@ const ContinueToTenantForm = ({ onBack }: { onBack: () => void }) => {
 const LoginDiscoveryForm = () => {
   const [isDiscovery, setIsDiscovery] = useState(true);
 
-  if (isDiscovery) {
-    return (
-      <EmailLoginForm title="Sign in" onSubmit={discoveryStart}>
-        <p className="text-center">
-          We&apos;ll email you a magic code for a password-free sign in.
-          <br />
-          You&apos;ll be able to choose which organization you want to access.
-          <br />
-          Or you can{" "}
-          <Link
-            className="text-indigo-600"
-            href=""
-            onClick={() => setIsDiscovery(false)}
-          >
-            sign in manually instead
-          </Link>
-          .
-        </p>
-      </EmailLoginForm>
-    );
-  } else {
-    return <ContinueToTenantForm onBack={() => setIsDiscovery(true)} />;
-  }
+  return (
+    <div>
+      {isDiscovery ? (
+        <EmailLoginForm title="Sign in" onSubmit={discoveryStart}>
+          <p className="text-center">
+            We&apos;ll email you a magic code for a password-free sign in.
+            <br />
+            You&apos;ll be able to choose which organization you want to access.
+            <br />
+            Or you can{" "}
+            <Link
+              className="text-indigo-600"
+              href=""
+              onClick={() => setIsDiscovery(false)}
+            >
+              sign in manually instead
+            </Link>
+            .
+          </p>
+        </EmailLoginForm>
+      ) : (
+        <ContinueToTenantForm onBack={() => setIsDiscovery(true)} />
+      )}
+    </div>
+  );
 };
 
 export default LoginDiscoveryForm;

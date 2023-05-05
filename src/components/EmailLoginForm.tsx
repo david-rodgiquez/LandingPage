@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { FormEventHandler, useEffect, useState } from "react";
 
 const STATUS = {
@@ -75,6 +76,12 @@ export const EmailLoginForm = ({ title, onSubmit, children }: Props) => {
           >
             Continue
           </button>
+          <p className="text-sm">
+            Dont have an account yet?{" "}
+            <Link href="/signup" className="text-indigo-600">
+              signup
+            </Link>
+          </p>
         </form>
       )}
       {emlSent === STATUS.SENT && (

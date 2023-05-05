@@ -5,6 +5,7 @@ import React, {
   useState,
 } from "react";
 import { discoveryStart } from "../lib/api";
+import Link from "next/link";
 
 const STATUS = {
   INIT: 0,
@@ -73,15 +74,21 @@ const SignupForm = () => {
       {emlSent === STATUS.INIT && (
         <>
           <h1 className="text-center font-bold text-xl">Sign up</h1>
-          <form onSubmit={onSubmit} className="w-full flex flex-col gap-2">
-            <label>Email address</label>
-            <input
-              placeholder="example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              className="px-4 outline-none py-2 border rounded-lg w-full"
-            />
+          <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
+            <div className="w-full flex flex-col gap-1">
+              <label className="text-sm font-semibold" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className="px-4 outline-none py-2 border rounded-lg w-full"
+              />
+            </div>
             <button
               className="bg-indigo-600 w-full hover:bg-indigo-700 transition-colors text-white py-2 rounded-lg font-medium disabled:bg-indigo-400"
               disabled={isDisabled}
@@ -90,6 +97,12 @@ const SignupForm = () => {
             >
               Continue
             </button>
+            <p className="text-sm">
+              Already have an account?{" "}
+              <Link href="/login" className="text-indigo-600">
+                Login
+              </Link>
+            </p>
           </form>
         </>
       )}
@@ -97,9 +110,13 @@ const SignupForm = () => {
         <div className="w-full flex flex-col gap-2 text-center">
           <h1 className="text-center font-bold text-xl">Check your email</h1>
           <p>{`An email was sent to ${email}`}</p>
-          <a className="link" onClick={handleTryAgain}>
+          <button
+            type="button"
+            className="text-indigo-600"
+            onClick={handleTryAgain}
+          >
             Click here to try again.
-          </a>
+          </button>
         </div>
       )}
       {emlSent === STATUS.ERROR && (

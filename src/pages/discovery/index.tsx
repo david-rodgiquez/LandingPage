@@ -92,7 +92,7 @@ export default function Discovery({
       headerMenus={header.menus}
     >
       <div className="w-full flex items-center justify-center ">
-        <div className="mt-24 max-w-xl w-full border p-4 rounded-lg">
+        <div className="my-24 max-w-xl w-full border p-8 rounded-lg">
           <DiscoveredOrganizationsList
             discovered_organizations={discovered_organizations}
           />
