@@ -7,7 +7,7 @@ type Props = {
 };
 const TenantedLoginForm = ({ org }: Props) => {
   return (
-    <div className="card">
+    <div className="w-full">
       <EmailLoginForm
         title={`Log in to ${org.organization_name}`}
         onSubmit={(email) => login(email, org.organization_id)}

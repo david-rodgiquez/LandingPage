@@ -21,20 +21,23 @@ export default function TenantedLoginPage({
       headerLogo={header.logo}
       headerMenus={header.menus}
     >
-      <div className="w-full flex mx-auto max-w-xl ">
-        {!org ? (
-          <div className="border p-4 mt-24 w-full text-center rounded-xl flex flex-col gap-4">
-            <h2 className="font-bold text-xl">Organization not found</h2>
-            <p>
-              No organization with the domain <strong>{slug}</strong> was found.
-            </p>
-            <Link href={"/login"} className="text-indigo-600">
-              Try again
-            </Link>
-          </div>
-        ) : (
-          <TenantedLoginForm org={org} />
-        )}
+      <div className="w-full flex items-center justify-center ">
+        <div className="mt-24 max-w-xl w-full border p-4 rounded-lg">
+          {!org ? (
+            <div className="border p-4 mt-24 w-full text-center rounded-xl flex flex-col gap-4">
+              <h2 className="font-bold text-xl">Organization not found</h2>
+              <p>
+                No organization with the domain <strong>{slug}</strong> was
+                found.
+              </p>
+              <Link href={"/login"} className="text-indigo-600">
+                Try again
+              </Link>
+            </div>
+          ) : (
+            <TenantedLoginForm org={org} />
+          )}
+        </div>
       </div>
     </Layout>
   );
