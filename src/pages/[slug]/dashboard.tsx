@@ -319,7 +319,9 @@ export default function Dashboard({
     >
       <div className="flex w-full">
         <div className="w-full my-8 flex flex-col gap-10">
-          <h1 className="text-3xl font-bold">Organization Details</h1>
+          <p className="text-3xl font-bold text-center">Welcome!</p>
+          <hr className="w-full" />
+          <h2 className="text-2xl font-bold">Organization Details</h2>
           <div className="w-full flex flex-col gap-8">
             <div className="flex w-full flex-col gap-2">
               <DetailLine
