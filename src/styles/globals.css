@@ -5,3 +5,19 @@
 body {
   @apply antialiased text-gray-900;
 }
+
+.body-container {
+  @apply space-y-6;
+}
+
+.body-container ol,
+.body-container ul {
+  @apply pl-6 space-y-2;
+}
+
+.body-container ul {
+  @apply list-disc;
+}
+.body-container ol {
+  @apply list-decimal;
+}
