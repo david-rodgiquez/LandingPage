@@ -71,8 +71,6 @@ export const getServerSideProps = async (
     };
   }
 
-  console.log(changelog);
-
   return {
     props: {
       changelog: changelog,
