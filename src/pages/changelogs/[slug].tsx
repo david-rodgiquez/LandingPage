@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout/Layout";
 import { STRAPI_BASE_URL } from "@/config";
+import { getOptionalAuthSession } from "@/lib/sessionService";
 import { getChangelogBySlug } from "@/services/changelog";
 import { getFooter, getHeader } from "@/services/header";
 import type {
@@ -10,6 +11,8 @@ import Head from "next/head";
 import Image from "next/image";
 
 export default function ChangelogPage({
+  organization,
+  user,
   changelog,
   header: { menus, logo },
   footer: { menus: footerMenus },
@@ -20,7 +23,13 @@ export default function ChangelogPage({
       <Head>
         <title>{metaTitle}</title>
       </Head>
-      <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
+      <Layout
+        organization={organization}
+        user={user}
+        footerMenus={footerMenus}
+        headerLogo={logo}
+        headerMenus={menus}
+      >
         <div className="w-full py-8 flex flex-col gap-6">
           <div className="flex w-full flex-col gap-6">
             <h1 className="text-3xl font-bold">{changelog.title}</h1>
@@ -59,11 +68,14 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext<{ slug: string }>
 ) => {
   const slug = context.params!.slug;
-  const [header, footer, changelog] = await Promise.all([
-    getHeader(),
-    getFooter(),
-    getChangelogBySlug(slug),
-  ]);
+  const [header, footer, changelog, { organization, user }] = await Promise.all(
+    [
+      getHeader(),
+      getFooter(),
+      getChangelogBySlug(slug),
+      getOptionalAuthSession(context.req, context.res),
+    ]
+  );
 
   if (!changelog) {
     return {
@@ -73,6 +85,8 @@ export const getServerSideProps = async (
 
   return {
     props: {
+      organization,
+      user,
       changelog: changelog,
       header: {
         menus: header.menu,

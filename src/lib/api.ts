@@ -1,3 +1,5 @@
+import { Organization } from "stytch";
+
 export const discoveryStart = async (email: string) =>
   fetch("/api/discovery/start", {
     method: "POST",
@@ -125,3 +127,11 @@ export const updateOidcSSOConn = async ({
       connection_id,
     }),
   });
+
+export async function searchOrganizations(organizationName: string) {
+  const res = await fetch(
+    `/api/organizations/search?search=${organizationName}`
+  );
+  const resJson = await res.json();
+  return (resJson as { data: Organization[] }).data;
+}

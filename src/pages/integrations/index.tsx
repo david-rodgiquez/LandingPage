@@ -1,13 +1,16 @@
 import { getFooter, getHeader } from "@/services/header";
-import { InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { STRAPI_BASE_URL } from "@/config";
 import { getIntegrations } from "@/services/integration";
+import { getOptionalAuthSession } from "@/lib/sessionService";
 
 export default function CustomersPage({
+  organization,
+  user,
   integrations,
   header: { menus, logo },
   footer: { menus: footerMenus },
@@ -17,7 +20,13 @@ export default function CustomersPage({
       <Head>
         <title>Integrations</title>
       </Head>
-      <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
+      <Layout
+        organization={organization}
+        user={user}
+        footerMenus={footerMenus}
+        headerLogo={logo}
+        headerMenus={menus}
+      >
         <div className="w-full py-8 flex flex-col gap-6">
           <h1 className="text-3xl font-bold">Integrations</h1>
           <div className="w-full grid grid-cols-3 gap-4">
@@ -82,15 +91,21 @@ export default function CustomersPage({
   );
 }
 
-export const getServerSideProps = async () => {
-  const [header, footer, integrations] = await Promise.all([
-    getHeader(),
-    getFooter(),
-    getIntegrations(),
-  ]);
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const [header, footer, integrations, { organization, user }] =
+    await Promise.all([
+      getHeader(),
+      getFooter(),
+      getIntegrations(),
+      getOptionalAuthSession(context.req, context.res),
+    ]);
 
   return {
     props: {
+      organization,
+      user,
       integrations: integrations,
       header: {
         menus: header.menu,

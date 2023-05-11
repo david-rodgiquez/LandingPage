@@ -1,14 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import AvatarDefault from "../../../public/img/avatar-default.png";
-import IconSpinner from "../icons/IconSpinner";
 import useToggle from "@/hooks/useToggle";
 import { STRAPI_BASE_URL } from "@/config";
-import { useStytchSession } from "@stytch/nextjs";
-import loadStytch from "@/lib/loadStytch";
-import { OrgService } from "@/lib/orgService";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { Organization } from "stytch";
 import { Member } from "@stytch/vanilla-js";
 
@@ -83,14 +77,7 @@ function UserAvatar({
               </div>
             )}
           </button>
-        ) : (
-          <Link
-            href="/login"
-            className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
-          >
-            Login
-          </Link>
-        )}
+        ) : null}
       </div>
     </div>
   );
@@ -107,9 +94,28 @@ export default function Header({
   organization?: Organization | null;
   user?: Member | null;
 }) {
+  const { middle: middleMenus, right: rightMenus } = menus.reduce(
+    (acc, curr) => {
+      if (curr.url.includes("changelog") || curr.url.includes("docs")) {
+        return {
+          ...acc,
+          right: acc.right.concat(curr),
+        };
+      }
+
+      return {
+        ...acc,
+        middle: acc.middle.concat(curr),
+      };
+    },
+    { middle: [], right: [] } as { middle: HeaderMenu[]; right: HeaderMenu[] }
+  );
+
+  const isAuthenticated = organization && user;
+
   return (
     <header className="w-full border-b">
-      <div className="w-full max-w-5xl flex items-center justify-between mx-auto px-4 py-2">
+      <div className="w-full max-w-screen-2xl flex items-center justify-between mx-auto px-4 py-2">
         <Link href="/">
           <Image
             priority
@@ -120,15 +126,43 @@ export default function Header({
             width={logo.width}
           />
         </Link>
-        <div className="flex gap-10 items-center">
-          <div className="w-full gap-6 flex items-center">
-            {menus.map((menu) => (
-              <Link key={menu.id} href={menu.url} className="font-medium ">
-                {menu.title}
-              </Link>
-            ))}
+        {isAuthenticated && (
+          <div className="flex gap-10 items-center">
+            <div className="w-full text-sm gap-6 flex items-center">
+              {middleMenus.map((menu) => (
+                <Link key={menu.id} href={menu.url} className="font-medium ">
+                  {menu.title}
+                </Link>
+              ))}
+            </div>
           </div>
-          <UserAvatar organization={organization} user={user} />
+        )}
+        <div className="flex items-center gap-8">
+          {!isAuthenticated ? (
+            <Link
+              href="/login"
+              className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
+            >
+              Login
+            </Link>
+          ) : (
+            <>
+              <div className="w-full text-sm gap-6 flex items-center">
+                {rightMenus.map((menu) => (
+                  <Link key={menu.id} href={menu.url} className="font-medium ">
+                    {menu.title}
+                  </Link>
+                ))}
+                <Link
+                  href="/"
+                  className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
+                >
+                  Go to app
+                </Link>
+              </div>
+              <UserAvatar organization={organization} user={user} />
+            </>
+          )}
         </div>
       </div>
     </header>

@@ -27,7 +27,7 @@ export default function Layout({
         menus={headerMenus}
         logo={headerLogo}
       />
-      <main className="w-full min-h-[calc(100vh-57px-85px)] px-4 max-w-5xl mx-auto ">
+      <main className="w-full min-h-[calc(100vh-57px-85px)] px-4 max-w-screen-2xl mx-auto ">
         {children}
       </main>
       <Footer menus={footerMenus} />

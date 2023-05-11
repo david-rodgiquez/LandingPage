@@ -1,11 +1,12 @@
 import { getFooter, getHeader } from "@/services/header";
-import { InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 import { getChangelogs } from "@/services/changelog";
 import Link from "next/link";
 import Image from "next/image";
 import { STRAPI_BASE_URL } from "@/config";
+import { getOptionalAuthSession } from "@/lib/sessionService";
 
 export default function ChangelogsPage({
   changelogs,
@@ -80,15 +81,21 @@ export default function ChangelogsPage({
   );
 }
 
-export const getServerSideProps = async () => {
-  const [header, footer, changelogs] = await Promise.all([
-    getHeader(),
-    getFooter(),
-    getChangelogs(),
-  ]);
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const [header, footer, changelogs, { organization, user }] =
+    await Promise.all([
+      getHeader(),
+      getFooter(),
+      getChangelogs(),
+      getOptionalAuthSession(context.req, context.res),
+    ]);
 
   return {
     props: {
+      organization,
+      user,
       changelogs: changelogs,
       header: {
         menus: header.menu,
