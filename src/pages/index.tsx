@@ -21,7 +21,7 @@ const STATUS = {
 
 function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
-  const [emlSent, setEMLSent] = useState(STATUS.ERROR);
+  const [emlSent, setEMLSent] = useState(STATUS.INIT);
   const [email, setEmail] = useState("");
 
   const isDisabled = !isValidEmail(email);
