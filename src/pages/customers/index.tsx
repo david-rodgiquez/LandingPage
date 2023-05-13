@@ -113,6 +113,14 @@ export const getServerSideProps = async (
     ]
   );
 
+  if (!organization || !user) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+
   return {
     props: {
       organization,

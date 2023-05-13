@@ -91,6 +91,14 @@ export const getServerSideProps = async (
       getOptionalAuthSession(context.req, context.res),
     ]);
 
+  if (!organization || !user) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+
   if (!integration) {
     return {
       notFound: true,

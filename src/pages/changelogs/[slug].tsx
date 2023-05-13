@@ -68,6 +68,7 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext<{ slug: string }>
 ) => {
   const slug = context.params!.slug;
+
   const [header, footer, changelog, { organization, user }] = await Promise.all(
     [
       getHeader(),
@@ -76,6 +77,14 @@ export const getServerSideProps = async (
       getOptionalAuthSession(context.req, context.res),
     ]
   );
+
+  if (!organization || !user) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 
   if (!changelog) {
     return {
