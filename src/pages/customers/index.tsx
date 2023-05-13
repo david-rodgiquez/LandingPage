@@ -40,7 +40,7 @@ export default function CustomersPage({
                     customer.attributes.thumbnail.data.attributes.caption ??
                     customer.attributes.name
                   }
-                  className="w-full"
+                  className="w-full aspect-video"
                 />
                 <div className="w-full px-6 py-4 flex flex-col gap-2">
                   <h2 className="text-xl font-bold">

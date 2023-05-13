@@ -9,6 +9,8 @@ import { STRAPI_BASE_URL } from "@/config";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 
 export default function ChangelogsPage({
+  organization,
+  user,
   changelogs,
   header: { menus, logo },
   footer: { menus: footerMenus },
@@ -18,7 +20,13 @@ export default function ChangelogsPage({
       <Head>
         <title>Changelogs</title>
       </Head>
-      <Layout footerMenus={footerMenus} headerLogo={logo} headerMenus={menus}>
+      <Layout
+        organization={organization}
+        user={user}
+        footerMenus={footerMenus}
+        headerLogo={logo}
+        headerMenus={menus}
+      >
         <div className="w-full py-8 flex flex-col gap-6">
           <h1 className="text-3xl font-bold">Changelogs</h1>
           <div className="w-full grid grid-cols-3 gap-4">
@@ -32,7 +40,7 @@ export default function ChangelogsPage({
                     changelog.attributes.thumbnail.data.attributes.caption ??
                     changelog.attributes.title
                   }
-                  className="w-full"
+                  className="w-full aspect-video"
                 />
                 <div className="w-full px-6 py-4 flex flex-col gap-2">
                   <h2 className="text-xl font-bold">

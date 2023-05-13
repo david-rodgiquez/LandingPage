@@ -42,7 +42,7 @@ export default function CustomersPage({
                     integration.attributes.thumbnail.data.attributes.caption ??
                     integration.attributes.title
                   }
-                  className="w-full"
+                  className="w-full aspect-video"
                 />
                 <div className="w-full px-6 py-4 flex flex-col gap-2">
                   <h2 className="text-xl font-bold">
