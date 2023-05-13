@@ -17,7 +17,9 @@ function GetAccessButton() {
       >
         Get Access
       </button>
-      {isOpenModal && <ModalFormLogin onClose={toggleModal} />}
+      {isOpenModal && (
+        <ModalFormLogin title="Get access to Rollup" onClose={toggleModal} />
+      )}
     </>
   );
 }

@@ -19,7 +19,9 @@ function LoginButton() {
       >
         Login
       </Button>
-      {isOpenModalLogin && <ModalFormLogin onClose={toggleModalLogin} />}
+      {isOpenModalLogin && (
+        <ModalFormLogin title="Login to Rollup" onClose={toggleModalLogin} />
+      )}
     </>
   );
 }

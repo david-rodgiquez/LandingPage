@@ -12,7 +12,13 @@ const STATUS = {
   ERROR: 2,
 };
 
-export default function ModalFormLogin({ onClose }: { onClose: () => void }) {
+export default function ModalFormLogin({
+  onClose,
+  title,
+}: {
+  onClose: () => void;
+  title: string;
+}) {
   const [emlSent, setEMLSent] = useState(STATUS.INIT);
   const [email, setEmail] = useState("");
 
@@ -39,7 +45,7 @@ export default function ModalFormLogin({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <Modal title="Get access to Rollup" onCancel={onClose}>
+    <Modal title={title} onCancel={onClose}>
       {emlSent === STATUS.INIT && (
         <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
           <Input
