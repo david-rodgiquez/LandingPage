@@ -12,7 +12,10 @@ export default function Input({
       <label htmlFor={props.id} className="font-medium ">
         {label} {props.required && <span className="text-red-400">*</span>}
       </label>
-      <input className="outline-none border px-3 py-2 rounded-md" {...props} />
+      <input
+        className="outline-none border px-3 py-2 rounded-md h-10"
+        {...props}
+      />
     </div>
   );
 }

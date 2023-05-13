@@ -5,225 +5,110 @@ import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
 import Modal from "@/components/Modal";
-import {
-  DetailedHTMLProps,
-  FormEvent,
-  InputHTMLAttributes,
-  TextareaHTMLAttributes,
-  useState,
-} from "react";
+import { FormEvent, useState } from "react";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import Link from "next/link";
+import { isValidEmail } from "@/lib/validation";
+import { discoveryStart } from "@/lib/api";
 import IconSpinner from "@/components/icons/IconSpinner";
 
-function Input({
-  label,
-  ...props
-}: DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & { label: string }) {
-  return (
-    <div className="text-sm flex w-full flex-col gap-1">
-      <label htmlFor={props.id} className="font-medium ">
-        {label} {props.required && <span className="text-red-400">*</span>}
-      </label>
-      <input className="outline-none border px-3 py-2 rounded-md" {...props} />
-    </div>
-  );
-}
-
-function InputTextarea({
-  label,
-  ...props
-}: DetailedHTMLProps<
-  TextareaHTMLAttributes<HTMLTextAreaElement>,
-  HTMLTextAreaElement
-> & { label: string }) {
-  return (
-    <div className="text-sm flex w-full flex-col gap-1">
-      <label htmlFor={props.id} className="font-medium ">
-        {label} {props.required && <span className="text-red-400">*</span>}
-      </label>
-      <textarea
-        className="outline-none border px-3 py-2 rounded-md"
-        {...props}
-      />
-    </div>
-  );
-}
-
-function Checkbox({
-  label,
-  ...props
-}: DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & { label: string }) {
-  return (
-    <div className="text-sm flex w-full gap-2">
-      <input
-        type="checkbox"
-        className="outline-none border px-3 py-2 rounded-md"
-        {...props}
-      />
-      <label htmlFor={props.id}>
-        {label} {props.required && <span className="text-red-400">*</span>}
-      </label>
-    </div>
-  );
-}
-
-const createUser = (str: string) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (str === "fail") {
-        reject(null);
-      } else {
-        resolve(null);
-      }
-    }, 2000);
-  });
+const STATUS = {
+  INIT: 0,
+  SENT: 1,
+  ERROR: 2,
 };
 
 function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
+  const [emlSent, setEMLSent] = useState(STATUS.ERROR);
+  const [email, setEmail] = useState("");
 
+  const isDisabled = !isValidEmail(email);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const [data, setData] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-    organization: "",
-    currentlyWorkingOn: "",
-    softwareUsed: "",
-    isSubscribe: true,
-  });
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setIsLoading(true);
-    setError("");
-
-    try {
-      const res = await createUser("fail");
-      // setError("something went wrong");
-    } catch (error) {
-      setError("something went wrong");
-    } finally {
-      setIsLoading(false);
+    const resp = await discoveryStart(email);
+    if (resp.status === 200) {
+      setEMLSent(STATUS.SENT);
+    } else {
+      setEMLSent(STATUS.ERROR);
     }
+    setIsLoading(false);
+  };
+
+  const handleTryAgain = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setEMLSent(STATUS.INIT);
   };
 
   return (
     <>
       <button
         type="button"
-        // onClick={toggleModal}
+        onClick={toggleModal}
         className="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white px-8 py-2 rounded flex items-center justify-center font-medium"
       >
         Get Access
       </button>
       {isOpenModal && (
         <Modal title="Get access to Rollup" onCancel={toggleModal}>
-          <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
-            <Input
-              value={data.email}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, email: e.target.value }))
-              }
-              type="email"
-              name="email"
-              id="email"
-              label="Email"
-              placeholder="john@gmail.com"
-              required
-            />
-            <Input
-              value={data.firstName}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, firstName: e.target.value }))
-              }
-              type="text"
-              name="firstName"
-              id="firstName"
-              label="First Name"
-              placeholder="John"
-              required
-            />
-            <Input
-              value={data.lastName}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, lastName: e.target.value }))
-              }
-              type="text"
-              name="lastName"
-              id="lastName"
-              label="Last Name"
-              placeholder="Doe"
-              required
-            />
-            <Input
-              value={data.organization}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, organization: e.target.value }))
-              }
-              type="text"
-              name="organization"
-              id="organization"
-              label="Organizational Affiliation"
-              placeholder="ACME Corp"
-            />
-            <InputTextarea
-              value={data.currentlyWorkingOn}
-              onChange={(e) =>
-                setData((prev) => ({
-                  ...prev,
-                  currentlyWorkingOn: e.target.value,
-                }))
-              }
-              rows={4}
-              id="currentlyWorkingOn"
-              name="currentlyWorkingOn"
-              label="What are you currently working on?"
-            />
-            <InputTextarea
-              value={data.softwareUsed}
-              onChange={(e) =>
-                setData((prev) => ({
-                  ...prev,
-                  softwareUsed: e.target.value,
-                }))
-              }
-              rows={4}
-              id="softwareUsed"
-              name="softwareUsed"
-              label="What don't you love about the workflows, software, or tools you use very day?"
-            />
-            {error && <p className="text-sm text-red-700">{error}</p>}
-            <div className="w-full flex justify-between items-center">
-              <Checkbox
-                checked={data.isSubscribe}
-                onChange={(e) =>
-                  setData((prev) => ({
-                    ...prev,
-                    isSubscribe: e.target.checked,
-                  }))
-                }
-                label="Subscribe to Product and Company Updates"
-                id="isSubscribe"
-                name="isSubscribe"
+          {emlSent === STATUS.INIT && (
+            <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
+              <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                name="email"
+                id="email"
+                label="Email"
+                placeholder="john@gmail.com"
+                required
               />
+              <Button type="submit" disabled={isDisabled || isLoading}>
+                {isLoading ? <IconSpinner /> : "Continue"}
+              </Button>
+              <p className="text-sm">
+                Already have an account?{" "}
+                <Link href="/login" className="text-indigo-600">
+                  Login
+                </Link>
+              </p>
+            </form>
+          )}
+          {emlSent === STATUS.SENT && (
+            <div className="w-full flex flex-col gap-2 text-center">
+              <h1 className="text-center font-bold text-xl">
+                Check your email
+              </h1>
+              <p>{`An email was sent to ${email}`}</p>
               <button
-                disabled={isLoading}
-                type="submit"
-                className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 w-24 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white text-sm px-6 py-2 rounded"
+                type="button"
+                className="text-indigo-600"
+                onClick={handleTryAgain}
               >
-                {!isLoading ? "Submit" : <IconSpinner />}
+                Click here to try again.
               </button>
             </div>
-          </form>
+          )}
+          {emlSent === STATUS.ERROR && (
+            <div className="w-full flex flex-col gap-2 text-center">
+              <h2 className="text-center font-bold text-xl">
+                Something went wrong!
+              </h2>
+              <p>{`Failed to send email to ${email}`}</p>
+              <a
+                className="text-indigo-600 cursor-pointer"
+                onClick={handleTryAgain}
+              >
+                Click here to try again.
+              </a>
+            </div>
+          )}
         </Modal>
       )}
     </>

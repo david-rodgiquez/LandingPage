@@ -1,26 +1,12 @@
-import React, {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import { discoveryStart } from "../lib/api";
 import Link from "next/link";
+import { isValidEmail } from "@/lib/validation";
 
 const STATUS = {
   INIT: 0,
   SENT: 1,
   ERROR: 2,
-};
-
-const isValidEmail = (emailValue: string) => {
-  // Overly simple email address regex
-  const regex = /\S+@\S+\.\S+/;
-  return regex.test(emailValue);
-};
-
-const isValidOrgName = (organizationName: string) => {
-  return organizationName.length > 3;
 };
 
 const SignupForm = () => {
@@ -32,15 +18,6 @@ const SignupForm = () => {
     const isValid = isValidEmail(email);
     setIsDisabled(!isValid);
   }, [email]);
-
-  const onEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setEmail(e.target.value);
-    if (isValidEmail(e.target.value)) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  };
 
   const onSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
