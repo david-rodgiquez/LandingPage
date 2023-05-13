@@ -5,6 +5,24 @@ import useToggle from "@/hooks/useToggle";
 import { STRAPI_BASE_URL } from "@/config";
 import { Organization } from "stytch";
 import { Member } from "@stytch/vanilla-js";
+import ModalFormLogin from "../ModalFormLogin";
+import Button from "../Button";
+
+function LoginButton() {
+  const [isOpenModalLogin, toggleModalLogin] = useToggle();
+  return (
+    <>
+      <Button
+        type="button"
+        onClick={toggleModalLogin}
+        className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
+      >
+        Login
+      </Button>
+      {isOpenModalLogin && <ModalFormLogin onClose={toggleModalLogin} />}
+    </>
+  );
+}
 
 export type HeaderLogo = {
   url: string;
@@ -139,12 +157,7 @@ export default function Header({
         )}
         <div className="flex items-center gap-8">
           {!isAuthenticated ? (
-            <Link
-              href="/login"
-              className="bg-indigo-700 hover:bg-indigo-800 transition-colors px-4 py-1 font-medium text-sm text-white rounded-lg"
-            >
-              Login
-            </Link>
+            <LoginButton />
           ) : (
             <>
               <div className="w-full text-sm gap-6 flex items-center">
