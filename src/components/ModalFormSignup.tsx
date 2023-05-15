@@ -52,22 +52,33 @@ export default function ModalFormSignup({
 
     setIsLoading(true);
     if (openedTab === "email") {
-      const resp = await discoveryStart(email);
-      if (resp.status === 200) {
-        setOpenedTab("about");
-        setEMLSent(STATUS.SENT);
-      } else {
-        setEMLSent(STATUS.ERROR);
-      }
+      // const resp = await discoveryStart(email);
+      // if (resp.status === 200) {
+      //   setOpenedTab("about");
+      //   setEMLSent(STATUS.SENT);
+      // } else {
+      //   setEMLSent(STATUS.ERROR);
+      // }
+      setOpenedTab("about")
     } else if (openedTab === "about") {
       setOpenedTab("get-started");
     } else if (openedTab === "get-started") {
       try {
-        await createStrapiRollupUser({ email, ...about, ...gettingStarted });
+        const resp = await discoveryStart(email);
+        if (resp.status === 200) {
+          setEMLSent(STATUS.SENT);
+          try {
+            await createStrapiRollupUser({ email, ...about, ...gettingStarted });
+          } catch (error) {
+          }
+          setOpenedTab("welcome");
+        } else {
+          setEMLSent(STATUS.ERROR);
+        }
       } catch (error) {
         console.log("error", error);
       } finally {
-        setOpenedTab("welcome");
+        // setOpenedTab("welcome");
       }
     } else {
       onClose();
@@ -79,6 +90,7 @@ export default function ModalFormSignup({
     e.preventDefault();
     e.stopPropagation();
     setEMLSent(STATUS.INIT);
+    setOpenedTab("email")
   };
 
   return (
@@ -99,34 +111,6 @@ export default function ModalFormSignup({
                   placeholder="john@gmail.com"
                   required
                 />
-              </div>
-            )}
-            {emlSent === STATUS.SENT && openedTab === "about" && (
-              <div className="w-full flex flex-col text-sm">
-                <p className="text-green-700">
-                  An email was sent to <strong>{email}</strong>.{" "}
-                  <button
-                    type="button"
-                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
-                    onClick={handleTryAgain}
-                  >
-                    Try again.
-                  </button>
-                </p>
-              </div>
-            )}
-            {emlSent === STATUS.ERROR && openedTab === "about" && (
-              <div className="w-full flex flex-col text-sm">
-                <p>
-                  Failed to send email to <strong>{email}</strong>.{" "}
-                  <button
-                    type="button"
-                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
-                    onClick={handleTryAgain}
-                  >
-                    Try again.
-                  </button>
-                </p>
               </div>
             )}
           </div>
@@ -187,6 +171,34 @@ export default function ModalFormSignup({
               </div>
             )}
           </div>
+          {/* {emlSent === STATUS.SENT && openedTab === "get-started" && (
+              <div className="w-full flex flex-col text-sm">
+                <p className="text-green-700">
+                  An email was sent to <strong>{email}</strong>.{" "}
+                  <button
+                    type="button"
+                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
+                    onClick={handleTryAgain}
+                  >
+                    Try again.
+                  </button>
+                </p>
+              </div>
+            )} */}
+            {emlSent === STATUS.ERROR && openedTab === "get-started" && (
+              <div className="w-full flex flex-col text-sm">
+                <p className="text-red-700">
+                  Failed to send email to <strong>{email}</strong>.{" "}
+                  <button
+                    type="button"
+                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
+                    onClick={handleTryAgain}
+                  >
+                    Try again.
+                  </button>
+                </p>
+              </div>
+            )}
           <Button type="submit" disabled={isDisabled || isLoading}>
             {isLoading ? <IconSpinner /> : "Next"}
           </Button>
