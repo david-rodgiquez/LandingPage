@@ -4,7 +4,7 @@ import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
-import ModalFormLogin from "@/components/ModalFormLogin";
+import ModalFormSignup from "@/components/ModalFormSignup";
 
 function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
@@ -18,7 +18,7 @@ function GetAccessButton() {
         Get Access
       </button>
       {isOpenModal && (
-        <ModalFormLogin title="Get access to Rollup" onClose={toggleModal} />
+        <ModalFormSignup title="Get access to Rollup" onClose={toggleModal} />
       )}
     </>
   );
