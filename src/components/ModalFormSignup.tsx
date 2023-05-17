@@ -7,12 +7,16 @@ import Button from "./Button";
 import IconSpinner from "./icons/IconSpinner";
 import Textarea from "./Textarea";
 import createStrapiRollupUser from "@/services/rollup-user";
+import IconChevronRight from "./icons/IconChevronRight";
+import IconXMark from "./icons/IconXMark";
 
 const STATUS = {
   INIT: 0,
   SENT: 1,
   ERROR: 2,
 };
+
+type Section = "email" | "about" | "get-started" | "verify-notice";
 
 export default function ModalFormSignup({
   onClose,
@@ -21,11 +25,7 @@ export default function ModalFormSignup({
   onClose: () => void;
   title: string;
 }) {
-  const [emlSent, setEMLSent] = useState(STATUS.INIT);
   const [email, setEmail] = useState("");
-  const [openedTab, setOpenedTab] = useState<
-    "email" | "about" | "get-started" | "thanks" | "welcome"
-  >("email");
   const [about, setAbout] = useState({
     firstName: "",
     lastName: "",
@@ -35,7 +35,8 @@ export default function ModalFormSignup({
     work: "",
     tool: "",
   });
-
+  const [emlSent, setEMLSent] = useState(STATUS.INIT);
+  const [openedSections, setOpenedSections] = useState<Section[]>(["email"]);
   const isDisabled = !isValidEmail(email);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,59 +52,66 @@ export default function ModalFormSignup({
     e.preventDefault();
 
     setIsLoading(true);
-    if (openedTab === "email") {
-      // const resp = await discoveryStart(email);
-      // if (resp.status === 200) {
-      //   setOpenedTab("about");
-      //   setEMLSent(STATUS.SENT);
-      // } else {
-      //   setEMLSent(STATUS.ERROR);
-      // }
-      setOpenedTab("about");
-    } else if (openedTab === "about") {
-      setOpenedTab("get-started");
-    } else if (openedTab === "get-started") {
-      try {
-        const resp = await discoveryStart(email);
-        if (resp.status === 200) {
-          setEMLSent(STATUS.SENT);
-          try {
-            await createStrapiRollupUser({
-              email,
-              ...about,
-              ...gettingStarted,
-            });
-          } catch (error) {}
-          setOpenedTab("welcome");
-        } else {
-          setEMLSent(STATUS.ERROR);
-        }
-      } catch (error) {
-        console.log("error", error);
-      } finally {
-        // setOpenedTab("welcome");
+    try {
+      const resp = await discoveryStart(email);
+      if (resp.status === 200) {
+        setEMLSent(STATUS.SENT);
+        try {
+          await createStrapiRollupUser({
+            email,
+            ...about,
+            ...gettingStarted,
+          });
+        } catch (error) {}
+        setOpenedSections(["verify-notice"]);
+      } else {
+        setEMLSent(STATUS.ERROR);
+        setOpenedSections((prev) =>
+          !prev.includes("email") ? prev.concat("email") : prev
+        );
       }
-    } else {
-      onClose();
+    } catch (error) {
+      console.log("error", error);
+    } finally {
     }
     setIsLoading(false);
   };
 
   const handleTryAgain = (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
     setEMLSent(STATUS.INIT);
-    setOpenedTab("email");
+    setOpenedSections((prev) =>
+      !prev.includes("email") ? prev.concat("email") : prev
+    );
+  };
+
+  const toggleClickSection = (section: Section) => {
+    setOpenedSections((prev) => {
+      if (prev.includes(section)) {
+        return prev.filter((p) => p !== section);
+      } else {
+        return prev.concat(section);
+      }
+    });
   };
 
   return (
     <Modal title={title} onCancel={onClose}>
-      {openedTab != "welcome" ? (
+      {!openedSections.includes("verify-notice") ? (
         <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
           <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
-            <h3 className="text-lg font-semibold ">Email</h3>
-            {emlSent === STATUS.INIT && openedTab === "email" && (
-              <div className="w-full">
+            <div
+              className="flex justify-between cursor-pointer"
+              onClick={() => toggleClickSection("email")}
+            >
+              <h3 className="text-lg font-semibold ">Email</h3>
+              <IconChevronRight
+                className={`h-6 w-6 transition-transform ${
+                  openedSections.includes("email") ? "rotate-90" : ""
+                }`}
+              />
+            </div>
+            {openedSections.includes("email") && (
+              <div className="w-full flex flex-col gap-2">
                 <Input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -114,12 +122,36 @@ export default function ModalFormSignup({
                   placeholder="john@gmail.com"
                   required
                 />
+                {emlSent === STATUS.ERROR && (
+                  <div className="w-full flex flex-col text-sm">
+                    <p className="text-red-700 flex items-center gap-1">
+                      Failed to send email to <strong>{email}</strong>.{" "}
+                      <button
+                        type="button"
+                        className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
+                        onClick={handleTryAgain}
+                      >
+                        <IconXMark className="h-4 w-4" />
+                      </button>
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>
           <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
-            <h3 className="text-lg font-semibold ">About You</h3>
-            {openedTab === "about" && (
+            <div
+              className="flex justify-between cursor-pointer"
+              onClick={() => toggleClickSection("about")}
+            >
+              <h3 className="text-lg font-semibold ">About You</h3>
+              <IconChevronRight
+                className={`h-6 w-6 transition-transform ${
+                  openedSections.includes("about") ? "rotate-90" : ""
+                }`}
+              />
+            </div>
+            {openedSections.includes("about") && (
               <div className="w-full flex flex-col gap-2">
                 <Input
                   value={about.firstName}
@@ -154,8 +186,18 @@ export default function ModalFormSignup({
             )}
           </div>
           <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
-            <h3 className="text-lg font-semibold ">Getting Started</h3>
-            {openedTab === "get-started" && (
+            <div
+              className="flex justify-between cursor-pointer"
+              onClick={() => toggleClickSection("get-started")}
+            >
+              <h3 className="text-lg font-semibold ">Getting Started</h3>
+              <IconChevronRight
+                className={`h-6 w-6 transition-transform ${
+                  openedSections.includes("get-started") ? "rotate-90" : ""
+                }`}
+              />
+            </div>
+            {openedSections.includes("get-started") && (
               <div className="w-full flex flex-col gap-2">
                 <Textarea
                   value={gettingStarted.work}
@@ -171,31 +213,18 @@ export default function ModalFormSignup({
                   id="tool"
                   label="What don't you love about the workflows, software, or tools you use every day?"
                 />
+                <div className="w-full flex gap-2">
+                  <input type="checkbox" id="subscribe" name="subscribe" />
+                  <label htmlFor="subscribe" className="text-sm font-medium">
+                    Subscribe to Product and Company Updates
+                  </label>
+                </div>
               </div>
             )}
           </div>
-          {emlSent === STATUS.ERROR && openedTab === "get-started" && (
-            <div className="w-full flex flex-col text-sm">
-              <p className="text-red-700">
-                Failed to send email to <strong>{email}</strong>.{" "}
-                <button
-                  type="button"
-                  className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
-                  onClick={handleTryAgain}
-                >
-                  Try again.
-                </button>
-              </p>
-            </div>
-          )}
-          <div className="w-full flex gap-2">
-            <input type="checkbox" id="subscribe" name="subscribe" />
-            <label htmlFor="subscribe" className="text-sm font-medium">
-              Subscribe to Product and Company Updates
-            </label>
-          </div>
+
           <Button type="submit" disabled={isDisabled || isLoading}>
-            {isLoading ? <IconSpinner /> : "Next"}
+            {isLoading ? <IconSpinner /> : "Submit"}
           </Button>
         </form>
       ) : (
@@ -205,6 +234,20 @@ export default function ModalFormSignup({
             <p>
               A verification email has been sent to <strong>{email}</strong>
             </p>
+            <div className="flex gap-4 text-xs">
+              <button
+                type="button"
+                className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-6 py-2 rounded"
+              >
+                Open Gmail
+              </button>
+              <button
+                type="button"
+                className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-6 py-2 rounded"
+              >
+                Open Office 365
+              </button>
+            </div>
           </div>
           <div className="w-full space-y-2">
             <h3 className="text-xl font-semibold">
