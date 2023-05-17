@@ -59,7 +59,7 @@ export default function ModalFormSignup({
       // } else {
       //   setEMLSent(STATUS.ERROR);
       // }
-      setOpenedTab("about")
+      setOpenedTab("about");
     } else if (openedTab === "about") {
       setOpenedTab("get-started");
     } else if (openedTab === "get-started") {
@@ -68,9 +68,12 @@ export default function ModalFormSignup({
         if (resp.status === 200) {
           setEMLSent(STATUS.SENT);
           try {
-            await createStrapiRollupUser({ email, ...about, ...gettingStarted });
-          } catch (error) {
-          }
+            await createStrapiRollupUser({
+              email,
+              ...about,
+              ...gettingStarted,
+            });
+          } catch (error) {}
           setOpenedTab("welcome");
         } else {
           setEMLSent(STATUS.ERROR);
@@ -90,7 +93,7 @@ export default function ModalFormSignup({
     e.preventDefault();
     e.stopPropagation();
     setEMLSent(STATUS.INIT);
-    setOpenedTab("email")
+    setOpenedTab("email");
   };
 
   return (
@@ -171,34 +174,26 @@ export default function ModalFormSignup({
               </div>
             )}
           </div>
-          {/* {emlSent === STATUS.SENT && openedTab === "get-started" && (
-              <div className="w-full flex flex-col text-sm">
-                <p className="text-green-700">
-                  An email was sent to <strong>{email}</strong>.{" "}
-                  <button
-                    type="button"
-                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
-                    onClick={handleTryAgain}
-                  >
-                    Try again.
-                  </button>
-                </p>
-              </div>
-            )} */}
-            {emlSent === STATUS.ERROR && openedTab === "get-started" && (
-              <div className="w-full flex flex-col text-sm">
-                <p className="text-red-700">
-                  Failed to send email to <strong>{email}</strong>.{" "}
-                  <button
-                    type="button"
-                    className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
-                    onClick={handleTryAgain}
-                  >
-                    Try again.
-                  </button>
-                </p>
-              </div>
-            )}
+          {emlSent === STATUS.ERROR && openedTab === "get-started" && (
+            <div className="w-full flex flex-col text-sm">
+              <p className="text-red-700">
+                Failed to send email to <strong>{email}</strong>.{" "}
+                <button
+                  type="button"
+                  className="text-indigo-600 font-semibold cursor-pointer hover:underline hover:underline-offset-2 decoration-indigo-700 decoration-2"
+                  onClick={handleTryAgain}
+                >
+                  Try again.
+                </button>
+              </p>
+            </div>
+          )}
+          <div className="w-full flex gap-2">
+            <input type="checkbox" id="subscribe" name="subscribe" />
+            <label htmlFor="subscribe" className="text-sm font-medium">
+              Subscribe to Product and Company Updates
+            </label>
+          </div>
           <Button type="submit" disabled={isDisabled || isLoading}>
             {isLoading ? <IconSpinner /> : "Next"}
           </Button>
@@ -206,22 +201,28 @@ export default function ModalFormSignup({
       ) : (
         <div className="w-full flex flex-col gap-6">
           <div className="w-full space-y-2">
-            <h3 className="text-xl font-semibold">
-              Thank you for your interest.
-            </h3>
+            <h3 className="text-xl font-semibold">Verify your email</h3>
             <p>
-              If there&apos;s a fit, we&apos;ll response in 24-48 hours with a
-              welcome email
+              A verification email has been sent to <strong>{email}</strong>
             </p>
           </div>
           <div className="w-full space-y-2">
-            <h3 className="text-xl font-semibold">After your welcome email</h3>
+            <h3 className="text-xl font-semibold">
+              After verifying your email
+            </h3>
             <ol className="list-decimal pl-6 space-y-1">
               <li>
-                Our landing page will give you access to learn more about Rollup
+                You&apos;ll create an organization or link you account to an
+                existing organization with your domain.
               </li>
-              <li>We&apos;ll schedule an introductory call</li>
-              <li>You&apos;ll receive early-access to Rollup</li>
+              <li>
+                If we approve your request, we&apos;ll email you and you&apos;ll
+                receive access to materials to learn more about Rollup.
+              </li>
+              <li>
+                We&apos;ll schedule an introductory call to get you on board.
+              </li>
+              <li>You&apos;ll receive access to Rollup.</li>
             </ol>
           </div>
           <Button type="button" onClick={onClose}>
