@@ -236,18 +236,20 @@ export default function ModalFormSignup({
               A verification email has been sent to <strong>{email}</strong>
             </p>
             <div className="flex gap-4 text-xs">
-              <button
-                type="button"
+              <a
+                href="https://mail.google.com/"
                 className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-6 py-2 rounded"
+                target="_blank"
               >
                 Open Gmail
-              </button>
-              <button
-                type="button"
+              </a>
+              <a
+                href="https://www.microsoft365.com/"
+                target="_blank"
                 className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-6 py-2 rounded"
               >
                 Open Office 365
-              </button>
+              </a>
             </div>
           </div>
           <div className="w-full space-y-2">
