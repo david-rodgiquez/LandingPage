@@ -37,7 +37,8 @@ export default function ModalFormSignup({
   });
   const [emlSent, setEMLSent] = useState(STATUS.INIT);
   const [openedSections, setOpenedSections] = useState<Section[]>(["email"]);
-  const isDisabled = !isValidEmail(email);
+  const isDisabled =
+    !isValidEmail(email) || !about.firstName || !about.lastName;
   const [isLoading, setIsLoading] = useState(false);
 
   const onChangeAbout = (e: ChangeEvent<HTMLInputElement>) => {
