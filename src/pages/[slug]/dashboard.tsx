@@ -344,7 +344,7 @@ export default function Dashboard({
         <div className="w-full my-8 flex flex-col gap-16">
           <p className="text-3xl font-medium ">
             Welcome to Rollup,{" "}
-            {user.untrusted_metadata.name || user.email_address}
+            {user.untrusted_metadata.firstName || user.email_address}
           </p>
           <div className="w-full flex flex-col gap-12">
             {/* track */}
