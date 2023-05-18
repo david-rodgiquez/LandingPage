@@ -182,6 +182,26 @@ export function withSession<
   };
 }
 
+export async function getSession(
+  req: IncomingMessage,
+  res: ServerResponse<IncomingMessage>
+) {
+  const cookies = new Cookies(req, res);
+
+  const sessionJWT = cookies.get("session");
+
+  if (!sessionJWT) return null;
+
+  try {
+    return stytch.sessions.authenticate({
+      session_duration_minutes: 30, // extend the session a bit
+      session_jwt: sessionJWT,
+    });
+  } catch (err) {
+    console.error("Could not find member by session token", err);
+    return null;
+  }
+}
 /**
  * useAuth will return the authentication result for the logged-in user.
  * It can only be called in functions wrapped with {@link withSession}`

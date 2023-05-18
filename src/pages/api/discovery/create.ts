@@ -34,7 +34,13 @@ export async function handler(
   if (!intermediateSession) {
     return res.redirect(307, "/discovery");
   }
-  const { organization_name } = req.body;
+  const body = req.body as {
+    organization_name: string;
+    email_allowed_domains?: string;
+  };
+  const organization_name = body.organization_name;
+  const email_allowed_domains = body.email_allowed_domains;
+
   const organization_slug = toSlug(organization_name);
 
   try {
@@ -53,7 +59,9 @@ export async function handler(
         organization_id: organization.organization_id,
         email_jit_provisioning: "RESTRICTED",
         sso_jit_provisioning: "ALL_ALLOWED",
-        email_allowed_domains: [toDomain(member.email_address)],
+        email_allowed_domains: [toDomain(member.email_address)].concat(
+          email_allowed_domains?.split(",") || []
+        ),
       });
     } catch (e) {
       if (

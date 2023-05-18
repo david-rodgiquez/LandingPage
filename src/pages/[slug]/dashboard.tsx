@@ -1,5 +1,7 @@
 import React, {
+  DetailedHTMLProps,
   FormEventHandler,
+  InputHTMLAttributes,
   MouseEventHandler,
   ReactNode,
   useEffect,
@@ -27,9 +29,13 @@ import Layout from "@/components/Layout/Layout";
 import { getFooter, getHeader } from "@/services/header";
 import { HeaderLogo, HeaderMenu } from "@/components/Layout/Header";
 import { FooterMenu } from "@/components/Layout/Footer";
+import ClientOnly from "@/components/ClientOnly";
+import md5 from "md5";
+import IconArrowLongRight from "@/components/icons/IconArrowLongRight";
+import { getGravatarUrl } from "@/lib/gravatar";
 
 type Props = {
-  org: Organization;
+  organization: Organization;
   user: Member;
   members: Member[];
   saml_connections: SAMLConnection[];
@@ -85,8 +91,8 @@ const MemberRow = ({ member, user }: { member: Member; user: Member }) => {
 const MemberList = ({
   members,
   user,
-  org,
-}: Pick<Props, "members" | "user" | "org">) => {
+  organization,
+}: Pick<Props, "members" | "user" | "organization">) => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
@@ -126,7 +132,7 @@ const MemberList = ({
         >
           <input
             placeholder={`your-coworker@${
-              org.email_allowed_domains[0] ?? "example.com"
+              organization.email_allowed_domains[0] ?? "example.com"
             }`}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -300,8 +306,25 @@ function DetailLine({ title, value }: { title: string; value: ReactNode }) {
   );
 }
 
+function Checkbox({
+  label,
+  ...props
+}: DetailedHTMLProps<
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> & { label: string }) {
+  return (
+    <div className="flex gap-2 items-center">
+      <input type="checkbox" {...props} />
+      <label className="font-medium" htmlFor={props.id}>
+        {label}
+      </label>
+    </div>
+  );
+}
+
 export default function Dashboard({
-  org,
+  organization,
   user,
   members,
   saml_connections,
@@ -314,14 +337,276 @@ export default function Dashboard({
       footerMenus={footer.menus}
       headerLogo={header.logo}
       headerMenus={header.menus}
-      organization={org}
+      organization={organization}
       user={user}
     >
-      <div className="flex w-full">
-        <div className="w-full my-8 flex flex-col gap-10">
-          <p className="text-3xl font-bold text-center">Welcome!</p>
-          <hr className="w-full" />
-          <h2 className="text-2xl font-bold">Organization Details</h2>
+      <div className="flex w-full max-w-4xl mx-auto">
+        <div className="w-full my-8 flex flex-col gap-16">
+          <p className="text-3xl font-medium ">
+            Welcome to Rollup,{" "}
+            {user.untrusted_metadata.name || user.email_address}
+          </p>
+          <div className="w-full flex flex-col gap-12">
+            {/* track */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs w-full">
+                <p className="text-xl font-bold">Track</p>
+                <p>
+                  Tracks at Rollup represent rollup&apos;s tailored partnerships
+                  and sales processes.
+                </p>
+              </div>
+              <table className="border-2 text-left border-collapse h-max w-full">
+                <tbody>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Current Track</th>
+                    <td className="px-4 py-1 ">
+                      <span className="italic">Design partner Track</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {/* action items */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs w-full">
+                <p className="text-xl font-bold">Action Items</p>
+                <p>
+                  These are action items you can complete to get the ball
+                  rolling at Rollup. Mark them as done as you go.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <table className="border-2 text-left border-collapse h-max w-full">
+                  <tbody className="divide-y-2">
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1 w-80">
+                        Explore the Landing Page
+                      </th>
+                      <td className="px-4 py-1 ">
+                        <Checkbox label="todo" name="todo" id="todo" />
+                      </td>
+                      <td className="px-4 py-1 ">
+                        <Link href="#" className="text-indigo-600 font-medium">
+                          LINK
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1 w-80">Schedule a Sales Call</th>
+                      <td className="px-4 py-1 ">
+                        <Checkbox label="todo" name="todo_2" id="todo_2" />
+                      </td>
+                      <td className="px-4 py-1 ">
+                        <Link href="#" className="text-indigo-600 font-medium">
+                          LINK
+                        </Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table className="border-2 text-left border-collapse h-max w-full">
+                  <tbody className="divide-y-2">
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1 w-80">
+                        Review Technical Buyer&apos;s Jurney
+                      </th>
+                      <td className="px-4 py-1 ">
+                        <Checkbox label="DONE" name="done_3" id="done_3" />
+                      </td>
+                      <td className="px-4 py-1 ">
+                        <Link href="#" className="text-indigo-600 font-medium">
+                          LINK
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1 w-80">
+                        Review Design Partner Journey
+                      </th>
+                      <td className="px-4 py-1 ">
+                        <Checkbox label="DONE" name="done_4" id="done_4" />
+                      </td>
+                      <td className="px-4 py-1 ">
+                        <Link href="#" className="text-indigo-600 font-medium">
+                          LINK
+                        </Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {/* Deployments */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs w-full">
+                <p className="text-xl font-bold">Deployments</p>
+              </div>
+              <table className="border-2 text-left border-collapse h-max w-full">
+                <tbody className="divide-y-2">
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Deployment Type</th>
+                    <td className="px-4 py-1 ">DEMO-Cloud</td>
+                  </tr>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Host</th>
+                    <td className="px-4 py-1 ">AWS US West</td>
+                  </tr>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">URL</th>
+                    <td className="px-4 py-1 ">app.rollup.ai</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {/* subscription */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs w-full">
+                <p className="text-xl font-bold">Subscriptions</p>
+              </div>
+              <table className="border-2 text-left border-collapse h-max w-full">
+                <tbody className="divide-y-2">
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Subscription ID</th>
+                    <td className="px-4 py-1 ">DEMO</td>
+                  </tr>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Status</th>
+                    <td className="px-4 py-1 ">ACTIVE</td>
+                  </tr>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Expires</th>
+                    <td className="px-4 py-1 ">
+                      <ClientOnly>
+                        {new Date().toLocaleString("en", {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
+                      </ClientOnly>
+                    </td>
+                  </tr>
+                  <tr className="divide-x-2">
+                    <th className="px-4 py-1">Includes</th>
+                    <td className="px-4 py-1 ">app.rollup.ai</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {/* User Info */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs w-full flex flex-col gap-2">
+                <p className="text-xl font-bold">User Info</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="h-20 w-20 object-cover flex-shrink-0 border"
+                  src={
+                    user.untrusted_metadata.avatarUrl ||
+                    getGravatarUrl(user.email_address)
+                  }
+                  alt={user.name}
+                />
+              </div>
+              <div className="flex w-full flex-col gap-4">
+                <table className="border-2 text-left border-collapse h-max w-full">
+                  <tbody className="divide-y-2">
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">First Name</th>
+                      <td className="px-4 py-1">
+                        {user.untrusted_metadata.firstName || "-"}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Last Name</th>
+                      <td className="px-4 py-1">
+                        {user.untrusted_metadata.lastName || "-"}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Email</th>
+                      <td className="px-4 py-1 ">
+                        {user.email_address || "-"}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Email Updates</th>
+                      <td className="px-4 py-1 ">
+                        <Checkbox
+                          defaultChecked={
+                            user.untrusted_metadata.emailSubscribed
+                          }
+                          label="Subscribed"
+                          id="subscription"
+                          name="subscription"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Link
+                  className="bg-indigo-600 w-max disabled:cursor-not-allowed disabled:bg-indigo-500 text-xs font-semibold flex gap-1 items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-4 py-1 rounded"
+                  href={`/${organization.organization_slug}/members/${user.member_id}`}
+                >
+                  <span>Update user info</span>
+                  <IconArrowLongRight />
+                </Link>
+              </div>
+            </div>
+            {/* Firm Info */}
+            <div className="w-full flex gap-8">
+              <div className="max-w-xs flex-shrink-0 w-full flex flex-col gap-2">
+                <p className="text-xl font-bold">Firm Info</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="h-20 w-20 object-cover flex-shrink-0 border"
+                  src={
+                    organization.organization_logo_url || "/img/placeholder.jpg"
+                  }
+                  alt={user.name}
+                />
+              </div>
+              <div className="flex w-full flex-col gap-4">
+                <table
+                  className="border-2 text-left table-fixed border-collapse h-max w-full text-ellipsis"
+                  style={{ wordWrap: "break-word" }}
+                >
+                  <tbody className="divide-y-2">
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Name</th>
+                      <td className="px-4 py-1">
+                        {organization.organization_name}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Logo</th>
+                      <td className="px-4 py-1">
+                        {organization.organization_logo_url || "SET"}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Primary Domain</th>
+                      <td className="px-4 py-1 ">
+                        {organization.trusted_metadata.primaryDomain || "-"}
+                      </td>
+                    </tr>
+                    <tr className="divide-x-2">
+                      <th className="px-4 py-1">Allowed Domains</th>
+                      <td className="px-4 py-1 ">
+                        {organization.email_allowed_domains.join(", ") || "-"}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Link
+                  className="bg-indigo-600 w-max disabled:cursor-not-allowed disabled:bg-indigo-500 text-xs font-semibold flex gap-1 items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-4 py-1 rounded"
+                  href={`/${organization.organization_slug}/settings`}
+                >
+                  <span>Update firm info</span>
+                  <IconArrowLongRight />
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* <h2 className="text-2xl font-bold">Organization Details</h2>
           <div className="w-full flex flex-col gap-8">
             <div className="flex w-full flex-col gap-2">
               <DetailLine
@@ -344,17 +629,17 @@ export default function Dashboard({
               oidc_connections={oidc_connections}
             />
             <div className="flex items-center justify-between max-w-lg">
-              {/* <Link
+               <Link
                 href={"/orgswitcher"}
                 className="text-indigo-700 font-medium"
               >
                 Switch Organizations
-              </Link> */}
+              </Link>
               <Link href={"/api/logout"} className="text-red-700 font-medium">
                 Log Out
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>
@@ -391,7 +676,7 @@ export const getServerSideProps = withSession<
       footer: {
         menus: footer.menus,
       },
-      org,
+      organization: org,
       user: member,
       members,
       saml_connections: ssoConnections.saml_connections ?? [],
