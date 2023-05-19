@@ -1,12 +1,11 @@
 import Button from "@/components/Button";
-import Checkbox from "@/components/Checbox";
 import Input from "@/components/Input";
+import InputDomains from "@/components/InputDomains";
 import type { FooterMenu } from "@/components/Layout/Footer";
 import { HeaderLogo, HeaderMenu } from "@/components/Layout/Header";
 import Layout from "@/components/Layout/Layout";
 import IconArrowLongRight from "@/components/icons/IconArrowLongRight";
 import IconSpinner from "@/components/icons/IconSpinner";
-import { getGravatarUrl } from "@/lib/gravatar";
 import { OrgService } from "@/lib/orgService";
 import { useAuth, withSession } from "@/lib/sessionService";
 import { getFooter, getHeader } from "@/services/header";
@@ -28,12 +27,12 @@ export default function SettingsPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [updatedOrganization, setUpdatedOrganization] = useState<{
     organization_name: string;
-    email_allowed_domains: string;
+    email_allowed_domains: string[];
     organization_logo_url: string;
     wordmark_logo_url: string;
   }>({
     organization_name: organization.organization_name,
-    email_allowed_domains: organization.email_allowed_domains.join(",") ?? "",
+    email_allowed_domains: organization.email_allowed_domains ?? [],
     organization_logo_url: organization.organization_logo_url,
     wordmark_logo_url: organization.trusted_metadata.wordmark_logo_url ?? "",
   });
@@ -52,7 +51,6 @@ export default function SettingsPage({
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setMessage(undefined);
     setIsLoading(true);
     try {
@@ -115,15 +113,39 @@ export default function SettingsPage({
                 onChange={onChangeInput}
                 required
               />
-              <Input
+              <InputDomains
                 type="text"
                 name="email_allowed_domains"
                 id="email_allowed_domains"
                 label="Allowed Domains"
-                placeholder="acme.com,acme.io,acme.dev"
+                placeholder="acme.com,acme.io"
+                onChange={(domain: string, type: "add" | "delete") => {
+                  if (type === "add") {
+                    setUpdatedOrganization((prev) => ({
+                      ...prev,
+                      email_allowed_domains:
+                        prev.email_allowed_domains.concat(domain),
+                    }));
+                  } else {
+                    setUpdatedOrganization((prev) => ({
+                      ...prev,
+                      email_allowed_domains: prev.email_allowed_domains.filter(
+                        (d) => d !== domain
+                      ),
+                    }));
+                  }
+                }}
+                value={updatedOrganization.email_allowed_domains}
+              />
+              {/* <Input
+                type="text"
+                name="email_allowed_domains"
+                id="email_allowed_domains"
+                label="Allowed Domains"
+                placeholder="acme.com,acme.io"
                 value={updatedOrganization.email_allowed_domains}
                 onChange={onChangeInput}
-              />
+              /> */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="h-20 w-20 object-cover flex-shrink-0 border"

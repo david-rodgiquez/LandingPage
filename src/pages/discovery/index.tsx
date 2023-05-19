@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import loadStytch, { DiscoveredOrganizations } from "../../lib/loadStytch";
@@ -8,6 +8,7 @@ import Layout from "@/components/Layout/Layout";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import IconArrowLongRight from "@/components/icons/IconArrowLongRight";
+import InputDomains from "@/components/InputDomains";
 
 type Props = {
   discovered_organizations: DiscoveredOrganizations;
@@ -85,9 +86,12 @@ const DiscoveredOrganizationsList = ({ discovered_organizations }: Props) => {
 };
 
 const CreateNewOrganization = () => {
-  const [organization, setOrganization] = useState({
+  const [organization, setOrganization] = useState<{
+    organization_name: string;
+    email_allowed_domains: string[];
+  }>({
     organization_name: "",
-    email_allowed_domains: "",
+    email_allowed_domains: [],
   });
 
   const isDisabled = organization.organization_name.length < 3;
@@ -114,13 +118,28 @@ const CreateNewOrganization = () => {
           onChange={onInputChange}
         />
         <div className="w-full flex flex-col gap-2 items-start">
-          <Input
+          <InputDomains
             name="email_allowed_domains"
             id="email_allowed_domains"
             label="Allowed Domains"
             placeholder="acme.com"
             value={organization.email_allowed_domains}
-            onChange={onInputChange}
+            onChange={(domain, type) => {
+              if (type === "add") {
+                setOrganization((prev) => ({
+                  ...prev,
+                  email_allowed_domains:
+                    prev.email_allowed_domains.concat(domain),
+                }));
+              } else {
+                setOrganization((prev) => ({
+                  ...prev,
+                  email_allowed_domains: prev.email_allowed_domains.filter(
+                    (d) => d !== domain
+                  ),
+                }));
+              }
+            }}
           />
           <p className="text-xs text-gray-500 text-left">
             Anyone with email addresses at these domains can automatically join

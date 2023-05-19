@@ -36,7 +36,7 @@ export async function handler(
   }
   const body = req.body as {
     organization_name: string;
-    email_allowed_domains?: string;
+    email_allowed_domains: string[];
   };
   const organization_name = body.organization_name;
   const email_allowed_domains = body.email_allowed_domains;
@@ -60,7 +60,7 @@ export async function handler(
         email_jit_provisioning: "RESTRICTED",
         sso_jit_provisioning: "ALL_ALLOWED",
         email_allowed_domains: [toDomain(member.email_address)].concat(
-          email_allowed_domains?.split(",") || []
+          email_allowed_domains || []
         ),
       });
     } catch (e) {

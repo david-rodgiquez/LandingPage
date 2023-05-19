@@ -30,7 +30,6 @@ import { getFooter, getHeader } from "@/services/header";
 import { HeaderLogo, HeaderMenu } from "@/components/Layout/Header";
 import { FooterMenu } from "@/components/Layout/Footer";
 import ClientOnly from "@/components/ClientOnly";
-import md5 from "md5";
 import IconArrowLongRight from "@/components/icons/IconArrowLongRight";
 import { getGravatarUrl } from "@/lib/gravatar";
 

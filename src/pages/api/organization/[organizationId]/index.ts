@@ -11,7 +11,7 @@ export default async function handler(
   const query = req.query as { organizationId: string };
   const body = req.body as {
     organization_name: string;
-    email_allowed_domains: string;
+    email_allowed_domains: string[];
     organization_logo_url: string;
     wordmark_logo_url: string;
   };
@@ -26,9 +26,7 @@ export default async function handler(
   try {
     await loadStytch().organizations.update({
       organization_id: query.organizationId,
-      email_allowed_domains:
-        body.email_allowed_domains.split(",").map((domain) => domain.trim()) ??
-        [],
+      email_allowed_domains: body.email_allowed_domains ?? [],
       organization_logo_url: body.organization_logo_url,
       trusted_metadata: {
         wordmark_logo_url: body.wordmark_logo_url,
