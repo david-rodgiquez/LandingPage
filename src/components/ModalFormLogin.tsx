@@ -58,6 +58,10 @@ export default function ModalFormLogin({
             placeholder="john@gmail.com"
             required
           />
+          <p className="text-xs">
+            We&apos;ll send you a magic link to log in to Rollup. You can open
+            the link from your phone or desktop.
+          </p>
           <Button type="submit" disabled={isDisabled || isLoading}>
             {isLoading ? <IconSpinner /> : "Continue"}
           </Button>

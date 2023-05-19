@@ -123,6 +123,10 @@ export default function ModalFormSignup({
                   placeholder="john@gmail.com"
                   required
                 />
+                <p className="text-xs">
+                  We&apos;ll send you a magic link to log in to Rollup. You can
+                  open the link from your phone or desktop.
+                </p>
                 {emlSent === STATUS.ERROR && (
                   <div className="w-full flex flex-col text-sm">
                     <p className="text-red-700 flex items-center gap-1">
@@ -206,6 +210,7 @@ export default function ModalFormSignup({
                   name="work"
                   id="work"
                   label="What are you currently working on?"
+                  required
                 />
                 <Textarea
                   value={gettingStarted.tool}
@@ -244,7 +249,7 @@ export default function ModalFormSignup({
                 Open Gmail
               </a>
               <a
-                href="https://www.microsoft365.com/"
+                href="https://outlook.office.com/mail/inbox/"
                 target="_blank"
                 className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white px-6 py-2 rounded"
               >
