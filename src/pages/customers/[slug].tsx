@@ -40,7 +40,7 @@ export default function CustomerPage({
                   <div className="h-8 w-8 rounded-full overflow-hidden object-contain">
                     <Image
                       priority
-                      src={`${STRAPI_BASE_URL}${customer.author.avatar.data.attributes.url}`}
+                      src={customer.author.avatar.data.attributes.url}
                       alt={
                         customer.author.avatar.data.attributes.caption ??
                         customer.name
@@ -57,7 +57,7 @@ export default function CustomerPage({
               </div>
               <Image
                 priority
-                src={`${STRAPI_BASE_URL}${customer.logo.data.attributes.url}`}
+                src={customer.logo.data.attributes.url}
                 alt={customer.logo.data.attributes.caption ?? customer.name}
                 height={customer.logo.data.attributes.height}
                 width={customer.logo.data.attributes.width}
@@ -66,7 +66,7 @@ export default function CustomerPage({
             </div>
             <Image
               priority
-              src={`${STRAPI_BASE_URL}${customer.thumbnail.data.attributes.url}`}
+              src={customer.thumbnail.data.attributes.url}
               alt={customer.thumbnail.data.attributes.caption ?? customer.name}
               height={customer.thumbnail.data.attributes.height}
               width={customer.thumbnail.data.attributes.width}

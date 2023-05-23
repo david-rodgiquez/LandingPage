@@ -33,7 +33,7 @@ export default function CustomersPage({
             {integrations.data.map((integration) => (
               <div className="w-full border rounded-lg" key={integration.id}>
                 <Image
-                  src={`${STRAPI_BASE_URL}${integration.attributes.thumbnail.data.attributes.url}`}
+                  src={integration.attributes.thumbnail.data.attributes.url}
                   height={
                     integration.attributes.thumbnail.data.attributes.height
                   }
@@ -54,7 +54,10 @@ export default function CustomersPage({
                     <div className="flex gap-2 items-center">
                       <div className="h-7 w-7 object-contain rounded-full overflow-hidden">
                         <Image
-                          src={`${STRAPI_BASE_URL}${integration.attributes.author.avatar.data.attributes.url}`}
+                          src={
+                            integration.attributes.author.avatar.data.attributes
+                              .url
+                          }
                           alt={
                             integration.attributes.author.avatar.data.attributes
                               .caption ?? integration.attributes.author.name

@@ -33,7 +33,7 @@ export default function CustomersPage({
             {customers.data.map((customer) => (
               <div className="w-full border rounded-lg" key={customer.id}>
                 <Image
-                  src={`${STRAPI_BASE_URL}${customer.attributes.thumbnail.data.attributes.url}`}
+                  src={customer.attributes.thumbnail.data.attributes.url}
                   height={customer.attributes.thumbnail.data.attributes.height}
                   width={customer.attributes.thumbnail.data.attributes.width}
                   alt={
@@ -50,7 +50,7 @@ export default function CustomersPage({
                   </h2>
                   <div>
                     <Image
-                      src={`${STRAPI_BASE_URL}${customer.attributes.logo.data.attributes.url}`}
+                      src={customer.attributes.logo.data.attributes.url}
                       height={customer.attributes.logo.data.attributes.height}
                       width={customer.attributes.logo.data.attributes.width}
                       alt={
@@ -64,7 +64,10 @@ export default function CustomersPage({
                     <div className="flex gap-2 items-center">
                       <div className="h-7 w-7 object-contain rounded-full overflow-hidden">
                         <Image
-                          src={`${STRAPI_BASE_URL}${customer.attributes.author.avatar.data.attributes.url}`}
+                          src={
+                            customer.attributes.author.avatar.data.attributes
+                              .url
+                          }
                           alt={
                             customer.attributes.author.avatar.data.attributes
                               .caption ?? customer.attributes.author.name

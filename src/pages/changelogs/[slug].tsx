@@ -37,7 +37,7 @@ export default function ChangelogPage({
               <div className="flex gap-2 items-center">
                 <div className="h-8 w-8 rounded-full overflow-hidden object-contain">
                   <Image
-                    src={`${STRAPI_BASE_URL}${changelog.author.avatar.data.attributes.url}`}
+                    src={changelog.author.avatar.data.attributes.url}
                     alt={
                       changelog.author.avatar.data.attributes.caption ??
                       changelog.title

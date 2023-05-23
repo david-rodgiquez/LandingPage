@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import AvatarDefault from "../../../public/img/avatar-default.png";
 import useToggle from "@/hooks/useToggle";
-import { STRAPI_BASE_URL } from "@/config";
 import { Organization } from "stytch";
 import { Member } from "@stytch/vanilla-js";
 import ModalFormLogin from "../ModalFormLogin";
@@ -140,7 +139,7 @@ export default function Header({
           <Image
             priority
             className="h-10 w-auto"
-            src={`${STRAPI_BASE_URL}${logo.url}`}
+            src={logo.url}
             alt="logo"
             height={logo.height}
             width={logo.width}

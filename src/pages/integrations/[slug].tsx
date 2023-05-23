@@ -38,7 +38,7 @@ export default function CustomerPage({
                 <div className="h-8 w-8 rounded-full overflow-hidden object-contain">
                   <Image
                     priority
-                    src={`${STRAPI_BASE_URL}${integration.author.avatar.data.attributes.url}`}
+                    src={integration.author.avatar.data.attributes.url}
                     alt={
                       integration.author.avatar.data.attributes.caption ??
                       integration.title
@@ -59,7 +59,7 @@ export default function CustomerPage({
             </div>
             <Image
               priority
-              src={`${STRAPI_BASE_URL}${integration.thumbnail.data.attributes.url}`}
+              src={integration.thumbnail.data.attributes.url}
               alt={
                 integration.thumbnail.data.attributes.caption ??
                 integration.title

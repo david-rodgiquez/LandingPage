@@ -33,7 +33,7 @@ export default function ChangelogsPage({
             {changelogs.data.map((changelog) => (
               <div className="w-full border rounded-lg" key={changelog.id}>
                 <Image
-                  src={`${STRAPI_BASE_URL}${changelog.attributes.thumbnail.data.attributes.url}`}
+                  src={changelog.attributes.thumbnail.data.attributes.url}
                   height={changelog.attributes.thumbnail.data.attributes.height}
                   width={changelog.attributes.thumbnail.data.attributes.width}
                   alt={
@@ -52,7 +52,10 @@ export default function ChangelogsPage({
                     <div className="flex gap-2 items-center">
                       <div className="h-7 w-7 object-contain rounded-full overflow-hidden">
                         <Image
-                          src={`${STRAPI_BASE_URL}${changelog.attributes.author.avatar.data.attributes.url}`}
+                          src={
+                            changelog.attributes.author.avatar.data.attributes
+                              .url
+                          }
                           alt={
                             changelog.attributes.author.avatar.data.attributes
                               .caption ?? changelog.attributes.author.name
