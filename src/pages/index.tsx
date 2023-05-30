@@ -5,6 +5,32 @@ import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
 import ModalFormSignup from "@/components/ModalFormSignup";
+import Logo from "../../public/img/logo.png";
+import Image from "next/image";
+import Link from "next/link";
+import IconDarkMode from "@/components/icons/IconDarkMode";
+import IconLinkedin from "@/components/icons/IconLinkedin";
+import IconTwitter from "@/components/icons/IconTwitter";
+import Button from "@/components/Button";
+import ModalFormLogin from "@/components/ModalFormLogin";
+
+function LoginButton() {
+  const [isOpenModalLogin, toggleModalLogin] = useToggle();
+  return (
+    <>
+      <Button
+        type="button"
+        onClick={toggleModalLogin}
+        className="font-berkeley px-6 bg-white py-2 border border-[#1B283B] rounded-sm hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
+      >
+        Login
+      </Button>
+      {isOpenModalLogin && (
+        <ModalFormLogin title="Login to Rollup" onClose={toggleModalLogin} />
+      )}
+    </>
+  );
+}
 
 function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
@@ -13,9 +39,9 @@ function GetAccessButton() {
       <button
         type="button"
         onClick={toggleModal}
-        className="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white px-8 py-2 rounded flex items-center justify-center font-medium"
+        className="py-4 px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-20 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
       >
-        Get Access
+        <span>Get Access</span> <span>&gt;</span>
       </button>
       {isOpenModal && (
         <ModalFormSignup title="Get access to Rollup" onClose={toggleModal} />
@@ -37,7 +63,55 @@ export default function Home({
       <Head>
         <title>Home</title>
       </Head>
-      <Layout
+      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col items-center justify-between gap-20 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
+        <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
+          <Image src={Logo} alt="rollup" priority className="h-[26px] w-auto" />
+          <div className="flex items-center gap-8">
+            <LoginButton />
+            <button>
+              <IconDarkMode />
+            </button>
+          </div>
+        </header>
+        <main className="max-w-7xl w-full mx-auto px-6">
+          <div className="flex flex-col max-w-3xl">
+            <p className="uppercase font-berkeley text-[#215DB0] mb-6">
+              Save time. Work as one. Innovate Faster.
+            </p>
+            <h1 className="font-blender font-bold text-6xl mb-4">
+              Rollup is a new collaborative platform for engineering complex
+              hardware
+            </h1>
+            <p className="font-blender text-2xl font-normal">
+              Collaborate on moonshots at the speed of thought.{" "}
+            </p>
+            {!isAuthenticated && <GetAccessButton />}
+          </div>
+        </main>
+        <footer className="max-w-7xl w-full mx-auto px-6">
+          <div className="w-full flex justify-between font-blender text-[#5F6B7C] border-[#8F99A8] font-medium py-4 border-t">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <Link href="#">
+                  <IconLinkedin />
+                </Link>
+                <Link href="#">
+                  <IconTwitter />
+                </Link>
+              </div>
+              <Link href="#">Jobs</Link>
+            </div>
+            <div className="flex items-center gap-6">
+              {footerMenus.map((menu) => (
+                <Link href={menu.url} key={menu.id}>
+                  {menu.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </footer>
+      </div>
+      {/* <Layout
         user={user}
         organization={organization}
         footerMenus={footerMenus}
@@ -58,7 +132,7 @@ export default function Home({
             </div>
           </div>
         </div>
-      </Layout>
+      </Layout> */}
     </>
   );
 }

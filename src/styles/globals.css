@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/BerkeleyMonoTrial-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Blender Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/BlenderPro-Book.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Blender Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/BlenderPro-Medium.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Blender Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/BlenderPro-Bold.woff2) format("woff2");
+}
+
 body {
   @apply antialiased text-gray-900;
 }

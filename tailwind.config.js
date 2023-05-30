@@ -10,6 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        blender: ["Blender Pro", "sans-serif"],
+        berkeley: ["Berkeley Mono"],
         sans: ["Inter", ...fontFamily.sans],
       },
     },
