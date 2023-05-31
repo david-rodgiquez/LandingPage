@@ -61,7 +61,7 @@ export default function Home({
       <Head>
         <title>Home</title>
       </Head>
-      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col gap-20 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
+      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col gap-6 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
           <Link href="/">
             <Image
