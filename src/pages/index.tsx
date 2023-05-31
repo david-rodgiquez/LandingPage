@@ -81,8 +81,8 @@ export default function Home({
           </div>
         </header>
         <main className="max-w-7xl w-full mx-auto px-6 place-items-start ">
-          <div className="flex flex-col max-w-3xl my-6">
-            <p className="uppercase font-berkeley text-[#215DB0] mb-6">
+          <div className="flex flex-col max-w-3xl ">
+            <p className="uppercase font-berkeley text-[#215DB0] my-12">
               Save time. Work as one. Innovate Faster.
             </p>
             <h1 className="font-blender font-bold text-6xl mb-4">
