@@ -8,7 +8,7 @@ export default function Textarea({
   HTMLTextAreaElement
 > & { label: string }) {
   return (
-    <div className="text-sm flex w-full flex-col gap-1">
+    <div className="flex w-full flex-col gap-1">
       <label htmlFor={props.id} className="font-medium ">
         {label} {props.required && <span className="text-red-400">*</span>}
       </label>

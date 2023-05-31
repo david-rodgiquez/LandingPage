@@ -47,7 +47,10 @@ export default function ModalFormLogin({
   return (
     <Modal title={title} onCancel={onClose}>
       {emlSent === STATUS.INIT && (
-        <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
+        <form
+          onSubmit={onSubmit}
+          className="w-full flex flex-col gap-4 font-blender"
+        >
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}

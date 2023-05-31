@@ -101,7 +101,10 @@ export default function ModalFormSignup({
   return (
     <Modal title={title} onCancel={onClose}>
       {!openedSections.includes("verify-notice") ? (
-        <form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
+        <form
+          onSubmit={onSubmit}
+          className="w-full flex flex-col gap-4 font-blender"
+        >
           <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
             <div
               className="flex justify-between cursor-pointer"
@@ -126,7 +129,7 @@ export default function ModalFormSignup({
                   placeholder="john@gmail.com"
                   required
                 />
-                <p className="text-xs">
+                <p className="text-sm">
                   We&apos;ll send you a magic link to log in to Rollup. You can
                   open the link from your phone or desktop.
                 </p>
@@ -224,7 +227,7 @@ export default function ModalFormSignup({
                 />
                 <div className="w-full flex gap-2">
                   <input type="checkbox" id="subscribe" name="subscribe" />
-                  <label htmlFor="subscribe" className="text-sm font-medium">
+                  <label htmlFor="subscribe" className="font-medium">
                     Subscribe to Product and Company Updates
                   </label>
                 </div>

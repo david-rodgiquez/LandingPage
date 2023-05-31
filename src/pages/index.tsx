@@ -1,11 +1,9 @@
 import { getFooter, getHeader } from "@/services/header";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
 import ModalFormSignup from "@/components/ModalFormSignup";
-import Logo from "../../public/img/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import IconDarkMode from "@/components/icons/IconDarkMode";
@@ -63,9 +61,18 @@ export default function Home({
       <Head>
         <title>Home</title>
       </Head>
-      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col items-center justify-between gap-20 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
+      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col gap-20 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
-          <Image src={Logo} alt="rollup" priority className="h-[26px] w-auto" />
+          <Link href="/">
+            <Image
+              src={logo.url}
+              width={logo.width}
+              height={logo.height}
+              alt={logo.alternativeText ?? "Rollup"}
+              priority
+              className="h-[26px] w-auto"
+            />
+          </Link>
           <div className="flex items-center gap-8">
             <LoginButton />
             <button>
@@ -73,7 +80,7 @@ export default function Home({
             </button>
           </div>
         </header>
-        <main className="max-w-7xl w-full mx-auto px-6">
+        <main className="max-w-7xl w-full mx-auto px-6 place-items-start">
           <div className="flex flex-col max-w-3xl">
             <p className="uppercase font-berkeley text-[#215DB0] mb-6">
               Save time. Work as one. Innovate Faster.
@@ -88,7 +95,7 @@ export default function Home({
             {!isAuthenticated && <GetAccessButton />}
           </div>
         </main>
-        <footer className="max-w-7xl w-full mx-auto px-6">
+        <footer className="max-w-7xl w-full mx-auto px-6 mt-auto">
           <div className="w-full flex justify-between font-blender text-[#5F6B7C] border-[#8F99A8] font-medium py-4 border-t">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">

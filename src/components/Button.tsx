@@ -8,7 +8,7 @@ export default function Button(
 ) {
   return (
     <button
-      className="bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-500 flex items-center justify-center flex-shrink-0 hover:bg-indigo-700 transition-colors text-white text-sm px-6 py-2 rounded"
+      className="bg-blue-800 disabled:cursor-not-allowed disabled:bg-blue-300 flex items-center justify-center font-medium flex-shrink-0 hover:bg-blue-900 transition-colors text-white px-6 py-2 rounded"
       {...props}
     />
   );

@@ -22,7 +22,7 @@ export default function Modal({ onCancel, title, children }: ModalProps) {
             className="relative bg-white rounded-lg shadow dark:bg-gray-700"
           >
             <div className="flex justify-between items-center px-5 py-3 rounded-t border-b dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900 lg:text-xl dark:text-white">
+              <h3 className="text-xl font-semibold text-gray-900 font-blender lg:text-2xl dark:text-white">
                 {title}
               </h3>
               <button
