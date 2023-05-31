@@ -236,7 +236,7 @@ export default function ModalFormSignup({
           </div>
 
           <button
-            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
             type="submit"
             disabled={isDisabled || isLoading}
           >
@@ -287,7 +287,7 @@ export default function ModalFormSignup({
             </ol>
           </div>
           <button
-            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
             type="button"
             onClick={onClose}
           >

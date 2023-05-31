@@ -66,7 +66,7 @@ export default function ModalFormLogin({
             the link from your phone or desktop.
           </p>
           <button
-            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
             type="submit"
             disabled={isDisabled || isLoading}
           >
