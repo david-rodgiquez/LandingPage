@@ -61,7 +61,7 @@ export default function Home({
       <Head>
         <title>Home</title>
       </Head>
-      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col gap-6 bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
+      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
           <Link href="/">
             <Image
@@ -80,8 +80,8 @@ export default function Home({
             </button>
           </div>
         </header>
-        <main className="max-w-7xl w-full mx-auto px-6 place-items-start">
-          <div className="flex flex-col max-w-3xl">
+        <main className="max-w-7xl w-full mx-auto px-6 place-items-start ">
+          <div className="flex flex-col max-w-3xl my-6">
             <p className="uppercase font-berkeley text-[#215DB0] mb-6">
               Save time. Work as one. Innovate Faster.
             </p>
