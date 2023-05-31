@@ -37,7 +37,7 @@ function GetAccessButton() {
       <button
         type="button"
         onClick={toggleModal}
-        className="py-4 px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-20 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
+        className="py-4 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-20 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
       >
         <span>Get Access</span> <span>&gt;</span>
       </button>

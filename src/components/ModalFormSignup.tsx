@@ -235,9 +235,13 @@ export default function ModalFormSignup({
             )}
           </div>
 
-          <Button type="submit" disabled={isDisabled || isLoading}>
+          <button
+            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            type="submit"
+            disabled={isDisabled || isLoading}
+          >
             {isLoading ? <IconSpinner /> : "Submit"}
-          </Button>
+          </button>
         </form>
       ) : (
         <div className="w-full flex flex-col gap-6">
@@ -282,9 +286,13 @@ export default function ModalFormSignup({
               <li>You&apos;ll receive access to Rollup.</li>
             </ol>
           </div>
-          <Button type="button" onClick={onClose}>
+          <button
+            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            type="button"
+            onClick={onClose}
+          >
             Close
-          </Button>
+          </button>
         </div>
       )}
     </Modal>

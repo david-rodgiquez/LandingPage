@@ -49,7 +49,7 @@ export default function ModalFormLogin({
       {emlSent === STATUS.INIT && (
         <form
           onSubmit={onSubmit}
-          className="w-full flex flex-col gap-4 font-blender"
+          className="w-full flex flex-col gap-2 font-blender"
         >
           <Input
             value={email}
@@ -61,13 +61,17 @@ export default function ModalFormLogin({
             placeholder="john@gmail.com"
             required
           />
-          <p className="text-xs">
+          <p className="text-sm">
             We&apos;ll send you a magic link to log in to Rollup. You can open
             the link from your phone or desktop.
           </p>
-          <Button type="submit" disabled={isDisabled || isLoading}>
+          <button
+            className="py-2 disabled:opacity-25 hover:bg-gray-50 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20"
+            type="submit"
+            disabled={isDisabled || isLoading}
+          >
             {isLoading ? <IconSpinner /> : "Continue"}
-          </Button>
+          </button>
         </form>
       )}
       {emlSent === STATUS.SENT && (
