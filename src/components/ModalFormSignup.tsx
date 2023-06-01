@@ -128,6 +128,16 @@ export default function ModalFormSignup({
                   label="Email Address"
                   placeholder="john@gmail.com"
                   required
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "Enter" &&
+                      !openedSections.includes("get-started") &&
+                      isValidEmail(email)
+                    ) {
+                      e.preventDefault();
+                      toggleClickSection("about");
+                    }
+                  }}
                 />
                 <p className="text-sm">
                   We&apos;ll send you a magic link to log in to Rollup. You can
@@ -165,6 +175,18 @@ export default function ModalFormSignup({
             {openedSections.includes("about") && (
               <div className="w-full flex flex-col gap-2">
                 <Input
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "Enter" &&
+                      !openedSections.includes("get-started") &&
+                      about.firstName &&
+                      about.lastName
+                    ) {
+                      e.preventDefault();
+                      toggleClickSection("get-started");
+                    }
+                  }}
+                  autoFocus
                   value={about.firstName}
                   onChange={onChangeAbout}
                   type="text"
@@ -175,6 +197,17 @@ export default function ModalFormSignup({
                   required
                 />
                 <Input
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "Enter" &&
+                      !openedSections.includes("get-started") &&
+                      about.firstName &&
+                      about.lastName
+                    ) {
+                      e.preventDefault();
+                      toggleClickSection("get-started");
+                    }
+                  }}
                   value={about.lastName}
                   onChange={onChangeAbout}
                   type="text"
@@ -185,6 +218,17 @@ export default function ModalFormSignup({
                   required
                 />
                 <Input
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "Enter" &&
+                      !openedSections.includes("get-started") &&
+                      about.firstName &&
+                      about.lastName
+                    ) {
+                      e.preventDefault();
+                      toggleClickSection("get-started");
+                    }
+                  }}
                   value={about.organization}
                   onChange={onChangeAbout}
                   type="text"
@@ -211,6 +255,7 @@ export default function ModalFormSignup({
             {openedSections.includes("get-started") && (
               <div className="w-full flex flex-col gap-2">
                 <Textarea
+                  autoFocus
                   value={gettingStarted.work}
                   onChange={onGettingStarted}
                   name="work"
