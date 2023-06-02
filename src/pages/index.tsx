@@ -4,13 +4,18 @@ import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
 import ModalFormSignup from "@/components/ModalFormSignup";
-import Image from "next/image";
 import Link from "next/link";
 import IconDarkMode from "@/components/icons/IconDarkMode";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
 import Button from "@/components/Button";
 import ModalFormLogin from "@/components/ModalFormLogin";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+
+const Logo = dynamic(() => import("../components/Logo"), {
+  ssr: false,
+});
 
 function LoginButton() {
   const [isOpenModalLogin, toggleModalLogin] = useToggle();
@@ -19,7 +24,7 @@ function LoginButton() {
       <Button
         type="button"
         onClick={toggleModalLogin}
-        className="font-berkeley px-6 bg-white py-2 border border-[#1B283B] rounded-sm hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
+        className="font-berkeley px-6 dark:bg-[#2d72d2] dark:text-white bg-white py-2 border border-[#1B283B] rounded-sm hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
       >
         Login
       </Button>
@@ -55,55 +60,51 @@ export default function Home({
   footer: { menus: footerMenus },
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const isAuthenticated = organization && user;
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
-      <div className="w-full min-h-screen bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
+      <div className="w-full min-h-screen dark:bg-[#1b283b] bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-bg.png')] bg-no-repeat bg-right">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
           <Link href="/">
-            <Image
-              src={logo.url}
-              width={logo.width}
-              height={logo.height}
-              alt={logo.alternativeText ?? "Rollup"}
-              priority
-              className="h-[26px] w-auto"
-            />
+            <Logo />
           </Link>
           <div className="flex items-center gap-8">
             <LoginButton />
-            <button>
-              <IconDarkMode />
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            >
+              <IconDarkMode className="dark:text-white" />
             </button>
           </div>
         </header>
         <main className="max-w-7xl w-full mx-auto px-6 place-items-start ">
           <div className="flex flex-col max-w-3xl ">
-            <p className="uppercase font-berkeley text-[#215DB0] mt-12 mb-2">
+            <p className="uppercase font-berkeley dark:text-[#739dd6] text-[#215DB0] mt-12 mb-2">
               Save time. Work as one. Innovate Faster.
             </p>
-            <h1 className="font-blender font-bold text-6xl mb-4">
+            <h1 className="font-blender font-bold text-6xl mb-4 dark:text-white">
               Rollup is a new collaborative platform for engineering complex
               hardware
             </h1>
-            <p className="font-blender text-2xl font-normal">
+            <p className="dark:text-gray-300 font-blender text-2xl font-normal">
               Collaborate on moonshots at the speed of thought.{" "}
             </p>
             {!isAuthenticated && <GetAccessButton />}
           </div>
         </main>
         <footer className="max-w-7xl w-full mx-auto px-6 mt-auto">
-          <div className="w-full flex justify-between font-blender text-[#5F6B7C] border-[#8F99A8] font-medium py-4 border-t">
+          <div className="w-full flex justify-between font-blender dark:text-white text-[#5F6B7C] border-[#8F99A8] font-medium py-4 border-t">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <Link href="#">
-                  <IconLinkedin />
+                  <IconLinkedin className="text-[#2D72D2] dark:text-[#8abbff]" />
                 </Link>
                 <Link href="#">
-                  <IconTwitter />
+                  <IconTwitter className="text-[#2D72D2] dark:text-[#8abbff]" />
                 </Link>
               </div>
               <Link href="#">Jobs</Link>
