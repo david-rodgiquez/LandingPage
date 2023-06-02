@@ -61,12 +61,12 @@ export default function ModalFormLogin({
             placeholder="john@gmail.com"
             required
           />
-          <p className="text-sm">
+          <p className="text-sm dark:text-gray-400">
             We&apos;ll send you a magic link to log in to Rollup. You can open
             the link from your phone or desktop.
           </p>
           <button
-            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
+            className="dark:bg-gray-600 dark:text-white py-2 disabled:opacity-40 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
             type="submit"
             disabled={isDisabled || isLoading}
           >

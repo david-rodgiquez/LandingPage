@@ -19,7 +19,7 @@ export default function Modal({ onCancel, title, children }: ModalProps) {
         <div className="relative px-4 w-full max-w-2xl h-full md:h-auto">
           <div
             ref={mainWrapperRef}
-            className="relative bg-white rounded-lg shadow dark:bg-gray-700"
+            className="relative dark:border dark:border-gray-600 bg-white rounded-lg shadow dark:bg-gray-800"
           >
             <div className="flex justify-between items-center px-5 py-3 rounded-t border-b dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 font-blender lg:text-2xl dark:text-white">

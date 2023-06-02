@@ -3,7 +3,6 @@ import Modal from "./Modal";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { discoveryStart } from "@/lib/api";
 import Input from "./Input";
-import Button from "./Button";
 import IconSpinner from "./icons/IconSpinner";
 import Textarea from "./Textarea";
 import createStrapiRollupUser from "@/services/rollup-user";
@@ -105,14 +104,14 @@ export default function ModalFormSignup({
           onSubmit={onSubmit}
           className="w-full flex flex-col gap-4 font-blender"
         >
-          <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
+          <div className="w-full flex flex-col gap-2 border dark:border-gray-600 rounded px-6 py-4">
             <div
               className="flex justify-between cursor-pointer"
               onClick={() => toggleClickSection("email")}
             >
-              <h3 className="text-lg font-semibold ">Email</h3>
+              <h3 className="text-lg font-semibold dark:text-white">Email</h3>
               <IconChevronRight
-                className={`h-6 w-6 transition-transform ${
+                className={`h-6 w-6 transition-transform dark:text-gray-500 ${
                   openedSections.includes("email") ? "rotate-90" : ""
                 }`}
               />
@@ -139,7 +138,7 @@ export default function ModalFormSignup({
                     }
                   }}
                 />
-                <p className="text-sm">
+                <p className="text-sm dark:text-gray-400">
                   We&apos;ll send you a magic link to log in to Rollup. You can
                   open the link from your phone or desktop.
                 </p>
@@ -160,14 +159,16 @@ export default function ModalFormSignup({
               </div>
             )}
           </div>
-          <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
+          <div className="w-full flex flex-col gap-2 border dark:border-gray-600 rounded px-6 py-4">
             <div
               className="flex justify-between cursor-pointer"
               onClick={() => toggleClickSection("about")}
             >
-              <h3 className="text-lg font-semibold ">About You</h3>
+              <h3 className="text-lg font-semibold dark:text-white">
+                About You
+              </h3>
               <IconChevronRight
-                className={`h-6 w-6 transition-transform ${
+                className={`h-6 w-6 transition-transform dark:text-gray-500 ${
                   openedSections.includes("about") ? "rotate-90" : ""
                 }`}
               />
@@ -240,14 +241,16 @@ export default function ModalFormSignup({
               </div>
             )}
           </div>
-          <div className="w-full flex flex-col gap-2 border rounded px-6 py-4">
+          <div className="w-full flex flex-col gap-2 dark:border-gray-600 border rounded px-6 py-4">
             <div
               className="flex justify-between cursor-pointer"
               onClick={() => toggleClickSection("get-started")}
             >
-              <h3 className="text-lg font-semibold ">Getting Started</h3>
+              <h3 className="text-lg font-semibold dark:text-white">
+                Getting Started
+              </h3>
               <IconChevronRight
-                className={`h-6 w-6 transition-transform ${
+                className={`h-6 w-6 transition-transform dark:text-gray-500 ${
                   openedSections.includes("get-started") ? "rotate-90" : ""
                 }`}
               />
@@ -270,7 +273,7 @@ export default function ModalFormSignup({
                   id="tool"
                   label="What don't you love about the workflows, software, or tools you use every day?"
                 />
-                <div className="w-full flex gap-2">
+                <div className="w-full flex gap-2 dark:text-white">
                   <input type="checkbox" id="subscribe" name="subscribe" />
                   <label htmlFor="subscribe" className="font-medium">
                     Subscribe to Product and Company Updates
@@ -281,7 +284,7 @@ export default function ModalFormSignup({
           </div>
 
           <button
-            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
+            className="dark:bg-gray-600 dark:text-white py-2 disabled:opacity-40 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
             type="submit"
             disabled={isDisabled || isLoading}
           >
@@ -289,9 +292,9 @@ export default function ModalFormSignup({
           </button>
         </form>
       ) : (
-        <div className="w-full flex flex-col gap-6">
+        <div className="w-full flex flex-col gap-6 dark:text-white">
           <div className="w-full space-y-2">
-            <h3 className="text-xl font-semibold">Verify your email</h3>
+            <h3 className="text-xl font-semibold ">Verify your email</h3>
             <p>
               A verification email has been sent to <strong>{email}</strong>
             </p>
@@ -312,7 +315,7 @@ export default function ModalFormSignup({
               </a>
             </div>
           </div>
-          <div className="w-full space-y-2">
+          <div className="w-full space-y-2 ">
             <h3 className="text-xl font-semibold">
               After verifying your email
             </h3>
@@ -332,7 +335,7 @@ export default function ModalFormSignup({
             </ol>
           </div>
           <button
-            className="py-2 disabled:opacity-25 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
+            className="dark:bg-gray-600 dark:text-white py-2 disabled:opacity-40 disabled:cursor-not-allowed w-full mt-2 px-6 border-2 border-[#1B283B] font-berkeley rounded-sm flex items-center justify-center text-center gap-20 disabled:shadow-none hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
             type="button"
             onClick={onClose}
           >
