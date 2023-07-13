@@ -192,7 +192,7 @@ export default function ModalFormSignup({
             <div className="w-full flex flex-col gap-2 ">
               <Link
                 className="rounded dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-transparent hover:bg-gray-50 transition-colors font-medium flex gap-3 border dark:border-gray-500 items-center justify-center py-2"
-                href={`https://test.stytch.com/v1/b2b/public/oauth/google/discovery/start?public_token=${process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN}&discovery_redirect_url=http://localhost:3000/api/callback`}
+                href={`https://test.stytch.com/v1/b2b/public/oauth/google/discovery/start?public_token=${process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN}&discovery_redirect_url=${window.origin}/api/callback`}
               >
                 <IconGoogle className="h-6 w-auto" />
                 <span>Continue with Google</span>

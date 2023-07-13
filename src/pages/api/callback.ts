@@ -42,6 +42,10 @@ async function exchangeToken(req: NextApiRequest): Promise<ExchangeResult> {
     return await handleDiscoveryCallback(req);
   }
 
+  if (req.query.stytch_token_type === "discovery_oauth" && req.query.token) {
+    return await handleOAuthCallback(req);
+  }
+
   console.log("No token found in req.query", req.query);
 
   throw Error("No token found");
@@ -80,6 +84,18 @@ async function handleDiscoveryCallback(
     discovery_magic_links_token: req.query.token as string,
   });
 
+  return {
+    kind: "discovery",
+    token: authRes.intermediate_session_token as string,
+  };
+}
+
+async function handleOAuthCallback(
+  req: NextApiRequest
+): Promise<ExchangeResult> {
+  const authRes = await stytchClient.oauth.discovery.authenticate({
+    discovery_oauth_token: req.query.token as string,
+  });
   return {
     kind: "discovery",
     token: authRes.intermediate_session_token as string,

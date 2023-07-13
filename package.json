@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stytch/nextjs": "^5.0.1",
-    "@stytch/vanilla-js": "^0.13.1",
+    "@stytch/nextjs": "^7.0.0",
+    "@stytch/vanilla-js": "^1.0.5",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
@@ -27,7 +27,7 @@
     "react-dom": "18.2.0",
     "sharp": "^0.32.1",
     "showdown": "^2.1.0",
-    "stytch": "^7.0.0",
+    "stytch": "^7.2.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   },
