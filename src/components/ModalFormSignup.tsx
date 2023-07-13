@@ -11,7 +11,6 @@ import IconSpinner from "./icons/IconSpinner";
 import createStrapiRollupUser from "@/services/rollup-user";
 import Link from "next/link";
 import IconGoogle from "./icons/IconGoogle";
-import IconGithub from "./icons/IconGithub";
 import { discoveryStart } from "@/lib/api";
 import IconGmail from "./icons/IconGmail";
 import IconOffice365 from "./icons/IconOffice365";
@@ -196,19 +195,6 @@ export default function ModalFormSignup({
               >
                 <IconGoogle className="h-6 w-auto" />
                 <span>Continue with Google</span>
-              </Link>
-              <Link
-                className="rounded dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-transparent hover:bg-gray-50 transition-colors font-medium flex gap-3 border dark:border-gray-500 items-center justify-center py-2"
-                href={{
-                  pathname: "/api/auth/signin",
-                  query: {
-                    provider: "github",
-                    redirect_uri: `${window.origin}/api/auth/callback`,
-                  },
-                }}
-              >
-                <IconGithub className="h-6 w-auto dark:text-white" />
-                <span>Continue with Github</span>
               </Link>
             </div>
             <p className="font-semibold text-center w-full dark:border-b-gray-500 border-b mb-2 mt-3 leading-[0.1em]">
