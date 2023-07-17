@@ -6,6 +6,11 @@ import { Organization } from "stytch";
 import { Member } from "@stytch/vanilla-js";
 import ModalFormLogin from "../ModalFormLogin";
 import Button from "../Button";
+import dynamic from "next/dynamic";
+
+const Logo = dynamic(() => import("../Logo"), {
+  ssr: false,
+});
 
 function LoginButton() {
   const [isOpenModalLogin, toggleModalLogin] = useToggle();
@@ -136,14 +141,7 @@ export default function Header({
     <header className="w-full border-b">
       <div className="w-full max-w-screen-2xl flex items-center justify-between mx-auto px-4 py-2">
         <Link href="/">
-          <Image
-            priority
-            className="h-10 w-auto"
-            src={logo.url}
-            alt="logo"
-            height={logo.height}
-            width={logo.width}
-          />
+          <Logo />
         </Link>
         {isAuthenticated && (
           <div className="flex gap-10 items-center">

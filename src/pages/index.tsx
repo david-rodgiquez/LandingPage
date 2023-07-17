@@ -1,15 +1,11 @@
-import { getFooter, getHeader } from "@/services/header";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import useToggle from "@/hooks/useToggle";
-import ModalFormSignup from "@/components/ModalFormSignup";
 import Link from "next/link";
 import IconDarkMode from "@/components/icons/IconDarkMode";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
-import Button from "@/components/Button";
-import ModalFormLogin from "@/components/ModalFormLogin";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 
@@ -21,16 +17,17 @@ function LoginButton() {
   const [isOpenModalLogin, toggleModalLogin] = useToggle();
   return (
     <>
-      <Button
-        type="button"
-        onClick={toggleModalLogin}
+      <Link
+        // type="button"
+        // onClick={toggleModalLogin}
+        href="https://app.rollup.ai/"
         className="font-berkeley px-6 dark:bg-[#2d72d2] dark:text-white bg-white py-2 border border-[#1B283B] rounded-sm hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
       >
         Login
-      </Button>
-      {isOpenModalLogin && (
+      </Link>
+      {/* {isOpenModalLogin && (
         <ModalFormLogin title="Login to Rollup" onClose={toggleModalLogin} />
-      )}
+      )} */}
     </>
   );
 }
@@ -39,25 +36,40 @@ function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
   return (
     <>
-      <button
-        type="button"
-        onClick={toggleModal}
+      <Link
+        // type="button"
+        // onClick={toggleModal}
+        target="_blank"
+        href="https://rollup-hq.typeform.com/interest-form"
         className="py-3 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-10 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
       >
         <span>Get Access</span> <span>&gt;</span>
-      </button>
-      {isOpenModal && (
+      </Link>
+      {/* {isOpenModal && (
         <ModalFormSignup title="Get access to Rollup" onClose={toggleModal} />
-      )}
+      )} */}
     </>
   );
 }
 
+const footerMenus = [
+  {
+    title: "Contact",
+    path: "mailto:info@rollup.ai",
+  },
+  {
+    title: "Privacy",
+    path: "/privacy",
+  },
+  {
+    title: "Terms",
+    path: "/terms",
+  },
+];
+
 export default function Home({
   user,
   organization,
-  header: { menus, logo },
-  footer: { menus: footerMenus },
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const isAuthenticated = organization && user;
   const { theme, setTheme } = useTheme();
@@ -117,8 +129,8 @@ export default function Home({
             <div className="flex items-center gap-4">
               {footerMenus.map((menu) => (
                 <Link
-                  href={menu.url}
-                  key={menu.id}
+                  href={menu.path}
+                  key={menu.path}
                   className="text-[#011632] dark:hover:bg-[#252A31] dark:text-[#E4F0FF] hover:bg-[#E5E8EB] px-2 py-0.5 rounded-sm transition-colors"
                 >
                   {menu.title}
@@ -135,23 +147,28 @@ export default function Home({
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const [header, footer, { organization, user }] = await Promise.all([
-    getHeader(),
-    getFooter(),
-    getOptionalAuthSession(context.req, context.res),
-  ]);
+  // const [header, footer, { organization, user }] = await Promise.all([
+  //   // getHeader(),
+  //   // getFooter(),
+  //   getOptionalAuthSession(context.req, context.res),
+  // ]);
+
+  const { organization, user } = await getOptionalAuthSession(
+    context.req,
+    context.res
+  );
 
   return {
     props: {
       organization,
       user,
-      header: {
-        menus: header.menu,
-        logo: header.logo.data.attributes,
-      },
-      footer: {
-        menus: footer.menus,
-      },
+      // header: {
+      //   menus: header.menu,
+      //   logo: header.logo.data.attributes,
+      // },
+      // footer: {
+      //   menus: footer.menus,
+      // },
     },
   };
 };
