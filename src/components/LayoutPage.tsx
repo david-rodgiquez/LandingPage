@@ -104,7 +104,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
               &copy; {new Date().getFullYear()}, Rollup. All Rights Reserved
             </p>
             <div className="flex items-center divide-x">
-              <Link href="#" className="px-4">
+              <Link href="/privacy" className="px-4">
                 Privacy policy
               </Link>
               <Link href="#" className="px-4">

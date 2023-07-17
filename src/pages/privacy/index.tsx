@@ -1,18 +1,7 @@
-import IconDarkMode from "@/components/icons/IconDarkMode";
-import LogoLight from "@/components/icons/LogoLight";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import LeftDecorationImage from "../../public/img/privacy-left-decoration.png";
-import RightDecorationImage from "../../public/img/privacy-right-decoration.png";
-import Image from "next/image";
-import IconLinkedin from "@/components/icons/IconLinkedin";
-import IconTwitter from "@/components/icons/IconTwitter";
 import Head from "next/head";
 import LayoutPage from "@/components/LayoutPage";
 
 export default function About() {
-  const { theme, setTheme } = useTheme();
-
   return (
     <>
       <Head>

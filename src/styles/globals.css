@@ -51,3 +51,33 @@ body {
 .body-container ol {
   @apply list-decimal;
 }
+
+/* job info */
+.jobinfo-content {
+  @apply space-y-4 font-blender leading-tight text-lg;
+}
+.jobinfo-content h1,
+.jobinfo-content h2,
+.jobinfo-content h3 {
+  @apply font-bold;
+}
+.jobinfo-content h1 {
+  @apply text-4xl;
+}
+.jobinfo-content h2 {
+  @apply text-3xl;
+}
+.jobinfo-content h3 {
+  @apply text-2xl;
+}
+.jobinfo-content ol,
+.jobinfo-content ul {
+  @apply pl-8 space-y-2;
+}
+
+.jobinfo-content ol {
+  @apply list-decimal;
+}
+.jobinfo-content ul {
+  @apply list-disc;
+}

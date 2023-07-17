@@ -120,7 +120,7 @@ export default function Home({
                 </Link>
               </div>
               <Link
-                href="#"
+                href="/jobs"
                 className="text-[#011632] dark:hover:bg-[#252A31] dark:text-[#E4F0FF] hover:bg-[#E5E8EB] px-2 py-0.5 rounded-sm transition-colors"
               >
                 Jobs
