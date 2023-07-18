@@ -83,16 +83,16 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
               <Link href="#">Docs</Link>
             </div>
             <div className="flex flex-col gap-3">
-              <Link href="#">Contact</Link>
+              <Link href="mailto:info@rollup.ai">Contact</Link>
               <Link href="#">Additional page</Link>
             </div>
           </div>
           <div className="w-3/12 flex justify-end">
             <div className="flex  gap-2">
-              <Link href="#">
+              <Link href="https://www.linkedin.com/company/rollup-inc" target="_blank">
                 <IconLinkedin className="text-[#2D72D2] dark:text-[#4C90F0]" />
               </Link>
-              <Link href="#">
+              <Link href="https://twitter.com/rollup" target="_blank">
                 <IconTwitter className="text-[#2D72D2] dark:text-[#4C90F0]" />
               </Link>
             </div>
