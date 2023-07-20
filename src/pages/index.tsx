@@ -55,7 +55,7 @@ function GetAccessButton() {
 const footerMenus = [
   {
     title: "Contact",
-    path: "mailto:info@rollup.ai",
+    path: "/contact",
   },
   {
     title: "Privacy",
