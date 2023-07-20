@@ -114,7 +114,7 @@ export default function Page({
   return (
     <>
       <Head>
-        <title>About</title>
+        <title>Jobs | Rollup</title>
       </Head>
       <LayoutPage>
         <main className="w-full font-blender text-[#1B283B] my-20 ">
@@ -128,13 +128,13 @@ export default function Page({
               <br />
               back to software
             </h1>
-            <Link
+            {/* <Link
               href="#"
               className="py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-80 gap-10 text-lg bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
             >
               <span>See Open Positions</span>
               <span>&gt;</span>
-            </Link>
+            </Link> */}
           </div>
 
           {/*  */}
@@ -159,7 +159,7 @@ export default function Page({
           </div>
 
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto mt-12 font-blender">
+          {/* <div className="max-w-7xl px-4 mx-auto mt-12 font-blender">
             <div className="w-full grid grid-cols-2 gap-10">
               {values.map((value) => (
                 <div
@@ -176,10 +176,10 @@ export default function Page({
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto mt-12 font-blender">
+          {/* <div className="max-w-7xl px-4 mx-auto mt-12 font-blender">
             <div className="w-full flex gap-10">
               <div className="w-1/2">
                 <div className="flex justify-center">
@@ -263,7 +263,7 @@ export default function Page({
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/*  */}
           <div className="max-w-7xl px-4 mx-auto mt-36 font-blender flex flex-col gap-8">

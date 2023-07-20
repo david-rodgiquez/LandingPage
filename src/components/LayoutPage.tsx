@@ -73,20 +73,22 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
               <LogoLight />
             </Link>
           </div>
-          {/* <div className="w-6/12 justify-center flex gap-36 text-[#1B283B]">
-            <div className="flex flex-col gap-3">
-              <Link href="#">Features</Link>
-              <Link href="#">Integrations</Link>
+          <div className="w-6/12 justify-center flex gap-36 text-[#1B283B]">
+            <Link href="/contact">Contact</Link>
+            <Link href="/jobs">Jobs</Link>
+            {/*<div className="flex flex-col gap-3">
+              <Link href="#">Contact</Link>
+              <Link href="/jobs">Jobs</Link>
             </div>
-            <div className="flex flex-col gap-3">
+             <div className="flex flex-col gap-3">
               <Link href="#">Customers</Link>
               <Link href="#">Docs</Link>
             </div>
             <div className="flex flex-col gap-3">
               <Link href="mailto:info@rollup.ai">Contact</Link>
               <Link href="#">Additional page</Link>
-            </div>
-          </div> */}
+            </div> */}
+          </div>
           <div className="w-3/12 flex justify-end">
             <div className="flex gap-2">
               <Link

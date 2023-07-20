@@ -78,7 +78,6 @@ export default function Home({
     <>
       <Head>
         <title>Rollup — Collaborative engineering environment</title>
-        <link rel="icon" href="/favicon.svg" />
       </Head>
       <div className="w-full min-h-screen dark:bg-[#111418] justify-between bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-hero-light.svg')] dark:bg-[url('/img/home-hero-dark.svg')] bg-no-repeat bg-[center_right_-200px]">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
@@ -113,7 +112,10 @@ export default function Home({
           <div className="w-full flex justify-between font-blender dark:text-white text-[#5F6B7C] border-[#D3D8DE] dark:border-[#383E47] font-medium py-4 border-t">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
-                <Link href="https://www.linkedin.com/company/rollup-inc" target="_blank">
+                <Link
+                  href="https://www.linkedin.com/company/rollup-inc"
+                  target="_blank"
+                >
                   <IconLinkedin className="text-[#2D72D2] dark:text-[#4C90F0]" />
                 </Link>
                 <Link href="https://twitter.com/rollup" target="_blank">

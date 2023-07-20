@@ -7,10 +7,11 @@ import Link from "next/link";
 export default function Page({
   job,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const title = `${job.title} Job | Rollup`;
   return (
     <>
       <Head>
-        <title>About</title>
+        <title>{title}</title>
       </Head>
       <LayoutPage>
         <main className="w-full font-blender text-[#1B283B] mt-3 mb-20 ">
@@ -46,7 +47,8 @@ export default function Page({
                     <p className="text-xl">{job.departmentName}</p>
                   </div>
                   <Link
-                    href="#"
+                    target="_blank"
+                    href={job.externalLink}
                     className="py-2 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                   >
                     Apply
@@ -59,7 +61,8 @@ export default function Page({
                   dangerouslySetInnerHTML={{ __html: job.descriptionHtml }}
                 />
                 <Link
-                  href="#"
+                  target="_blank"
+                  href={job.externalLink}
                   className="py-2 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                 >
                   Apply
