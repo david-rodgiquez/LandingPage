@@ -41,7 +41,10 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           <div className="flex gap-8 text-[#252A31] items-center text-sm leading-10">
             {/* <Link href="#">Changelog</Link>
             <Link href="#">Docs</Link> */}
-            <Link href="#" className="bg-[#2D72D2] text-white px-4 rounded-sm">
+            <Link
+              href="https://app.rollup.ai/"
+              className="bg-[#2D72D2] text-white px-4 rounded-sm"
+            >
               Go to app
             </Link>
             <button

@@ -1,7 +1,6 @@
 import LayoutPage from "@/components/LayoutPage";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import MapImage from "../../../public/img/contact-map.png";
 
 export default function Page() {
@@ -95,21 +94,28 @@ export default function Page() {
             <div className="w-4/12 bg-white">
               <div className="w-full py-16 px-28 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Get in touch</h3>
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-xl font-bold">Headquarters</h4>
-                  <p className="text-lg leading-tight">
-                    Rollup Headquarters Number + Street Los Angeles, California
+                <div className="flex flex-col gap-2 leading-tight">
+                  <h4 className="text-xl font-bold">Headquarters Address</h4>
+                  <p className="text-lg">
+                    Rollup HQ 10250 Constellation Blvd Suite 100 Los Angeles, CA
+                    90067
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-xl font-bold">Engineering</h4>
-                  <p className="text-lg leading-tight">
-                    Rollup Engineering Number + Street London, United Kingdom
-                  </p>
+                <div className="flex flex-col gap-2 leading-tight">
+                  <h4 className="text-xl font-bold">Rollup London</h4>
+                  <p className="text-lg">United Kingdom</p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Contact Email</h4>
-                  <p className="text-lg leading-tight">contact@rollup.com</p>
+                  <p className="text-lg">
+                    For info: info@rollup.ai
+                    <br />
+                    Legal: legal@rollup.ai
+                    <br />
+                    Support: support@rollup.ai
+                    <br />
+                    Sales: sales@rollup.ai
+                  </p>
                 </div>
               </div>
             </div>
