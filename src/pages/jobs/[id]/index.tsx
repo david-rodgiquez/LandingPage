@@ -14,12 +14,12 @@ export default function Page({
         <title>{title}</title>
       </Head>
       <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] mt-3 mb-20 ">
+        <main className="w-full font-blender text-[#1B283B] dark:text-white mt-3 mb-20 ">
           {/*  */}
           <div className="max-w-7xl px-4 mx-auto">
             <Link
               href="/jobs"
-              className="font-berkeley text-base text-[#2D72D2] flex gap-8 items-center"
+              className="font-berkeley text-base text-[#2D72D2] dark:text-[#4C90F0] flex gap-8 items-center"
             >
               <span>&lt;</span>
               <span>Back to Career</span>
@@ -32,24 +32,28 @@ export default function Page({
               <div className="w-4/12  border-[#4C90F0] border-dashed border-r-2">
                 <div className="flex flex-col gap-4">
                   <div>
-                    <p className="font-berkeley text-xs">Location</p>
-                    <p className="text-xl">
+                    <p className="font-berkeley text-sm">Location</p>
+                    <p className="text-xl dark:text-[#ABB3BF]">
                       {job.address.postalAddress.addressLocality},{" "}
                       {job.address.postalAddress.addressCountry}
                     </p>
                   </div>
                   <div>
-                    <p className="font-berkeley text-xs">Type</p>
-                    <p className="text-xl">{job.employmentType}</p>
+                    <p className="font-berkeley text-sm">Type</p>
+                    <p className="text-xl dark:text-[#ABB3BF]">
+                      {job.employmentType}
+                    </p>
                   </div>
                   <div>
-                    <p className="font-berkeley text-xs">Department</p>
-                    <p className="text-xl">{job.departmentName}</p>
+                    <p className="font-berkeley text-sm">Department</p>
+                    <p className="text-xl dark:text-[#ABB3BF]">
+                      {job.departmentName}
+                    </p>
                   </div>
                   <Link
                     target="_blank"
                     href={job.externalLink}
-                    className="py-2 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                    className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                   >
                     Apply
                   </Link>
@@ -63,7 +67,7 @@ export default function Page({
                 <Link
                   target="_blank"
                   href={job.externalLink}
-                  className="py-2 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                  className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                 >
                   Apply
                 </Link>

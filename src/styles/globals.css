@@ -81,3 +81,6 @@ body {
 .jobinfo-content ul {
   @apply list-disc;
 }
+.jobinfo-content :not(h1, h2, h3, h4) {
+  @apply dark:text-[#ABB3BF];
+}

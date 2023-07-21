@@ -117,10 +117,10 @@ export default function Page({
         <title>Jobs | Rollup</title>
       </Head>
       <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] my-20 ">
+        <main className="w-full font-blender text-[#1B283B] dark:text-white my-20 ">
           {/*  */}
           <div className="w-full max-w-4xl px-4 flex gap-4 mx-auto flex-col items-center justify-center">
-            <span className="uppercase text-base font-berkeley text-[#2D72D2]">
+            <span className="uppercase text-base font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
               Careers
             </span>
             <h1 className="text-5xl text-center font-bold ">
@@ -147,7 +147,7 @@ export default function Page({
                 <br />
                 progress possible.
               </h2>
-              <p className="text-xl w-1/2 text-[#3B3F44]">
+              <p className="text-xl w-1/2 text-[#3B3F44] dark:text-[#ABB3BF]">
                 Our people are our core competitive advantage. While almost
                 anything in this world can be imitated, the one thing that
                 can&apos;t be copied is our culture. We treat our people as our
@@ -278,14 +278,14 @@ export default function Page({
                     {department.jobs.map((job) => (
                       <div
                         key={job.id}
-                        className="border-dashed py-4 border-b-2 border-[#7c9bc5]"
+                        className="border-dashed py-4 border-b-2 border-[#7c9bc5] dark:border-[#4C90F0]"
                       >
                         <Link
                           href={`/jobs/${job.id}`}
-                          className="flex items-center justify-between ga hover:text-[#2D72D2]"
+                          className="flex items-center justify-between hover:text-[#2D72D2] dark:text-[#ABB3BF] dark:hover:text-[#4C90F0] transition-colors"
                         >
-                          <h4 className="text-2xl">{job.title}</h4>
-                          <div className="text-base font-berkeley flex items-center gap-6 text-[#2D72D2]">
+                          <h4 className="text-2xl ">{job.title}</h4>
+                          <div className="text-base font-berkeley flex items-center gap-6 text-[#2D72D2] dark:text-[#4C90F0]">
                             <span>Apply</span> <span>&gt;</span>
                           </div>
                         </Link>

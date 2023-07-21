@@ -1,30 +1,38 @@
 import Link from "next/link";
-import Image from "next/image";
-import LeftDecorationImage from "../../public/img/privacy-left-decoration.png";
-import RightDecorationImage from "../../public/img/privacy-right-decoration.png";
 import IconLinkedin from "./icons/IconLinkedin";
 import IconTwitter from "./icons/IconTwitter";
 import { ReactNode } from "react";
 import IconDarkMode from "./icons/IconDarkMode";
 import { useTheme } from "next-themes";
 import Logo from "./Logo";
+import useNormalizedTheme from "@/hooks/useNormalizedTheme";
 
 export default function LayoutPage({ children }: { children: ReactNode }) {
   const { theme, setTheme } = useTheme();
+  const normalizedTheme = useNormalizedTheme();
 
   return (
-    <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative">
-      <Image
+    <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative overflow-x-hidden ">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         alt="decorations"
-        src={RightDecorationImage}
-        className="absolute right-0"
-        priority
+        src={
+          normalizedTheme === "light"
+            ? "/img/right-decoration.png"
+            : "/img/right-decoration-dark.png"
+        }
+        className="absolute -right-44  top-10"
       />
-      <Image
+
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         alt="decorations"
-        src={LeftDecorationImage}
-        className="absolute left-0 top-0"
-        priority
+        src={
+          normalizedTheme === "light"
+            ? "/img/left-decoration.png"
+            : "/img/left-decoration-dark.png"
+        }
+        className="absolute -left-44 top-52"
       />
       <header className="w-full py-10 max-w-7xl px-4 mx-auto">
         <nav
