@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LogoLight from "./icons/LogoLight";
 import Image from "next/image";
 import LeftDecorationImage from "../../public/img/privacy-left-decoration.png";
 import RightDecorationImage from "../../public/img/privacy-right-decoration.png";
@@ -8,12 +7,13 @@ import IconTwitter from "./icons/IconTwitter";
 import { ReactNode } from "react";
 import IconDarkMode from "./icons/IconDarkMode";
 import { useTheme } from "next-themes";
+import Logo from "./Logo";
 
 export default function LayoutPage({ children }: { children: ReactNode }) {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="min-h-screen w-full bg-[#F6F7F9] relative">
+    <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative">
       <Image
         alt="decorations"
         src={RightDecorationImage}
@@ -27,10 +27,16 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
         priority
       />
       <header className="w-full py-10 max-w-7xl px-4 mx-auto">
-        <nav className="bg-white rounded-sm font-berkeley shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)] h-14 flex justify-between items-center px-10">
+        <nav
+          style={{
+            boxShadow:
+              "0px 0px 0px 1px rgba(16, 22, 26, 0.08), 0px 8px 24px 0px rgba(16, 22, 26, 0.10)",
+          }}
+          className="bg-white dark:bg-[#1C2127] dark:text-white rounded-sm font-berkeley shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)] h-14 flex justify-between items-center px-10"
+        >
           <div className="flex gap-12 items-center">
             <Link href="/">
-              <LogoLight />
+              <Logo />
             </Link>
             {/* <div className="flex gap-8 text-[#252A31] items-center text-sm leading-10">
               <Link href="#">Features</Link>
@@ -70,13 +76,13 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
         </div>
       </div>
       <footer className="w-full">
-        <div className="max-w-7xl px-4 gap-6 flex w-full py-12 mx-auto  justify-between">
+        <div className="max-w-7xl px-4 gap-6 flex w-full py-12 mx-auto justify-between dark:bg-[#111418] text-[#1B283B] dark:text-white">
           <div className="w-3/12">
             <Link href="/">
-              <LogoLight />
+              <Logo />
             </Link>
           </div>
-          <div className="w-6/12 justify-center flex gap-36 text-[#1B283B]">
+          <div className="w-6/12 justify-center flex gap-36 ">
             <Link href="/contact">Contact</Link>
             <Link href="/jobs">Jobs</Link>
             {/*<div className="flex flex-col gap-3">

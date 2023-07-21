@@ -2,8 +2,12 @@ import LayoutPage from "@/components/LayoutPage";
 import Head from "next/head";
 import Image from "next/image";
 import MapImage from "../../../public/img/contact-map.png";
+import MapImageDark from "../../../public/img/contact-map-dark.png";
+import useNormalizedTheme from "@/hooks/useNormalizedTheme";
 
 export default function Page() {
+  const noramilzedTheme = useNormalizedTheme();
+
   return (
     <>
       <Head>
@@ -12,10 +16,10 @@ export default function Page() {
       <LayoutPage>
         <main className="w-full font-blender text-[#1B283B] my-20 ">
           <div className="w-full max-w-4xl px-4 flex gap-4 mx-auto flex-col items-center justify-center">
-            <span className="uppercase text-base font-berkeley text-[#2D72D2]">
+            <span className="uppercase text-base font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
               Contact Us
             </span>
-            <h1 className="text-5xl text-center font-bold ">
+            <h1 className="text-5xl text-center font-bold dark:text-white">
               Something great
               <br />
               together
@@ -24,7 +28,7 @@ export default function Page() {
 
           {/*  */}
           <div className="max-w-7xl px-4 mx-auto mt-32 font-blender flex gap-6">
-            <div className="w-8/12 bg-white">
+            <div className="w-8/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
               <div className="w-full py-16 px-28 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Contact Form</h3>
                 <form
@@ -35,79 +39,77 @@ export default function Page() {
                 >
                   {/*  */}
                   <div className="w-full text-xl flex gap-2 flex-col">
-                    <label htmlFor="fullName" className="text-black">
+                    <label htmlFor="fullName">
                       Full name <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
                       id="fullName"
                       type="text"
                       name="fullName"
-                      className="rounded-sm py-2 px-4 border outline-none border-[#D3D8DE] focus:text-[#191C22] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] "
+                      className="rounded-sm dark:text-white dark:focus:text-white py-2 px-4 border outline-none border-[#D3D8DE dark:border-[#252A31] focus:text-[#191C22] bg-white dark:bg-[#111418] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] dark:focus:border-[#4C90F0]"
                     />
                   </div>
 
                   <div className="w-full text-xl flex gap-2 flex-col">
-                    <label htmlFor="email" className="text-black">
+                    <label htmlFor="email">
                       Email <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
                       id="email"
                       type="email"
                       name="email"
-                      className="rounded-sm py-2 px-4 border outline-none border-[#D3D8DE] focus:text-[#191C22] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] "
+                      className="rounded-sm dark:text-white dark:focus:text-white py-2 px-4 border outline-none border-[#D3D8DE dark:border-[#252A31] focus:text-[#191C22] bg-white dark:bg-[#111418] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] dark:focus:border-[#4C90F0]"
                     />
                   </div>
 
                   <div className="w-full text-xl flex gap-2 flex-col">
-                    <label htmlFor="phone" className="text-black">
+                    <label htmlFor="phone">
                       Phone <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
                       id="phone"
                       type="phone"
                       name="phone"
-                      className="rounded-sm py-2 px-4 border outline-none border-[#D3D8DE] focus:text-[#191C22] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] "
+                      className="rounded-sm dark:text-white dark:focus:text-white py-2 px-4 border outline-none border-[#D3D8DE dark:border-[#252A31] focus:text-[#191C22] bg-white dark:bg-[#111418] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] dark:focus:border-[#4C90F0]"
                     />
                   </div>
 
                   <div className="w-full text-xl flex gap-2 flex-col">
-                    <label htmlFor="message" className="text-black">
-                      What can we help you with?
-                    </label>
+                    <label htmlFor="message">What can we help you with?</label>
                     <textarea
                       rows={5}
                       id="message"
                       name="message"
-                      className="rounded-sm py-2 px-4 border outline-none border-[#D3D8DE] focus:text-[#191C22] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] "
+                      className="rounded-sm dark:text-white dark:focus:text-white py-2 px-4 border outline-none border-[#D3D8DE dark:border-[#252A31] focus:text-[#191C22] bg-white dark:bg-[#111418] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] dark:focus:border-[#4C90F0]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                    className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                   >
                     Submit
                   </button>
                 </form>
               </div>
             </div>
-            <div className="w-4/12 bg-white">
+            <div className="w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
               <div className="w-full py-16 px-28 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Get in touch</h3>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Headquarters Address</h4>
-                  <p className="text-lg">
+                  <p className="text-lg dark:text-[#ABB3BF]">
                     Rollup HQ 10250 Constellation Blvd Suite 100 Los Angeles, CA
                     90067
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Rollup London</h4>
-                  <p className="text-lg">United Kingdom</p>
+                  <p className="text-lg dark:text-[#ABB3BF]">United Kingdom</p>
                 </div>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Contact Email</h4>
-                  <p className="text-lg">
+                  <p className="text-lg dark:text-[#ABB3BF]">
                     For info: info@rollup.ai
                     <br />
                     Legal: legal@rollup.ai
@@ -122,7 +124,12 @@ export default function Page() {
           </div>
 
           <div className="max-w-7xl px-4 mx-auto mt-6 font-blender flex gap-6">
-            <Image quality={100} src={MapImage} alt="map" className="w-full" />
+            <Image
+              quality={100}
+              src={noramilzedTheme === "light" ? MapImage : MapImageDark}
+              alt="map"
+              className="w-full"
+            />
           </div>
         </main>
       </LayoutPage>
