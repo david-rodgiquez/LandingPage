@@ -1,13 +1,7 @@
 import LayoutPage from "@/components/LayoutPage";
 import Head from "next/head";
-import Image from "next/image";
-import MapImage from "../../../public/img/contact-map.png";
-import MapImageDark from "../../../public/img/contact-map-dark.png";
-import useNormalizedTheme from "@/hooks/useNormalizedTheme";
 
 export default function Page() {
-  const noramilzedTheme = useNormalizedTheme();
-
   return (
     <>
       <Head>
@@ -123,13 +117,8 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="max-w-7xl px-4 mx-auto mt-6 font-blender flex gap-6">
-            <Image
-              quality={100}
-              src={noramilzedTheme === "light" ? MapImage : MapImageDark}
-              alt="map"
-              className="w-full"
-            />
+          <div className="px-4 max-w-7xl mx-auto">
+            <div className="mt-6 font-blender flex gap-6 w-full h-[596px] bg-cover bg-no-repeat bg-center bg-[url(/img/map-light.svg)] dark:bg-[url(/img/map-dark.svg)]"></div>
           </div>
         </main>
       </LayoutPage>
