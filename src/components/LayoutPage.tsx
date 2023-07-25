@@ -52,14 +52,14 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
       <div className="w-full bg-[#1B283B] bg-[url('/img/privacy-cta-bg.png')] bg-no-repeat bg-center  h-64 flex items-center">
         <div className="flex items-center justify-between w-full max-w-7xl px-4 mx-auto">
           <h4 className="font-blender text-4xl font-bold text-white ">
-            Discover a world of possibilities with Rollup app
+            Discover a world of possibilities with Rollup
           </h4>
-          <Link
-            href={"#"}
-            className={`font-berkeley px-6 dark:bg-white bg-white py-3 border text-[#1B283B] border-[#1B283B] rounded-sm hover:shadow-none transition-shadow w-64 flex items-center justify-between shadow-[6px_6px_0_0_#8ABBFF]`}
-          >
-            <span>Go to app</span> <span>&gt;</span>
-          </Link>
+          {/*<Link*/}
+          {/*  href={"#"}*/}
+          {/*  className={`font-berkeley px-6 dark:bg-white bg-white py-3 border text-[#1B283B] border-[#1B283B] rounded-sm hover:shadow-none transition-shadow w-64 flex items-center justify-between shadow-[6px_6px_0_0_#8ABBFF]`}*/}
+          {/*>*/}
+          {/*  <span>Go to app</span> <span>&gt;</span>*/}
+          {/*</Link>*/}
         </div>
       </div>
       <footer className="w-full">
@@ -70,8 +70,8 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             </Link>
           </div>
           <div className="w-6/12 justify-center flex gap-36 ">
-            <Link href="/contact">Contact</Link>
-            <Link href="/jobs">Jobs</Link>
+            {/*<Link href="/contact">Contact</Link>*/}
+            {/*<Link href="/jobs">Jobs</Link>*/}
             {/*<div className="flex flex-col gap-3">
               <Link href="#">Contact</Link>
               <Link href="/jobs">Jobs</Link>

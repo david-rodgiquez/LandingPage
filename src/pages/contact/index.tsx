@@ -14,13 +14,9 @@ export default function Page() {
               Contact Us
             </span>
             <h1 className="text-5xl text-center font-bold dark:text-white">
-              Something great
-              <br />
-              together
+              Let&apos;s do something great together.
             </h1>
           </div>
-
-          {/*  */}
           <div className="max-w-7xl px-4 mx-auto mt-32 font-blender flex gap-6">
             <div className="w-8/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
               <div className="w-full py-16 px-28 flex flex-col gap-8">
@@ -104,7 +100,7 @@ export default function Page() {
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Contact Email</h4>
                   <p className="text-lg dark:text-[#ABB3BF]">
-                    For info: info@rollup.ai
+                    Info: info@rollup.ai
                     <br />
                     Legal: legal@rollup.ai
                     <br />

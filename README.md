@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# WIP
+- Jobs page
+- Contact Page
+  - Needs the form working correctly
+  - Login button needs to go to the auth app
+- Terms Page
+
 ## Getting Started
 
 First, run the development server:
