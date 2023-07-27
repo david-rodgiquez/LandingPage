@@ -8,3 +8,6 @@ export const STYTCH_PUBLIC_TOKEN = process.env
 export const STYTCH_SECRET = process.env.STYTCH_SECRET as string;
 
 export const ASHBY_API_KEY = process.env.ASHBY_API_KEY as string;
+
+export const RETOOL_WORKFLOW_API_KEY = process.env
+  .RETOOL_WORKFLOW_API_KEY as string;

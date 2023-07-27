@@ -1,7 +1,22 @@
 import LayoutPage from "@/components/LayoutPage";
+import axios from "axios";
 import Head from "next/head";
+import type { FormEvent } from "react";
 
 export default function Page() {
+  const onSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as {
+      fullName: string;
+      email: string;
+      phone: string;
+      message?: string;
+    };
+
+    try {
+      await axios.post("/api/contact", data);
+    } catch (error) {}
+  };
   return (
     <>
       <Head>
@@ -22,9 +37,7 @@ export default function Page() {
               <div className="w-full py-16 px-28 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Contact Form</h3>
                 <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                  }}
+                  onSubmit={onSubmitForm}
                   className="w-full flex flex-col gap-4"
                 >
                   {/*  */}
@@ -33,6 +46,7 @@ export default function Page() {
                       Full name <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
+                      required
                       id="fullName"
                       type="text"
                       name="fullName"
@@ -45,6 +59,7 @@ export default function Page() {
                       Email <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
+                      required
                       id="email"
                       type="email"
                       name="email"
@@ -57,13 +72,13 @@ export default function Page() {
                       Phone <span className="text-[#2D72D2]">*</span>
                     </label>
                     <input
+                      required
                       id="phone"
                       type="phone"
                       name="phone"
                       className="rounded-sm dark:text-white dark:focus:text-white py-2 px-4 border outline-none border-[#D3D8DE dark:border-[#252A31] focus:text-[#191C22] bg-white dark:bg-[#111418] focus:bg-[#E4F0FF] transition-colors focus:border-[#2D72D2] dark:focus:border-[#4C90F0]"
                     />
                   </div>
-
                   <div className="w-full text-xl flex gap-2 flex-col">
                     <label htmlFor="message">What can we help you with?</label>
                     <textarea
