@@ -70,8 +70,8 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             </Link>
           </div>
           <div className="w-6/12 justify-center flex gap-36 ">
-            {/*<Link href="/contact">Contact</Link>*/}
-            {/*<Link href="/jobs">Jobs</Link>*/}
+            <Link href="/contact">Contact</Link>
+            <Link href="/jobs">Jobs</Link>
             {/*<div className="flex flex-col gap-3">
               <Link href="#">Contact</Link>
               <Link href="/jobs">Jobs</Link>
@@ -108,7 +108,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
               <Link href="/privacy" className="px-4">
                 Privacy policy
               </Link>
-              <Link href="#" className="px-4">
+              <Link href="/terms" className="px-4">
                 Terms and conditions
               </Link>
             </div>

@@ -124,9 +124,7 @@ export default function Page({
               Careers
             </span>
             <h1 className="text-5xl text-center font-bold ">
-              We are bringing magic
-              <br />
-              back to software
+              We are bringing magical software to the world of hardware
             </h1>
             {/* <Link
               href="#"
@@ -138,25 +136,25 @@ export default function Page({
           </div>
 
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto mt-32 font-blender">
-            <div className="w-full flex gap-6">
-              <h2 className="text-4xl font-bold w-1/2">
-                Rollup is a thriving community
-                <br />
-                of people driven by making
-                <br />
-                progress possible.
-              </h2>
-              <p className="text-xl w-1/2 text-[#3B3F44] dark:text-[#ABB3BF]">
-                Our people are our core competitive advantage. While almost
-                anything in this world can be imitated, the one thing that
-                can&apos;t be copied is our culture. We treat our people as our
-                source of differentiation because without the collective
-                endeavors of Rollupers, we would be a company without a mission,
-                a product without a purpose, an organization with no soul.
-              </p>
-            </div>
-          </div>
+          {/*<div className="max-w-7xl px-4 mx-auto mt-32 font-blender">*/}
+          {/*  <div className="w-full flex gap-6">*/}
+          {/*    /!*<h2 className="text-4xl font-bold w-1/2">*!/*/}
+          {/*    /!*  Rollup is a thriving community*!/*/}
+          {/*    /!*  <br />*!/*/}
+          {/*    /!*  of people driven by making*!/*/}
+          {/*    /!*  <br />*!/*/}
+          {/*    /!*  progress possible.*!/*/}
+          {/*    /!*</h2>*!/*/}
+          {/*    /!*<p className="text-xl w-1/2 text-[#3B3F44] dark:text-[#ABB3BF]">*!/*/}
+          {/*    /!*  Our people are our core competitive advantage. While almost*!/*/}
+          {/*    /!*  anything in this world can be imitated, the one thing that*!/*/}
+          {/*    /!*  can&apos;t be copied is our culture. We treat our people as our*!/*/}
+          {/*    /!*  source of differentiation because without the collective*!/*/}
+          {/*    /!*  endeavors of Rollupers, we would be a company without a mission,*!/*/}
+          {/*    /!*  a product without a purpose, an organization with no soul.*!/*/}
+          {/*    /!*</p>*!/*/}
+          {/*  </div>*/}
+          {/*</div>*/}
 
           {/*  */}
           {/* <div className="max-w-7xl px-4 mx-auto mt-12 font-blender">

@@ -22,7 +22,7 @@ export default function Page({
               className="font-berkeley text-base text-[#2D72D2] dark:text-[#4C90F0] flex gap-8 items-center"
             >
               <span>&lt;</span>
-              <span>Back to Career</span>
+              <span>Back to Careers</span>
             </Link>
           </div>
           {/*  */}
@@ -52,7 +52,7 @@ export default function Page({
                   </div>
                   <Link
                     target="_blank"
-                    href={job.externalLink}
+                    href={job.externalLink+"/application"}
                     className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                   >
                     Apply
@@ -66,7 +66,7 @@ export default function Page({
                 />
                 <Link
                   target="_blank"
-                  href={job.externalLink}
+                  href={job.externalLink+"/application"}
                   className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                 >
                   Apply

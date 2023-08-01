@@ -10,7 +10,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
       phone: string;
       message?: string;
     };
-    await triggerRetoolWorkflow("b68604c9-f6d5-4170-b485-56e24103c350", data);
+    await triggerRetoolWorkflow("4f9fd094-e021-4c65-956f-de8a877a1c87", data);
     return res.send({ message: "OK" });
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -27,4 +27,4 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     default:
       return res.status(405).send({ message: "method not allowed" });
   }
-}
+} 
