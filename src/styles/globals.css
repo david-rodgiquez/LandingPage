@@ -92,8 +92,15 @@ body {
 .page-content h3 {
   @apply text-2xl font-bold;
 }
+.page-content ul,
+.page-content ol {
+  @apply pl-8 space-y-3;
+}
 .page-content ul {
-  @apply list-disc pl-8 space-y-3;
+  @apply list-disc;
+}
+.page-content ol {
+  @apply list-decimal;
 }
 .page-content a {
   @apply text-blue-600 underline decoration-1;
