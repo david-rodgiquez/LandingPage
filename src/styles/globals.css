@@ -84,3 +84,17 @@ body {
 .jobinfo-content :not(h1, h2, h3, h4) {
   @apply dark:text-[#ABB3BF];
 }
+
+/* page content */
+.page-content h2 {
+  @apply text-3xl font-bold;
+}
+.page-content h3 {
+  @apply text-2xl font-bold;
+}
+.page-content ul {
+  @apply list-disc pl-8 space-y-3;
+}
+.page-content a {
+  @apply text-blue-600 underline decoration-1;
+}
