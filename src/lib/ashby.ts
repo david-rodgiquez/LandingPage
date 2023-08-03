@@ -28,7 +28,11 @@ type SuccessResponse<TData> = AxiosResponse<{
   results: TData;
 }>;
 
-const groupJobPostingsByDepartment = (jobs: JobPosting[]) => {
+const groupJobPostingsByDepartment = (
+  jobs: (JobPosting & {
+    jobPostingInfo: JobPostingInfo & { salary?: string };
+  })[]
+) => {
   const groupedByDepartment = [];
 
   for (let i = 0; i < jobs.length; i++) {
@@ -48,14 +52,6 @@ const groupJobPostingsByDepartment = (jobs: JobPosting[]) => {
   }
 
   return groupedByDepartment;
-};
-
-export const getJobPostings = async () => {
-  const res = await ashby.post<any, SuccessResponse<JobPosting[]>>(
-    "jobPosting.list",
-    { listedOnly: true }
-  );
-  return groupJobPostingsByDepartment(res.data.results);
 };
 
 type JobPostingInfo = {
@@ -94,4 +90,27 @@ export const getJobPostingInfo = async (id: string) => {
   } catch (error) {
     return null;
   }
+};
+
+export const getJobPostings = async () => {
+  const res = await ashby.post<any, SuccessResponse<JobPosting[]>>(
+    "jobPosting.list",
+    { listedOnly: true }
+  );
+  const jobPostingWithInfoPromises = res.data.results.map(
+    async (jobPosting) => {
+      const jobPostingInfo = (await getJobPostingInfo(jobPosting.id))!;
+      const salary = jobPostingInfo.descriptionPlain
+        .match(/\$[0-9].*\//g)?.[0]
+        .replace("/", "");
+      return {
+        ...jobPosting,
+        jobPostingInfo: { ...jobPostingInfo, salary: salary },
+      };
+    }
+  );
+
+  const jobPostingWithInfo = await Promise.all(jobPostingWithInfoPromises);
+
+  return groupJobPostingsByDepartment(jobPostingWithInfo);
 };

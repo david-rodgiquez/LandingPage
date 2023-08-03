@@ -264,9 +264,9 @@ export default function Page({
           </div> */}
 
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto mt-36 font-blender flex flex-col gap-8">
+          <div className="max-w-7xl lg:px-4 mx-auto mt-36 font-blender flex flex-col gap-8">
             <h2 className="font-bold text-4xl">Join us</h2>
-            <div className="w-full flex flex-col gap-5">
+            <div className="w-full flex flex-col gap-16">
               {departments.map((department) => (
                 <div key={department.departmentName}>
                   <h3 className="text-2xl font-bold">
@@ -282,9 +282,24 @@ export default function Page({
                           href={`/jobs/${job.id}`}
                           className="flex items-center justify-between hover:text-[#2D72D2] dark:text-[#ABB3BF] dark:hover:text-[#4C90F0] transition-colors"
                         >
-                          <h4 className="text-2xl ">{job.title}</h4>
-                          <div className="text-base font-berkeley flex items-center gap-6 text-[#2D72D2] dark:text-[#4C90F0]">
-                            <span>Apply</span> <span>&gt;</span>
+                          <h4 className="text-2xl">{job.title}</h4>
+                          <div className="flex gap-14 text-base font-berkeley ">
+                            <span>
+                              {
+                                job.jobPostingInfo.address.postalAddress
+                                  .addressLocality
+                              }
+                              ,{" "}
+                              {
+                                job.jobPostingInfo.address.postalAddress
+                                  .addressCountry
+                              }
+                            </span>
+                            <span>{job.jobPostingInfo.salary}</span>
+                            <span>{job.employmentType}</span>
+                            <span className="flex items-center gap-6 text-[#2D72D2] dark:text-[#4C90F0]">
+                              <span>Apply</span> <span>&gt;</span>
+                            </span>
                           </div>
                         </Link>
                       </div>
