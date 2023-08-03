@@ -11,15 +11,15 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative overflow-x-hidden ">
-      <div className="bg-[url(/img/right-decoration.png)] dark:bg-[url(/img/right-decoration-dark.png)] bg-contain bg-no-repeat w-[470px] h-[771px] absolute -right-44 top-10"></div>
-      <div className="bg-[url(/img/left-decoration.png)] dark:bg-[url(/img/left-decoration-dark.png)] bg-contain bg-no-repeat w-[375px] h-[771px] absolute -left-44 top-52"></div>
-      <header className="w-full py-10 max-w-7xl px-4 mx-auto relative">
+      <div className="bg-[url(/img/right-decoration.png)] dark:bg-[url(/img/right-decoration-dark.png)] bg-contain bg-no-repeat w-[470px] h-[771px] absolute -right-44 top-10 hidden sm:block"></div>
+      <div className="bg-[url(/img/left-decoration.png)] dark:bg-[url(/img/left-decoration-dark.png)] bg-contain bg-no-repeat w-[375px] h-[771px] absolute -left-44 top-52 hidden sm:block"></div>
+      <header className="w-full py-6 md:py-10 max-w-7xl px-4 mx-auto relative">
         <nav
           style={{
             boxShadow:
               "0px 0px 0px 1px rgba(16, 22, 26, 0.08), 0px 8px 24px 0px rgba(16, 22, 26, 0.10)",
           }}
-          className="bg-white dark:bg-[#1C2127] dark:text-white rounded-sm font-berkeley shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)] h-14 flex justify-between items-center px-10"
+          className="bg-white dark:bg-[#1C2127] dark:text-white rounded-sm font-berkeley shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)] h-14 flex justify-between items-center px-4 md:px-10"
         >
           <div className="flex gap-12 items-center">
             <Link href="/">
@@ -36,7 +36,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             <Link href="#">Docs</Link> */}
             <Link
               href="https://app.rollup.ai/"
-              className="bg-[#2D72D2] text-white px-4 rounded-sm"
+              className="bg-[#2D72D2] text-white px-4 rounded-sm hidden md:block"
             >
               Go to app
             </Link>
@@ -48,8 +48,8 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           </div>
         </nav>
       </header>
-      <div className="relative">{children}</div>
-      <div className="w-full bg-[#1B283B] bg-[url('/img/privacy-cta-bg.png')] bg-no-repeat bg-center  h-64 flex items-center">
+      <div className="relative px-4 lg:px-0">{children}</div>
+      <div className="w-full bg-[#1B283B] sm:bg-[url('/img/privacy-cta-bg.png')] bg-no-repeat bg-center  h-64 flex items-center">
         <div className="flex items-center justify-between w-full max-w-7xl px-4 mx-auto">
           <h4 className="font-blender text-4xl font-bold text-white ">
             Discover a world of possibilities with Rollup
@@ -63,13 +63,13 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
         </div>
       </div>
       <footer className="w-full">
-        <div className="max-w-7xl px-4 gap-6 flex w-full py-12 mx-auto justify-between dark:bg-[#111418] text-[#1B283B] dark:text-white">
+        <div className="max-w-7xl flex-col sm:flex-row px-4 gap-6 flex w-full py-12 mx-auto justify-between dark:bg-[#111418] text-[#1B283B] dark:text-white">
           <div className="w-3/12">
             <Link href="/">
               <Logo />
             </Link>
           </div>
-          <div className="w-6/12 justify-center flex gap-36 ">
+          <div className="w-6/12 justify-center flex flex-col sm:flex-row gap-2 sm:gap-36 ">
             <Link href="/contact">Contact</Link>
             <Link href="/jobs">Jobs</Link>
             {/*<div className="flex flex-col gap-3">
@@ -85,7 +85,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
               <Link href="#">Additional page</Link>
             </div> */}
           </div>
-          <div className="w-3/12 flex justify-end">
+          <div className="w-3/12 flex sm:justify-end">
             <div className="flex gap-2">
               <Link
                 href="https://www.linkedin.com/company/rollup-inc"
@@ -100,15 +100,15 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="w-full bg-[#1B283B]">
-          <div className="max-w-7xl px-4 w-full flex justify-between items-center mx-auto text-white font-blender py-3">
-            <p>
+          <div className="max-w-7xl px-4 w-full gap-2 sm:gap-0 flex-col sm:flex-row flex justify-between sm:items-center mx-auto text-white font-blender py-3">
+            <p className="order-1 sm:order-none">
               &copy; {new Date().getFullYear()}, Rollup. All Rights Reserved
             </p>
-            <div className="flex items-center divide-x">
-              <Link href="/privacy" className="px-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:divide-x">
+              <Link href="/privacy" className="sm:px-4">
                 Privacy policy
               </Link>
-              <Link href="/terms" className="px-4">
+              <Link href="/terms" className="sm:px-4">
                 Terms and conditions
               </Link>
             </div>
