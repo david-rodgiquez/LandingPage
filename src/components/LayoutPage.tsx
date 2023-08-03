@@ -13,7 +13,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
     <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative overflow-x-hidden ">
       <div className="bg-[url(/img/right-decoration.png)] dark:bg-[url(/img/right-decoration-dark.png)] bg-contain bg-no-repeat w-[470px] h-[771px] absolute -right-44 top-10"></div>
       <div className="bg-[url(/img/left-decoration.png)] dark:bg-[url(/img/left-decoration-dark.png)] bg-contain bg-no-repeat w-[375px] h-[771px] absolute -left-44 top-52"></div>
-      <header className="w-full py-10 max-w-7xl px-4 mx-auto">
+      <header className="w-full py-10 max-w-7xl px-4 mx-auto relative">
         <nav
           style={{
             boxShadow:
@@ -48,7 +48,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           </div>
         </nav>
       </header>
-      {children}
+      <div className="relative">{children}</div>
       <div className="w-full bg-[#1B283B] bg-[url('/img/privacy-cta-bg.png')] bg-no-repeat bg-center  h-64 flex items-center">
         <div className="flex items-center justify-between w-full max-w-7xl px-4 mx-auto">
           <h4 className="font-blender text-4xl font-bold text-white ">
