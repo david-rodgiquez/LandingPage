@@ -15,7 +15,7 @@ function BlueLine(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1224 2"
       fill="none"
-      className="min-h-full min-w-full"
+      className="min-h-full min-w-[100vh] h-[2px] "
       {...props}
     >
       <path
@@ -311,10 +311,10 @@ export default function Page({
                       >
                         <Link
                           href={`/jobs/${job.id}`}
-                          className="flex items-center justify-between hover:text-[#2D72D2] dark:text-[#ABB3BF] dark:hover:text-[#4C90F0] transition-colors"
+                          className="flex flex-col gap-2 md:gap-0 items-start md:flex-row md:items-center justify-between hover:text-[#2D72D2] dark:text-[#ABB3BF] dark:hover:text-[#4C90F0] transition-colors"
                         >
                           <h4 className="text-2xl">{job.title}</h4>
-                          <div className="flex gap-14 text-base font-berkeley ">
+                          <div className="flex flex-col md:flex-row gap-2 md:gap-6 lg:gap-14 text-base font-berkeley ">
                             <span>
                               {
                                 job.jobPostingInfo.address.postalAddress
@@ -326,7 +326,9 @@ export default function Page({
                                   .addressCountry
                               }
                             </span>
-                            <span>{job.jobPostingInfo.salary}</span>
+                            {job.jobPostingInfo.salary && (
+                              <span>{job.jobPostingInfo.salary}</span>
+                            )}
                             <span>{job.employmentType}</span>
                             <span className="flex items-center gap-6 text-[#2D72D2] dark:text-[#4C90F0]">
                               <span>Apply</span> <span>&gt;</span>
