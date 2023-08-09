@@ -8,9 +8,9 @@ import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
-import FullStory from 'react-fullstory';
-import { useEffect } from 'react'
-import { Analytics } from '@vercel/analytics/react';
+import FullStory from "react-fullstory";
+import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 const Logo = dynamic(() => import("../components/Logo"), {
   ssr: false,
@@ -80,27 +80,25 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const isAuthenticated = organization && user;
   const { theme, setTheme } = useTheme();
-  
 
   return (
     <>
       <Head>
         <title>Rollup — Collaborative engineering environment</title>
       </Head>
-      <FullStory org="o-1E1H5B-na1"/>
+      <FullStory org="o-1E1H5B-na1" />
       <Analytics />
       <div className="w-full min-h-screen dark:bg-[#111418] justify-between bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-hero-light.svg')] dark:bg-[url('/img/home-hero-dark.svg')] bg-no-repeat bg-[center_right_-200px]">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
           <Link href="/">
             <Logo />
           </Link>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center gap-8">
             {/*<LoginButton />*/}
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              <IconDarkMode className="dark:text-white" />
-            </button>
+              className="bg-[url(/img/icon-dark-mode.svg)] dark:bg-[url(/img/icon-light-mode.svg)] h-6 w-6"
+            />
           </div>
         </header>
         <main className="max-w-7xl w-full mx-auto px-6 py-6">
