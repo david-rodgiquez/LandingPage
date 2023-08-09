@@ -42,9 +42,8 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             </Link>
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              <IconDarkMode className="dark:text-white" />
-            </button>
+              className="bg-[url(/img/icon-dark-mode.svg)] dark:bg-[url(/img/icon-light-mode.svg)] h-6 w-6"
+            />
           </div>
         </nav>
       </header>

@@ -30,7 +30,7 @@ type SuccessResponse<TData> = AxiosResponse<{
 
 const groupJobPostingsByDepartment = (
   jobs: (JobPosting & {
-    jobPostingInfo: JobPostingInfo & { salary?: string };
+    jobPostingInfo: JobPostingInfo & { salary: string | null };
   })[]
 ) => {
   const groupedByDepartment = [];
@@ -105,7 +105,7 @@ export const getJobPostings = async () => {
         .replace("/", "");
       return {
         ...jobPosting,
-        jobPostingInfo: { ...jobPostingInfo, salary: salary },
+        jobPostingInfo: { ...jobPostingInfo, salary: salary ?? null },
       };
     }
   );
