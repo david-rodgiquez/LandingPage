@@ -9,6 +9,37 @@ import Image from "next/image";
 import { getJobPostings } from "@/lib/ashby";
 import { InferGetServerSidePropsType } from "next";
 
+function BlueLine(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1224 2"
+      fill="none"
+      className="min-h-full min-w-full"
+      {...props}
+    >
+      <path
+        d="M1224 1L0 1"
+        stroke="url(#paint0_linear_4161_1847)"
+        strokeDasharray="4 4"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_4161_1847"
+          x1="531.584"
+          y1="-0.185551"
+          x2="532.214"
+          y2="-21.6954"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#4C90F0" />
+          <stop offset="1" stopColor="#4C90F0" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 function IconHeart(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -276,7 +307,7 @@ export default function Page({
                     {department.jobs.map((job) => (
                       <div
                         key={job.id}
-                        className="border-dashed py-4 border-b-2 border-[#7c9bc5] dark:border-[#4C90F0]"
+                        className="pt-4 w-full overflow-x-hidden "
                       >
                         <Link
                           href={`/jobs/${job.id}`}
@@ -302,6 +333,9 @@ export default function Page({
                             </span>
                           </div>
                         </Link>
+                        <div className="pt-4 w-full">
+                          <BlueLine />
+                        </div>
                       </div>
                     ))}
                   </div>
