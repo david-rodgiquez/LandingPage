@@ -16,7 +16,7 @@ export default function Page({
       <LayoutPage>
         <main className="w-full font-blender text-[#1B283B] dark:text-white mt-3 mb-20 ">
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto">
+          <div className="max-w-7xl mx-auto lg:px-4">
             <Link
               href="/jobs"
               className="font-berkeley text-base text-[#2D72D2] dark:text-[#4C90F0] flex gap-8 items-center"
@@ -26,10 +26,10 @@ export default function Page({
             </Link>
           </div>
           {/*  */}
-          <div className="max-w-7xl px-4 mx-auto mt-20">
+          <div className="max-w-7xl mx-auto mt-20 lg:px-4">
             <h1 className="text-5xl font-bold">{job.title}</h1>
-            <div className="w-full flex mt-10">
-              <div className="w-4/12  border-[#4C90F0] border-dashed border-r-2">
+            <div className="w-full flex mt-10 flex-col gap-12 md:gap-0 md:flex-row">
+              <div className="w-full md:w-4/12  border-[#4C90F0] md:border-dashed md:border-r-2">
                 <div className="flex flex-col gap-4">
                   <div>
                     <p className="font-berkeley text-sm">Location</p>
@@ -55,28 +55,28 @@ export default function Page({
                     <p className="text-xl dark:text-[#ABB3BF]">
                       {job.compensation.compensationTiers[0]?.title}
                     </p>
-                    <p className="text-xl dark:text-[#ABB3BF]">                      
+                    <p className="text-xl dark:text-[#ABB3BF]">
                       {job.compensation.compensationTierSummary}
                     </p>
                   </div>
                   <Link
                     target="_blank"
-                    href={job.externalLink+"/application"}
-                    className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                    href={job.externalLink + "/application"}
+                    className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                   >
                     Apply
                   </Link>
                 </div>
               </div>
-              <div className="w-8/12 pl-8 flex flex-col gap-8">
+              <div className="w-full md:w-8/12 md:pl-8 flex flex-col gap-8">
                 <div
                   className="jobinfo-content"
                   dangerouslySetInnerHTML={{ __html: job.descriptionHtml }}
                 />
                 <Link
                   target="_blank"
-                  href={job.externalLink+"/application"}
-                  className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                  href={job.externalLink + "/application"}
+                  className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
                 >
                   Apply
                 </Link>

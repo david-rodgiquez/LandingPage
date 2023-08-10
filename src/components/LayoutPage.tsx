@@ -2,7 +2,6 @@ import Link from "next/link";
 import IconLinkedin from "./icons/IconLinkedin";
 import IconTwitter from "./icons/IconTwitter";
 import { ReactNode } from "react";
-import IconDarkMode from "./icons/IconDarkMode";
 import { useTheme } from "next-themes";
 import Logo from "./Logo";
 
@@ -49,7 +48,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
       </header>
       <div className="relative px-4 lg:px-0">{children}</div>
       <div className="w-full bg-[#1B283B] sm:bg-[url('/img/privacy-cta-bg.png')] bg-no-repeat bg-center  h-64 flex items-center">
-        <div className="flex items-center justify-between w-full max-w-7xl px-4 mx-auto">
+        <div className="flex items-start md:items-center justify-between w-full flex-col md:flex-row gap-6 max-w-7xl px-4 mx-auto">
           <h4 className="font-blender text-4xl font-bold text-white ">
             Discover a world of possibilities with Rollup
           </h4>
