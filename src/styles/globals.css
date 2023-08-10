@@ -32,6 +32,11 @@
   src: url(/fonts/BlenderPro-Bold.woff2) format("woff2");
 }
 
+html.dark [data-hide-on-theme="dark"],
+html.light [data-hide-on-theme="light"] {
+  display: none;
+}
+
 body {
   @apply antialiased text-gray-900;
 }

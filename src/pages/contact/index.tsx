@@ -2,7 +2,11 @@ import LayoutPage from "@/components/LayoutPage";
 import IconSpinner from "@/components/icons/IconSpinner";
 import axios from "axios";
 import Head from "next/head";
+import Image from "next/image";
 import { useState, type FormEvent } from "react";
+import MapDark from "../../../public/img/map-dark.svg";
+import MapLight from "../../../public/img/map-light.svg";
+import { useTheme } from "next-themes";
 
 type ContactFormPayload = {
   fullName: string;
@@ -86,8 +90,8 @@ function ContactFormSection() {
   };
 
   return (
-    <div className="w-8/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
-      <div className="w-full py-16 px-28 flex flex-col gap-8">
+    <div className="md:w-8/12 w-full bg-white dark:bg-[#1C2127] text-black dark:text-white">
+      <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
         <h3 className="text-4xl font-semibold">Contact Form</h3>
         {status !== "success" ? (
           <form onSubmit={onSubmitForm} className="w-full flex flex-col gap-4">
@@ -142,7 +146,7 @@ function ContactFormSection() {
             <button
               disabled={status === "loading"}
               type="submit"
-              className="dark:bg-[#252A31] disabled:opacity-50 disabled:pointer-events-none dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-between items-center w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+              className="dark:bg-[#252A31] disabled:opacity-50 disabled:pointer-events-none dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
             >
               {status === "loading" ? (
                 <IconSpinner className="h-6 w-6 text-black" />
@@ -163,6 +167,7 @@ function ContactFormSection() {
 }
 
 export default function Page() {
+  const { resolvedTheme } = useTheme();
   return (
     <>
       <Head>
@@ -178,10 +183,10 @@ export default function Page() {
               Let&apos;s do something great together.
             </h1>
           </div>
-          <div className="max-w-7xl px-4 mx-auto mt-32 font-blender flex gap-6">
+          <div className="max-w-7xl w-full flex-col md:flex-row lg:px-4 mx-auto mt-32 font-blender flex gap-6">
             <ContactFormSection />
-            <div className="w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
-              <div className="w-full py-16 px-28 flex flex-col gap-8">
+            <div className="w-full md:w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
+              <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Get in touch</h3>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Headquarters Address</h4>
@@ -210,8 +215,21 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="px-4 max-w-7xl mx-auto">
-            <div className="mt-6 font-blender flex gap-6 w-full h-[596px] bg-cover bg-no-repeat bg-center bg-[url(/img/map-light.svg)] dark:bg-[url(/img/map-dark.svg)]"></div>
+          <div className="lg:px-4 mt-6 max-w-7xl mx-auto w-full ">
+            <div data-hide-on-theme="dark">
+              <Image
+                src={MapLight}
+                alt="Map"
+                className="w-full object-contain"
+              />
+            </div>
+            <div data-hide-on-theme="light">
+              <Image
+                src={MapDark}
+                alt="Map"
+                className="w-full object-contain"
+              />
+            </div>
           </div>
         </main>
       </LayoutPage>
