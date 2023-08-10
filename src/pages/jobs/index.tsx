@@ -2,10 +2,6 @@ import LayoutPage from "@/components/LayoutPage";
 import Head from "next/head";
 import Link from "next/link";
 import type { SVGProps } from "react";
-import AbcImage from "../../../public/img/abc.png";
-import TimerImage from "../../../public/img/timer.png";
-import JobLine from "../../../public/img/job-line.png";
-import Image from "next/image";
 import { getJobPostings } from "@/lib/ashby";
 import { InferGetServerSidePropsType } from "next";
 

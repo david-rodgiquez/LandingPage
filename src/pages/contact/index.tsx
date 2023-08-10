@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import MapDark from "../../../public/img/map-dark.svg";
 import MapLight from "../../../public/img/map-light.svg";
-import { useTheme } from "next-themes";
 
 type ContactFormPayload = {
   fullName: string;
@@ -167,7 +166,6 @@ function ContactFormSection() {
 }
 
 export default function Page() {
-  const { resolvedTheme } = useTheme();
   return (
     <>
       <Head>
