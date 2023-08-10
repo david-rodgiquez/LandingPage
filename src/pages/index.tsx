@@ -94,7 +94,7 @@ export default function Home({
             <Logo />
           </Link>
           <div className="flex items-center justify-center gap-8">
-            {/*<LoginButton />*/}
+            <LoginButton />
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="bg-[url(/img/icon-dark-mode.svg)] dark:bg-[url(/img/icon-light-mode.svg)] h-6 w-6"

@@ -53,12 +53,12 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           <h4 className="font-blender text-4xl font-bold text-white ">
             Discover a world of possibilities with Rollup
           </h4>
-          {/*<Link*/}
-          {/*  href={"#"}*/}
-          {/*  className={`font-berkeley px-6 dark:bg-white bg-white py-3 border text-[#1B283B] border-[#1B283B] rounded-sm hover:shadow-none transition-shadow w-64 flex items-center justify-between shadow-[6px_6px_0_0_#8ABBFF]`}*/}
-          {/*>*/}
-          {/*  <span>Go to app</span> <span>&gt;</span>*/}
-          {/*</Link>*/}
+          <Link
+            href={"#"}
+            className={`font-berkeley px-6 dark:bg-white bg-white py-3 border text-[#1B283B] border-[#1B283B] rounded-sm hover:shadow-none transition-shadow w-64 flex items-center justify-between shadow-[6px_6px_0_0_#8ABBFF]`}
+          >
+            <span>Go to app</span> <span>&gt;</span>
+          </Link>
         </div>
       </div>
       <footer className="w-full">

@@ -64,7 +64,7 @@ type JobPostingInfo = {
   compensation: {
     compensationTierSummary: null;
     summaryComponents: [];
-    compensationTiers: [];
+    compensationTiers: any;
     shouldDisplayCompensation: false;
   };
   locationName: string;
@@ -105,7 +105,7 @@ export const getJobPostings = async () => {
         .replace("/", "");
       return {
         ...jobPosting,
-        jobPostingInfo: { ...jobPostingInfo, salary: salary ?? null },
+        jobPostingInfo: { ...jobPostingInfo, salary: jobPostingInfo.compensation.compensationTierSummary ?? salary ?? null },
       };
     }
   );

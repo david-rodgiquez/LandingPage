@@ -50,6 +50,15 @@ export default function Page({
                       {job.departmentName}
                     </p>
                   </div>
+                  <div>
+                    <p className="font-berkeley text-sm">Compensation</p>
+                    <p className="text-xl dark:text-[#ABB3BF]">
+                      {job.compensation.compensationTiers[0]?.title}
+                    </p>
+                    <p className="text-xl dark:text-[#ABB3BF]">                      
+                      {job.compensation.compensationTierSummary}
+                    </p>
+                  </div>
                   <Link
                     target="_blank"
                     href={job.externalLink+"/application"}
