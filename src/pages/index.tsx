@@ -8,9 +8,7 @@ import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
-import FullStory from "react-fullstory";
-import { useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react";
+import { useEffect, useRef } from "react";
 
 const Logo = dynamic(() => import("../components/Logo"), {
   ssr: false,
@@ -37,11 +35,27 @@ function LoginButton() {
 
 function GetAccessButton() {
   const [isOpenModal, toggleModal] = useToggle();
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const initClickTracking = async () => {
+      // @ts-ignore
+      await window?.analytics?.trackLink(
+        linkRef.current,
+        "Clicked: Get Access",
+        {
+          path: window.location.pathname,
+        }
+      );
+    };
+
+    initClickTracking();
+  }, []);
+
   return (
     <>
       <Link
-        // type="button"
-        // onClick={toggleModal}
+        ref={linkRef}
         target="_blank"
         href="https://rollup-hq.typeform.com/interest-form"
         className="py-3 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-10 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
@@ -86,8 +100,6 @@ export default function Home({
       <Head>
         <title>Rollup — Collaborative engineering environment</title>
       </Head>
-      <FullStory org="o-1E1H5B-na1" />
-      <Analytics />
       <div className="w-full min-h-screen dark:bg-[#111418] justify-between bg-[#F6F7F9] text-[#1B283B] flex flex-col bg-[url('/img/home-hero-light.svg')] dark:bg-[url('/img/home-hero-dark.svg')] bg-no-repeat bg-[center_right_-200px]">
         <header className="max-w-7xl w-full mx-auto px-6 py-6 flex justify-between items-center ">
           <Link href="/">

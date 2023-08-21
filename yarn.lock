@@ -257,6 +257,25 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@ndhoule/each@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ndhoule/each/-/each-2.0.1.tgz#bbed372a603e0713a3193c706a73ddebc5b426a9"
+  integrity sha512-wHuJw6x+rF6Q9Skgra++KccjBozCr9ymtna0FhxmV/8xT/hZ2ExGYR8SV8prg8x4AH/7mzDYErNGIVHuzHeybw==
+  dependencies:
+    "@ndhoule/keys" "^2.0.0"
+
+"@ndhoule/keys@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ndhoule/keys/-/keys-2.0.0.tgz#3d64ae677c65a261747bf3a457c62eb292a4e0ce"
+  integrity sha512-vtCqKBC1Av6dsBA8xpAO+cgk051nfaI+PnmTZep2Px0vYrDvpUmLxv7z40COlWH5yCpu3gzNhepk+02yiQiZNw==
+
+"@ndhoule/map@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ndhoule/map/-/map-2.0.1.tgz#f5ca0a47424ea67f46e2a6d499b9e9bc886aefa8"
+  integrity sha512-WOEf2An9mL4DVY6NHgaRmFC82pZGrmzW4I0hpPPdczDP4Gp5+Q1Nny77x3w0qzENA8+cbgd9+Lx2ClSTLvkB0g==
+  dependencies:
+    "@ndhoule/each" "^2.0.1"
+
 "@next/env@13.3.4":
   version "13.3.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.3.4.tgz#419bc4aaf67dff0060abcfb0ca097acb23e17a77"
@@ -457,6 +476,13 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
   integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
+
+"@segment/snippet@^4.16.2":
+  version "4.16.2"
+  resolved "https://registry.yarnpkg.com/@segment/snippet/-/snippet-4.16.2.tgz#22b71737ce9ab56036aeae90208a9bbca31e8522"
+  integrity sha512-2fgsrt4U+vKv14ohOAsViCEzeZotaawF2Il7YUbmYVrhPn8Hq7xuGznHKRdZeoxScQ87X36xDX2Fzh5bAYRN7g==
+  dependencies:
+    "@ndhoule/map" "^2.0.1"
 
 "@stytch/core@0.13.5":
   version "0.13.5"
@@ -715,11 +741,6 @@
   dependencies:
     "@typescript-eslint/types" "5.59.2"
     eslint-visitor-keys "^3.3.0"
-
-"@vercel/analytics@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@vercel/analytics/-/analytics-1.0.1.tgz#38308a626c91866cb00a249c08bf65251e9b9d81"
-  integrity sha512-Ux0c9qUfkcPqng3vrR0GTrlQdqNJ2JREn/2ydrVuKwM3RtMfF2mWX31Ijqo1opSjNAq6rK76PwtANw6kl6TAow==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -2942,11 +2963,6 @@ react-dom@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
-
-react-fullstory@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-fullstory/-/react-fullstory-1.4.0.tgz#eec34cb9790e2e1f78e97e23306a3ca460276da9"
-  integrity sha512-lMYTFfgcG1w0XXGHDM9beP/Is56Mct9OjBMRAqY5bmeKVxWnQjHDgmJff1jmakq6w3Wr5fX2UvBSP1RcNwTV1A==
 
 react-hot-toast@2.2.0:
   version "2.2.0"
