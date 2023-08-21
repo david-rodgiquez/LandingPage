@@ -91,7 +91,7 @@ function ContactFormSection() {
   return (
     <div className="md:w-8/12 w-full bg-white dark:bg-[#1C2127] text-black dark:text-white">
       <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
-        <h3 className="text-4xl font-semibold">Contact Form</h3>
+        <h3 className="text-4xl font-semibold">Contact</h3>
         {status !== "success" ? (
           <form onSubmit={onSubmitForm} className="w-full flex flex-col gap-4">
             <div className="w-full text-xl flex gap-2 flex-col">
@@ -172,7 +172,7 @@ export default function Page() {
         <title>Contact | Rollup</title>
       </Head>
       <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] my-20 ">
+        <main className="w-full font-blender text-[#1B283B] mt-10 mb-20">
           <div className="w-full max-w-4xl px-4 flex gap-4 mx-auto flex-col items-center justify-center">
             <span className="uppercase text-base font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
               Contact Us
@@ -181,7 +181,7 @@ export default function Page() {
               Let&apos;s do something great together.
             </h1>
           </div>
-          <div className="max-w-7xl w-full flex-col md:flex-row lg:px-4 mx-auto mt-32 font-blender flex gap-6">
+          <div className="max-w-7xl w-full flex-col md:flex-row lg:px-4 mx-auto mt-16 font-blender flex gap-6">
             <ContactFormSection />
             <div className="w-full md:w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
               <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
