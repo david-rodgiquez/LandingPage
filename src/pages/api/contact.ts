@@ -1,3 +1,4 @@
+import { RETOOL_WORKFLOW_ID } from "@/config";
 import { triggerRetoolWorkflow } from "@/lib/retool";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -10,7 +11,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
       phone: string;
       message?: string;
     };
-    await triggerRetoolWorkflow("4f9fd094-e021-4c65-956f-de8a877a1c87", data);
+    await triggerRetoolWorkflow(RETOOL_WORKFLOW_ID, data);
     return res.send({ message: "OK" });
   } catch (error) {
     if (axios.isAxiosError(error)) {

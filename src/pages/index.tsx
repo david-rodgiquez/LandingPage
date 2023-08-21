@@ -111,7 +111,7 @@ export default function Home({
               hardware
             </h1>
             <p className="dark:text-white font-blender text-2xl text-[#111418] font-medium">
-              Collaborate on moonshots at the speed of thought.{" "}
+              Work together with information rich workspaces that give you a 360º view of all your engineering data, context and history in one place. 
             </p>
             {!isAuthenticated && <GetAccessButton />}
           </div>

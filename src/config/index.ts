@@ -11,3 +11,6 @@ export const ASHBY_API_KEY = process.env.ASHBY_API_KEY as string;
 
 export const RETOOL_WORKFLOW_API_KEY = process.env
   .RETOOL_WORKFLOW_API_KEY as string;
+
+  export const RETOOL_WORKFLOW_ID = process.env
+  .RETOOL_WORKFLOW_ID as string;

@@ -4,8 +4,8 @@ import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
-import MapDark from "../../../public/img/map-dark.svg";
-import MapLight from "../../../public/img/map-light.svg";
+import MapDark from "../../../public/img/map_dark.png";
+import MapLight from "../../../public/img/map_light.png";
 
 type ContactFormPayload = {
   fullName: string;
