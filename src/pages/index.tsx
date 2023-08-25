@@ -14,6 +14,10 @@ const Logo = dynamic(() => import("../components/Logo"), {
   ssr: false,
 });
 
+// add segment analytics
+
+
+
 function LoginButton() {
   const [isOpenModalLogin, toggleModalLogin] = useToggle();
   return (
@@ -57,7 +61,7 @@ function GetAccessButton() {
       <Link
         ref={linkRef}
         target="_blank"
-        href="https://rollup-hq.typeform.com/interest-form"
+        href="https://rollup-hq.typeform.com/interest"
         className="py-3 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex items-center w-max gap-10 text-lg mt-10 bg-white hover:shadow-none transition-shadow shadow-[6px_6px_0_0_#8ABBFF]"
       >
         <span>Get Access</span> <span>&gt;</span>
@@ -123,7 +127,7 @@ export default function Home({
               hardware
             </h1>
             <p className="dark:text-white font-blender text-2xl text-[#111418] font-medium">
-              Work together with information rich workspaces that give you a 360º view of all your engineering data, context and history in one place. 
+              Work together with information rich workspaces that give you a 360º view of all your engineering data, contex, and history in one place.
             </p>
             {!isAuthenticated && <GetAccessButton />}
           </div>
