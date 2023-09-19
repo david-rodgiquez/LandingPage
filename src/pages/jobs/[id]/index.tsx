@@ -92,7 +92,6 @@ export default function Page({
 export const getServerSideProps = async (
   ctx: GetServerSidePropsContext<{ id: string }>
 ) => {
-  // console.log(ctx);
   const jobId = ctx.params!.id;
   const job = await getJobPostingInfo(jobId);
 

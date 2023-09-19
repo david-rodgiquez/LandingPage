@@ -3,7 +3,6 @@ import Modal from "./Modal";
 import { FormEvent, useState } from "react";
 import { discoveryStart } from "@/lib/api";
 import Input from "./Input";
-import Button from "./Button";
 import IconSpinner from "./icons/IconSpinner";
 
 const STATUS = {
@@ -21,7 +20,6 @@ export default function ModalFormLogin({
 }) {
   const [emlSent, setEMLSent] = useState(STATUS.INIT);
   const [email, setEmail] = useState("");
-
   const isDisabled = !isValidEmail(email);
   const [isLoading, setIsLoading] = useState(false);
 

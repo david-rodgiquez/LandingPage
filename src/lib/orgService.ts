@@ -10,7 +10,6 @@ export const OrgService = {
     try {
       const orgResult = await orgGetPromise;
       const org = orgResult.organization;
-      console.log("Organization found for id", organization_id);
       return org;
     } catch (e) {
       console.error("Failed to search for org by id", organization_id);
@@ -33,7 +32,6 @@ export const OrgService = {
         return null;
       }
       const org = orgResult.organizations[0];
-      console.log("Organization found for slug", slug);
       return org;
     } catch (e) {
       console.error("Failed to search for org by slug", e);

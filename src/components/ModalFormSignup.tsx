@@ -78,16 +78,6 @@ export default function ModalFormSignup({
     error: string;
   }>({ status: "idle", error: "" });
 
-  // const [otpSubmitState, setOtpSubmitState] = useState<{
-  //   status: "loading" | "idle" | "error" | "success";
-  //   error: string;
-  // }>({ status: "idle", error: "" });
-
-  // const [resendOtpSubmitState, setResendOtpSubmitState] = useState<{
-  //   status: "loading" | "idle" | "error" | "success";
-  //   error: string;
-  // }>({ status: "idle", error: "" });
-
   const [openedSections, setOpenedSections] =
     useState<Section>("signup-option");
 
@@ -122,63 +112,6 @@ export default function ModalFormSignup({
       }));
     }
   };
-
-  // const onSubmitOtp = async (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   const otp = new FormData(e.currentTarget).get("otp")?.toString();
-  //   if (!otp) return;
-  //   setResendOtpSubmitState((prev) => ({ ...prev, status: "idle", error: "" }));
-  //   setOtpSubmitState((prev) => ({ ...prev, status: "loading", error: "" }));
-  //   try {
-  //     const res = await fetch("/api/auth/passwordless", {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({ email, otp }),
-  //     });
-
-  //     if (!res.ok) {
-  //       const data = res.headers
-  //         .get("content-type")
-  //         ?.includes("application/json")
-  //         ? ((await res.json()) as { message: string })
-  //         : null;
-
-  //       throw new Error(data?.message || res.statusText);
-  //     }
-
-  //     await router.push("/discovery");
-  //     setOtpSubmitState((prev) => ({ ...prev, status: "success", error: "" }));
-  //   } catch (error) {
-  //     setOtpSubmitState((prev) => ({
-  //       ...prev,
-  //       status: "error",
-  //       error: (error as unknown as Error).message,
-  //     }));
-  //   }
-  // };
-
-  // const onResendOtp = async () => {
-  //   setResendOtpSubmitState((prev) => ({ ...prev, status: "loading" }));
-  //   try {
-  //     const resp = await fetch(
-  //       `/api/auth/signin?provider=passwordless&email=${email}`
-  //     );
-  //     if (resp.status === 200) {
-  //       setResendOtpSubmitState((prev) => ({ ...prev, status: "success" }));
-  //       setOpenedSections("otp");
-  //     } else {
-  //       throw new Error("Something went wrong");
-  //     }
-  //   } catch (error) {
-  //     setResendOtpSubmitState((prev) => ({
-  //       ...prev,
-  //       status: "error",
-  //       error: (error as Error).message || "Something went wrong",
-  //     }));
-  //   }
-  // };
 
   return (
     <Modal

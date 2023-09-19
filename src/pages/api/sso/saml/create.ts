@@ -15,10 +15,6 @@ async function handler(
       display_name,
       member.organization_id
     );
-    console.log(
-      "Successfully created new SAML connection",
-      connection.connection_id
-    );
     return res.status(200).json(connection);
   } catch (e) {
     console.error("Failed to create SAML connection", e);

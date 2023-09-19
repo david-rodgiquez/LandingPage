@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac5bb7b1-700c-4ab2-a08e-e994ceaa26b6" name="Changes" comment="- Typo fix">
+    <list default="true" id="ac5bb7b1-700c-4ab2-a08e-e994ceaa26b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
     </list>
@@ -24,26 +24,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/collinmickels/Dev/landing-page/public/fonts",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "/Users/collinmickels/Dev/landing-page/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/collinmickels/Dev/landing-page/public/fonts&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/collinmickels/Dev/landing-page/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "HTML"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;HTML&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/fonts" />
@@ -59,7 +59,11 @@
       <updated>1689974517203</updated>
       <workItem from="1689974518223" duration="2100000" />
       <workItem from="1690085812164" duration="3964000" />
-      <workItem from="1692917977963" duration="1784000" />
+      <workItem from="1692917977963" duration="2469000" />
+      <workItem from="1694320008670" duration="630000" />
+      <workItem from="1694739500899" duration="1137000" />
+      <workItem from="1695054774258" duration="8000" />
+      <workItem from="1695148686391" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="- WIP additions">
       <option name="closed" value="true" />
@@ -133,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692919290283</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- Typeform change">
+      <option name="closed" value="true" />
+      <created>1692919780231</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692919780231</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +162,7 @@
     <MESSAGE value="- Added clearbit" />
     <MESSAGE value="- Clearbit fix 2" />
     <MESSAGE value="- Typo fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Typo fix" />
+    <MESSAGE value="- Typeform change" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Typeform change" />
   </component>
 </project>

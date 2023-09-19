@@ -24,15 +24,8 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             <Link href="/">
               <Logo />
             </Link>
-            {/* <div className="flex gap-8 text-[#252A31] items-center text-sm leading-10">
-              <Link href="#">Features</Link>
-              <Link href="#">Integrations</Link>
-              <Link href="#">Customers</Link>
-            </div> */}
           </div>
           <div className="flex gap-8 text-[#252A31] items-center text-sm leading-10">
-            {/* <Link href="#">Changelog</Link>
-            <Link href="#">Docs</Link> */}
             <Link
               href="https://app.rollup.ai/"
               className="bg-[#2D72D2] text-white px-4 rounded-sm hidden md:block"
@@ -70,18 +63,6 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
           <div className="w-6/12 justify-center flex flex-col sm:flex-row gap-2 sm:gap-36 ">
             <Link href="/contact">Contact</Link>
             <Link href="/jobs">Jobs</Link>
-            {/*<div className="flex flex-col gap-3">
-              <Link href="#">Contact</Link>
-              <Link href="/jobs">Jobs</Link>
-            </div>
-             <div className="flex flex-col gap-3">
-              <Link href="#">Customers</Link>
-              <Link href="#">Docs</Link>
-            </div>
-            <div className="flex flex-col gap-3">
-              <Link href="mailto:info@rollup.ai">Contact</Link>
-              <Link href="#">Additional page</Link>
-            </div> */}
           </div>
           <div className="w-3/12 flex sm:justify-end">
             <div className="flex gap-2">

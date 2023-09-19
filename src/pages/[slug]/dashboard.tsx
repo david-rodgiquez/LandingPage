@@ -605,40 +605,6 @@ export default function Dashboard({
               </div>
             </div>
           </div>
-          {/* <h2 className="text-2xl font-bold">Organization Details</h2>
-          <div className="w-full flex flex-col gap-8">
-            <div className="flex w-full flex-col gap-2">
-              <DetailLine
-                title="Oragnization Name"
-                value={org.organization_name}
-              />
-              <DetailLine
-                title="Oragnization Slug"
-                value={org.organization_slug}
-              />
-              <DetailLine
-                title="Current User (You)"
-                value={user.email_address}
-              />
-            </div>
-            <MemberList org={org} members={members} user={user} />
-            <IDPList
-              user={user}
-              saml_connections={saml_connections}
-              oidc_connections={oidc_connections}
-            />
-            <div className="flex items-center justify-between max-w-lg">
-               <Link
-                href={"/orgswitcher"}
-                className="text-indigo-700 font-medium"
-              >
-                Switch Organizations
-              </Link>
-              <Link href={"/api/logout"} className="text-red-700 font-medium">
-                Log Out
-              </Link>
-            </div>
-          </div> */}
         </div>
       </div>
     </Layout>

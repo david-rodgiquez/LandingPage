@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout/Layout";
-import { STRAPI_BASE_URL } from "@/config";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import { getFooter, getHeader } from "@/services/header";
 import { getIntegrationBySlug } from "@/services/integration";

@@ -16,7 +16,6 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
     return res.status(200).end();
   } catch (error) {
-    console.log("error sending magic link", error);
     const errorString = JSON.stringify(error);
     return res.status(400).json({ errorString });
   }

@@ -1,6 +1,6 @@
 import { OrgService } from "../../../../lib/orgService";
 import { SSOService } from "../../../../lib/ssoService";
-import React, { BaseSyntheticEvent, FormEventHandler, useRef } from "react";
+import React, { FormEventHandler, useRef } from "react";
 import { updateOidcSSOConn } from "../../../../lib/api";
 import { useRouter } from "next/router";
 import { formatSSOStartURL, OIDCConnection } from "../../../../lib/loadStytch";

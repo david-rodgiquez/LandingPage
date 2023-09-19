@@ -15,7 +15,6 @@ async function handler(
     // Infer the organization_id from the member's org - don't let members invite
     // themselves to other organizations
     await MemberService.invite(email, member.organization_id);
-    console.log("Successfully sent invite to", email);
     return res.status(200).end();
   } catch (e) {
     console.error("Failed to send invite", e);

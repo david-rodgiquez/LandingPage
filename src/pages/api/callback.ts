@@ -46,8 +46,6 @@ async function exchangeToken(req: NextApiRequest): Promise<ExchangeResult> {
     return await handleOAuthCallback(req);
   }
 
-  console.log("No token found in req.query", req.query);
-
   throw Error("No token found");
 }
 

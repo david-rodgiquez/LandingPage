@@ -42,8 +42,6 @@ const SignupForm = () => {
     e.preventDefault();
     e.stopPropagation();
     setEMLSent(STATUS.INIT);
-    // setEmail('');
-    // setOrganizationName('');
   };
 
   return (

@@ -28,4 +28,4 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     default:
       return res.status(405).send({ message: "method not allowed" });
   }
-} 
+}

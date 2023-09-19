@@ -4,7 +4,6 @@ import Layout from "@/components/Layout/Layout";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { STRAPI_BASE_URL } from "@/config";
 import { getIntegrations } from "@/services/integration";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 

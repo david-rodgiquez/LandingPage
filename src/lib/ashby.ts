@@ -105,7 +105,13 @@ export const getJobPostings = async () => {
         .replace("/", "");
       return {
         ...jobPosting,
-        jobPostingInfo: { ...jobPostingInfo, salary: jobPostingInfo.compensation.compensationTierSummary ?? salary ?? null },
+        jobPostingInfo: {
+          ...jobPostingInfo,
+          salary:
+            jobPostingInfo.compensation.compensationTierSummary ??
+            salary ??
+            null,
+        },
       };
     }
   );

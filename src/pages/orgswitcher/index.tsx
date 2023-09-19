@@ -74,7 +74,6 @@ export const getServerSideProps = withSession<
     context.res
   );
   if (discoverySessionData.error) {
-    console.log("No session tokens found...");
     return { redirect: { statusCode: 307, destination: `/login` } };
   }
 

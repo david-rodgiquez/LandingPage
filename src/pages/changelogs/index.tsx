@@ -5,7 +5,6 @@ import Head from "next/head";
 import { getChangelogs } from "@/services/changelog";
 import Link from "next/link";
 import Image from "next/image";
-import { STRAPI_BASE_URL } from "@/config";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 
 export default function ChangelogsPage({

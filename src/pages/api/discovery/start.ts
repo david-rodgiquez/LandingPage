@@ -23,7 +23,6 @@ export async function handler(
     return res.status(200).end();
   } catch (error) {
     const errorString = JSON.stringify(error);
-    console.log(error);
     return res.status(400).json({ errorString });
   }
 }

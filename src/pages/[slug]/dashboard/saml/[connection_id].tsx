@@ -1,19 +1,10 @@
 import { OrgService } from "../../../../lib/orgService";
 import { SSOService } from "../../../../lib/ssoService";
-import React, {
-  DetailedHTMLProps,
-  FormEventHandler,
-  InputHTMLAttributes,
-  TextareaHTMLAttributes,
-} from "react";
+import React, { FormEventHandler } from "react";
 import { updateSamlSSOConn } from "../../../../lib/api";
 import { useRouter } from "next/router";
 import { formatSSOStartURL, SAMLConnection } from "../../../../lib/loadStytch";
-import {
-  getOptionalAuthSession,
-  useAuth,
-  withSession,
-} from "../../../../lib/sessionService";
+import { useAuth, withSession } from "../../../../lib/sessionService";
 import Link from "next/link";
 import type { Member, Organization } from "stytch";
 import Layout from "@/components/Layout/Layout";

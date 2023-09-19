@@ -13,7 +13,6 @@ async function handler(
     // Infer the organization_id from the member's org - don't let members invite
     // themselves to other organizations
     await MemberService.delete(member_id, member.organization_id);
-    console.log("Successfully deleted", member_id);
     return res.status(200).end();
   } catch (e) {
     console.error("Failed to send invite", e);

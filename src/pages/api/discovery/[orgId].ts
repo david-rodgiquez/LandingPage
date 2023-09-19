@@ -14,7 +14,6 @@ export async function handler(req: NextApiRequest, res: NextApiResponse) {
   const discoverySessionData = getDiscoverySessionData(req, res);
 
   if (discoverySessionData.error) {
-    console.log("No session tokens found...");
     return res.redirect(307, "/login");
   }
 

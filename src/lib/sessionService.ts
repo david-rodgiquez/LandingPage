@@ -112,11 +112,8 @@ export function adminOnlyAPIRoute(apiHandler: APIHandler) {
     const sessionJWT = cookies.get(SESSION_COOKIE);
 
     if (!sessionJWT) {
-      console.log("No session JWT found...");
       return res.status(401).end();
     }
-
-    console.log(sessionJWT);
 
     let sessionAuthRes;
     try {
@@ -129,7 +126,6 @@ export function adminOnlyAPIRoute(apiHandler: APIHandler) {
       return res.status(401).end();
     }
 
-    console.log(sessionAuthRes);
     // Stytch issues a new JWT on every authenticate call - store it on the UA for faster validation next time
     setSession(req, res, sessionAuthRes.session_jwt);
 
@@ -158,7 +154,6 @@ export function withSession<
     const sessionJWT = cookies.get("session");
 
     if (!sessionJWT) {
-      console.log("No session JWT found...");
       return { redirect: { statusCode: 307, destination: `/login` } };
     }
 

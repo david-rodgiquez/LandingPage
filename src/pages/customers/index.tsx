@@ -5,7 +5,6 @@ import Head from "next/head";
 import { getCustomers } from "@/services/customer";
 import Image from "next/image";
 import Link from "next/link";
-import { STRAPI_BASE_URL } from "@/config";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 
 export default function CustomersPage({

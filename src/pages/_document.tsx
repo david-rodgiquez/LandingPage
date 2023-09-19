@@ -15,8 +15,11 @@ export default function Document() {
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.svg" />
-          <script async src="https://tag.clearbitscripts.com/v1/pk_7965948c6624e794d7a226fb645f892e/tags.js"
-                  referrerPolicy="strict-origin-when-cross-origin"></script>
+        <script
+          async
+          src="https://tag.clearbitscripts.com/v1/pk_7965948c6624e794d7a226fb645f892e/tags.js"
+          referrerPolicy="strict-origin-when-cross-origin"
+        ></script>
       </Head>
       <body>
         <Main />

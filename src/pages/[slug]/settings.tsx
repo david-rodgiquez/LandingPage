@@ -137,15 +137,6 @@ export default function SettingsPage({
                 }}
                 value={updatedOrganization.email_allowed_domains}
               />
-              {/* <Input
-                type="text"
-                name="email_allowed_domains"
-                id="email_allowed_domains"
-                label="Allowed Domains"
-                placeholder="acme.com,acme.io"
-                value={updatedOrganization.email_allowed_domains}
-                onChange={onChangeInput}
-              /> */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="h-20 w-20 object-cover flex-shrink-0 border"
