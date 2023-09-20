@@ -107,22 +107,12 @@ export default function About() {
               Personal Data on behalf of and in accordance with the instructions
               from our customer and any related data processing agreements,
               subscription service agreements, purchase orders, statements of
-              work, or other applicable agreements. The privacy practices of our
-              customers may differ from those explained in this Privacy Notice.
+              work, or other applicable agreements.
             </p>
             <p>
               This Privacy Notice will apply to sections of the Rollup Platform
               not specifically identified within an applicable agreement
               including trial subscriptions.
-            </p>
-            <p>
-              <strong>
-                By using the Sites, Rollup Platform, or otherwise providing your
-                Personal Data through our Sites, , Events, Services, Research,
-                Social Media, and Direct Sales you agree that your Personal Data
-                will be handled as described in this Privacy Notice and subject
-                to any applicable terms of use.
-              </strong>
             </p>
             <h2>2. Peronal Data</h2>
             <h3>2.1. What Is Personal Data</h3>
@@ -274,32 +264,7 @@ export default function About() {
               or otherwise tailor the Sites and Rollup Platform.
             </p>
             <h2>4. Sharing Data</h2>
-            <h3>4.1. Who We Share Your Personal Data With</h3>
-            <p>
-              Your Personal Data, such as your name or username, may be
-              available to others, for example when you create a profile or
-              submit public queries. This information may be accessed by users
-              who use the Sites or Rollup Platform and may be accessed by
-              commercial search engines such as Google, Yahoo, and Bing to the
-              extent that such engines are permitted to access the Sites or
-              Rollup Platform.
-            </p>
-            <p>
-              We take care to allow your Personal Data to be processed only by
-              those who need access to perform their tasks and duties, to third
-              parties or service providers that have a legitimate purpose for
-              accessing it, and to those who you have provided consent to. As
-              part of a multinational group with affiliates in several
-              countries, Rollup may use resources that are located outside of
-              the country where you live.
-            </p>
-            <p>
-              When we disclose Personal Data to our service providers and third
-              parties, we generally enter into agreements with such parties that
-              obligate them to process the Personal Data in accordance with
-              applicable law, contract terms, and our specific instructions.
-            </p>
-            <h3>4.2. Recipients with Whom We Disclose Personal Data</h3>
+            <h3>4.1. Recipients with Whom We Disclose Personal Data</h3>
             <p>
               <strong>Affiliates and subsidiaries:</strong> We disclose your
               Personal Data with our global affiliates, subsidiaries, and agents
@@ -392,10 +357,10 @@ export default function About() {
             <h2>5. Using Data</h2>
             <h3>5.1. How We Use Your Personal Data</h3>
             <p>
-              We will normally collect Personal Data from you only where we have
-              your consent to do so, where we need the Personal Data to perform
-              a contract with you, or where the processing is in our legitimate
-              interests and not overridden by your data protection interests or
+              We collect Personal Data from you only where we have your consent
+              to do so, where we need the Personal Data to perform a contract
+              with you, or where the processing is in our legitimate interests
+              and not overridden by your data protection interests or
               fundamental rights and freedoms. In some cases, we may also have a
               legal obligation to collect Personal Data from you or may
               otherwise need the Personal Data to protect your vital interests
@@ -842,7 +807,7 @@ export default function About() {
               If you have questions or concerns about our use of your Personal
               Data, please contact us at:
             </p>
-            <p>Rollup Systems, Inc.</p>
+            <p>Rollup Systems, Inc. 1710 Rose St Berkeley, CA, 94703</p>
             <p>privacy@Rollup.com</p>
             <h2>14. California Privacy Rights</h2>
             <p>
