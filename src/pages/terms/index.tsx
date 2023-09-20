@@ -316,7 +316,10 @@ export default function About() {
               You are an independent third party to Rollup and nothing in these
               Terms will create or represent that there is any partnership,
               joint venture, agency, franchise, sales relationship, or
-              employment relationship between you and Rollup.
+              employment relationship between you and Rollup. Rollup may
+              contract with third party service providers to provide the
+              Services to you. These User Terms of Services shall also apply to
+              such third parties.
             </p>
             <h2>6. Errors and Corrections</h2>
             <p>
@@ -393,7 +396,8 @@ export default function About() {
               ATTORNEYS&apos; FEES) IN ANY WAY DUE TO, RESULTING FROM, OR
               ARISING IN CONNECTION WITH THESE TERMS, THE USE OF OR INABILITY TO
               USE THE OFFERINGS, THE INTERACTIVE AREAS, OR ANY THIRD-PARTY
-              CONTENT OR THIRD PARTY SERVICES.
+              CONTENT OR THIRD PARTY SERVICES OR FOR ANY AMOUNTS IN EXCESS OF
+              ONE HUNDRED DOLLARS ($100).
             </p>
             <h2>10. Indemnification</h2>
             <p>
