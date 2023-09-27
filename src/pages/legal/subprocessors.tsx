@@ -263,7 +263,7 @@ export default function About() {
         <main className="w-full mx-auto max-w-6xl mt-12 font-blender mb-28">
           <div className="flex justify-center items-center flex-col gap-4 mb-14">
             <h1 className="font-bold text-4xl text-[#1B283B] dark:text-white">
-              Subprocessors
+              Rollup Subprocessors
             </h1>
           </div>
           <div className="w-full overflow-x-auto shadow-lg rounded-xl overflow-hidden">
