@@ -5,6 +5,11 @@ import segment from "@segment/snippet";
 import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const ModalCookie = dynamic(() => import("@/components/ModalCookie"), {
+  ssr: false,
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -35,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
         id="segment-analytics"
       />
+      <ModalCookie />
     </>
   );
 }
