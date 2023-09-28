@@ -48,7 +48,7 @@ function Toggle({
         checked={checked}
         onChange={onChange}
       />
-      <div className="w-9 h-5 bg-gray-400 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#2D72D2]" />
+      <div className="w-9 h-5 bg-gray-400 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#4C90F0]" />
     </label>
   );
 }
@@ -68,18 +68,23 @@ function TabItem({
   const [isOpened, toggleOpened] = useToggle();
 
   return (
-    <div key={detail.title} className="w-full p-2 bg-[#E5E8EB]">
+    <div
+      key={detail.title}
+      className="w-full p-2 bg-[#E5E8EB] dark:bg-[#1C2127]"
+    >
       <div className="w-full flex justify-between items-center mb-1">
         <div
           onClick={toggleOpened}
           className="flex items-center gap-1 cursor-pointer"
         >
           <IconChevronRight
-            className={`h-3 w-3 text-[#404854] transition-transform ${
+            className={`h-3 w-3 text-[#404854] dark:text-[#ABB3BF] transition-transform ${
               isOpened ? "rotate-90" : ""
             }`}
           />
-          <h4 className="font-bold text-[#111418]">{detail.title}</h4>
+          <h4 className="font-bold text-[#111418] dark:text-white">
+            {detail.title}
+          </h4>
         </div>
         <Toggle
           checked={detail.allowed}
@@ -96,7 +101,7 @@ function TabItem({
         />
       </div>
       {isOpened && (
-        <p className="text-[#383E47] text-sm leading-tight font-medium">
+        <p className="text-[#383E47] dark:text-[#ABB3BF] text-sm leading-tight font-medium">
           {detail.description}
         </p>
       )}
@@ -115,18 +120,18 @@ function ModalManageCookie({
 }) {
   return createPortal(
     <div className="fixed z-30 backdrop-blur-sm inset-0 flex justify-center items-center font-blender">
-      <div className="max-w-md w-full text-[#111418] bg-white rounded-sm border border-[#D3D8DE] overflow-hidden">
-        <div className="bg-[#EDEFF2] flex justify-between items-center px-6 py-3 border-b border-[#D3D8DE]">
+      <div className="max-w-md w-full text-[#111418] bg-white rounded-sm border border-[#D3D8DE] dark:border-[#404854] dark:text-white dark:bg-[#252A31] overflow-hidden">
+        <div className="bg-[#EDEFF2] dark:bg-[#2F343C] flex justify-between items-center px-6 py-3 border-b dark:border-b-[#404854] border-[#D3D8DE]">
           <h4 className="text-lg font-bold">Manage your cookies</h4>
           <button
             onClick={close}
             type="button"
-            className="h-7 w-7 hover:bg-gray-200 transition-colors flex items-center justify-center rounded"
+            className="h-7 w-7 hover:bg-gray-200 hover:dark:bg-[#3a4049] transition-colors flex items-center justify-center rounded"
           >
-            <IconXMark className="h-5 w-5" />
+            <IconXMark className="h-5 w-5 dark:text-[#ABB3BF]" />
           </button>
         </div>
-        <div className="w-full px-6 py-3 font-medium mb-3">
+        <div className="w-full px-6 py-3 font-medium mb-3 ">
           <p className="leading-snug mb-1">
             Rollup may request cookies to be set on your device. We use cookies
             to let us know when you visit our Rollup system, to understand how
@@ -135,7 +140,10 @@ function ModalManageCookie({
             your relationship with Rollup, including providing you with more
             relevant advertising.
           </p>
-          <Link href="#" className="text-[#404854] underline mb-3 inline-block">
+          <Link
+            href="#"
+            className="text-[#404854] dark:text-[#ABB3BF] underline mb-3 inline-block"
+          >
             More information
           </Link>
           <div className="w-full flex flex-col gap-2">
@@ -152,14 +160,14 @@ function ModalManageCookie({
           <button
             type="button"
             onClick={close}
-            className="border border-[#C5CBD3] rounded-sm px-4 py-2 text-[#404854]"
+            className="border border-[#C5CBD3] dark:border-[#404854] dark:text-[#ABB3BF] rounded-sm px-4 py-2 text-[#404854]"
           >
             Close window
           </button>
           <button
             type="button"
             onClick={close}
-            className="border rounded-sm px-4 py-2 bg-[#2D72D2] text-white"
+            className="rounded-sm px-4 py-2 bg-[#2D72D2] text-white"
           >
             Confirm my cookies
           </button>
@@ -184,8 +192,8 @@ export default function ModalCookie() {
         } satisfies CookieSettings)
       : (JSON.parse(localStorage.getItem("cookie") as string) as CookieSettings)
   );
-
-  const [isOpenModalCookie, toggleModalCookie] = useToggle();
+  const [isOpenModalCookie, toggleModalCookie, setOpenModalCookie] =
+    useToggle();
 
   useEffect(() => {
     localStorage.setItem("cookie", JSON.stringify(cookie));
@@ -194,17 +202,19 @@ export default function ModalCookie() {
   return (
     <>
       {!cookie.isAllowed && (
-        <div className="font-blender max-w-xl w-full absolute bottom-3 bg-white left-3 p-4 border border-[#D3D8DE] rounded z-10 shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)]">
+        <div className="font-blender max-w-xl w-full absolute bottom-3 dark:text-[#ABB3BF] bg-white dark:bg-[#1C2127] left-3 p-4 border border-[#D3D8DE] dark:border-[#383E47] rounded z-10 shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)]">
           <div className="w-full flex justify-between items-center mb-1">
-            <h4 className="text-2xl font-bold">This system uses cookies</h4>
+            <h4 className="text-2xl font-bold dark:text-white">
+              This system uses cookies
+            </h4>
             <button
               type="button"
-              className="h-7 w-7 hover:bg-gray-50 transition-colors flex items-center justify-center rounded"
+              className="h-7 w-7 hover:bg-gray-50 hover:dark:bg-[#20252b] transition-colors flex items-center justify-center rounded"
             >
-              <IconXMark className="h-5 w-5" />
+              <IconXMark className="h-5 w-5 dark:text-[#ABB3BF]" />
             </button>
           </div>
-          <p className="font-medium leading-snug mb-3">
+          <p className="font-medium leading-snug mb-3 ">
             By clicking “Accept All Cookies”, you agree to the storing of
             cookies on your device to enhance site navigation, analyze site
             usage, and assist in our marketing efforts. You can manage cookies
@@ -219,7 +229,7 @@ export default function ModalCookie() {
             <button
               type="button"
               onClick={toggleModalCookie}
-              className="px-3 py-2 w-36 border rounded-sm border-[#C5CBD3]"
+              className="px-3 py-2 w-36 border rounded-sm border-[#C5CBD3] dark:border-[#404854] dark:text-[#ABB3BF]"
             >
               Manage cookies
             </button>
