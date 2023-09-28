@@ -85,7 +85,7 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:divide-x">
               <Link href="/privacy" className="sm:px-4">
-                Privacy policy
+                Privacy Notice
               </Link>
               <Link href="/terms" className="sm:px-4">
                 Terms and conditions

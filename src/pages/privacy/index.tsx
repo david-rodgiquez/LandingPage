@@ -6,13 +6,13 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Privacy Policy</title>
+        <title>Privacy Notice</title>
       </Head>
       <LayoutPage>
         <main className="w-full mx-auto max-w-3xl mt-12 font-blender mb-28">
           <div className="flex justify-center items-center flex-col gap-4 mb-14">
             <h1 className="font-bold text-4xl text-[#1B283B] dark:text-white">
-              Privacy Policy
+              Privacy Notice
             </h1>
             <div className="text-lg text-[#404854] dark:text-[#ABB3BF]">
               Last updated:{" "}
