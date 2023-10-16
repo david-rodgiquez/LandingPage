@@ -16,12 +16,16 @@ const Logo = dynamic(() => import("../components/Logo"), {
 
 function LoginButton() {
   const [isOpenModalLogin, toggleModalLogin] = useToggle();
+  const url = new URL("https://api.astronautdolphins.com/auth/oauth/google");
+  url.searchParams.set("domain", "rollup.ai");
+  url.searchParams.set("redirect", "https://rollup.ai/api/callback");
   return (
     <>
       <Link
         // type="button"
         // onClick={toggleModalLogin}
-        href="https://app.rollup.ai/"
+        // href="https://app.rollup.ai/"
+        href={url.href}
         className="font-berkeley px-6 dark:bg-[#2d72d2] dark:text-white bg-white py-2 border border-[#1B283B] rounded-sm hover:shadow-none transition-shadow shadow-[6px_6px_0_0_rgba(197,203,211,0.75)]"
       >
         Login
@@ -123,7 +127,9 @@ export default function Home({
               hardware
             </h1>
             <p className="dark:text-white font-blender text-2xl text-[#111418] font-medium">
-              Work together with information rich workspaces that give you a 360º view of all your engineering data, context, and history in one place.
+              Work together with information rich workspaces that give you a
+              360º view of all your engineering data, context, and history in
+              one place.
             </p>
             {!isAuthenticated && <GetAccessButton />}
           </div>
