@@ -7,7 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getOptionalAuthSession } from "@/lib/sessionService";
 import cookie from "cookies";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 // export default function ChangelogsPage({
 //   organization,
@@ -151,38 +152,70 @@ import { useEffect } from "react";
 //   };
 // };
 
-export default function ChangelogsPage(
-  {
-    // organization,
-    // user,
-    // changelogs,
-    // header: { menus, logo },
-    // footer: { menus: footerMenus },
-  }
-) {
-  // : InferGetServerSidePropsType<typeof getServerSideProps>
+function useClientSideAuthentication({
+  policy,
+  redirectTo,
+}: {
+  policy?: "required" | "optional";
+  redirectTo?: string;
+} = {}) {
+  const router = useRouter();
+
+  const [status, setStatus] = useState<
+    "idle" | "authenticated" | "loading" | "unauthenticated"
+  >("idle");
+
   useEffect(() => {
     const getRefreshToken = async () => {
-      const res = await fetch("https://api.rollup.ai/auth/refresh");
-      const data = await res.json();
-      console.log(data);
+      setStatus("loading");
+      const res = await fetch("https://api.rollup.ai/auth/refresh", {
+        credentials: "include",
+      });
+
+      const isJsonResponse = res.headers
+        .get("content-type")
+        ?.includes("application/json");
+
+      const data = isJsonResponse
+        ? ((await res.json()) as { accessToken: string })
+        : null;
+
+      if (res.ok && data?.accessToken) {
+        setStatus("authenticated");
+      } else {
+        setStatus("unauthenticated");
+      }
     };
 
     getRefreshToken();
   }, []);
+
+  useEffect(() => {
+    if (policy === "required" && status === "unauthenticated") {
+      router.replace(redirectTo || "/");
+    }
+  }, [policy, redirectTo, router, status]);
+
+  return { status };
+}
+
+export default function ChangelogsPage({
+  changelogs,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { status } = useClientSideAuthentication({
+    policy: "required",
+    redirectTo: "/",
+  });
+
+  if (status !== "authenticated") return null;
+
   return (
     <>
       <Head>
         <title>Changelogs</title>
       </Head>
-      {/* <Layout
-        organization={organization}
-        user={user}
-        footerMenus={footerMenus}
-        headerLogo={logo}
-        headerMenus={menus}
-      >
-         <div className="w-full py-8 flex flex-col gap-6">
+      <main className="w-full min-h-[calc(100vh-57px-85px)] px-4 max-w-screen-2xl mx-auto ">
+        <div className="w-full py-8 flex flex-col gap-6">
           <h1 className="text-3xl font-bold">Changelogs</h1>
           <div className="w-full grid grid-cols-3 gap-4">
             {changelogs.data.map((changelog) => (
@@ -241,11 +274,23 @@ export default function ChangelogsPage(
               </div>
             ))}
           </div>
-        </div> 
-      </Layout> */}
+        </div>
+      </main>
     </>
   );
 }
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const changelogs = await getChangelogs();
+
+  return {
+    props: {
+      changelogs,
+    },
+  };
+};
 
 // export const getServerSideProps = async (
 //   context: GetServerSidePropsContext
