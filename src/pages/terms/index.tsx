@@ -15,10 +15,9 @@ export default function About() {
               Terms of Service
             </h1>
             <div className="text-lg text-[#404854] dark:text-[#ABB3BF]">
-              Last updated:{" "}
-              {new Date("2023-09-15").toLocaleDateString(undefined, {
-                dateStyle: "long",
-              })}
+              Last updated: September 15, 2023
+              {/* Last updated:{" "} */}
+              {/* {new Date().toLocaleDateString(undefined, { dateStyle: "long" })} */}
             </div>
           </div>
           <div className="space-y-5 text-xl w-full page-content">

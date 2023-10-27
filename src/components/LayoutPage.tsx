@@ -10,8 +10,6 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative overflow-x-hidden ">
-      <div className="bg-[url(/img/right-decoration.png)] dark:bg-[url(/img/right-decoration-dark.png)] bg-contain bg-no-repeat w-[470px] h-[771px] absolute -right-44 top-10 hidden sm:block"></div>
-      <div className="bg-[url(/img/left-decoration.png)] dark:bg-[url(/img/left-decoration-dark.png)] bg-contain bg-no-repeat w-[375px] h-[771px] absolute -left-44 top-52 hidden sm:block"></div>
       <header className="w-full py-6 md:py-10 max-w-7xl px-4 mx-auto relative">
         <nav
           style={{
