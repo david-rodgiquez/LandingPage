@@ -22,6 +22,7 @@ import ReferenceAnyObjectAnywhereImage from "../../public/img/reference-any-obje
 import ApiImage from "../../public/img/api.svg";
 import CommandBarImage from "../../public/img/command-bar.svg";
 
+import HoopsNewVisions from "../../public/img/hoops-new-visions.svg";
 // integrations
 import Microsoft365Image from "../../public/img/integrations/microsoft-365.png";
 import GoogleImage from "../../public/img/integrations/google.png";
@@ -368,8 +369,8 @@ function ModulesMenu() {
   )!.videoUrl;
 
   return (
-    <div className="w-full mt-8 flex gap-8">
-      <div className="flex w-4/12 gap-5 shrink-0">
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
+      <div className="flex w-full md:w-4/12 gap-5 shrink-0">
         <div className="h-full w-0.5 shrink-0 rounded-full bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9]"></div>
         <div className="flex flex-col">
           {moduleMenus.map((module) => {
@@ -412,25 +413,14 @@ function ModulesMenu() {
           })}
         </div>
       </div>
-      <div className="w-8/12 ">
-        <div className="rounded-xl overflow-hidden w-max ml-8">
+      <div className="w-full md:w-8/12 ">
+        <div className="rounded-xl overflow-hidden md:w-max md:ml-8">
           <video loop autoPlay muted src={videoUrl} />
         </div>
       </div>
     </div>
   );
 }
-
-const codeTemplate = `// Get a user's access token and
-// profile data from and Identity Provider
-
-import WorkOS from '@workos-inc/code';
-const workos = new WorkOS('sk_example_123456789')
-const profile = await workos.sso.getProfileAndToken({
-  code: '0123928382193219321',
-  clientID: 'client_123456789'
-})
-`;
 
 const codes = [
   {
@@ -570,8 +560,8 @@ function CodeBlock({ codes }: { codes: Codes }) {
   const selectedCode = codes.find((code) => code.language === activeLanguage)!;
 
   return (
-    <div className="w-full ml-8 h-full rounded-lg border border-[#252A31] shadow-[0px_0px_0px_4px_#2F333B]">
-      <div className="flex border-b border-[#383E47] gap-2">
+    <div className="w-full h-full rounded-lg border border-[#252A31] shadow-[0px_0px_0px_4px_#2F333B]">
+      <div className="flex border-b border-[#383E47] gap-2 w-full overflow-x-auto">
         {codes.map((code) => (
           <button
             onClick={() => setActiveLanguage(code.language)}
@@ -602,13 +592,12 @@ function DeveloperApiMenu() {
   )!.codes;
 
   return (
-    <div className="w-full mt-8 flex gap-8">
-      <div className="flex w-4/12 gap-5 shrink-0">
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
+      <div className="flex w-full md:w-4/12 gap-5 shrink-0">
         <div className="h-full w-0.5 shrink-0 rounded-full bg-gradient-to-b from-10% from-[#4c90f02d] via-80% via-transparent"></div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           {developerApiMenus.map((menu) => {
             const isOpened = openedMenu === menu.title;
-
             return (
               <button
                 type="button"
@@ -639,7 +628,7 @@ function DeveloperApiMenu() {
           })}
         </div>
       </div>
-      <div className="w-8/12">
+      <div className="w-full md:w-8/12 md:pl-8">
         <CodeBlock codes={codes} />
       </div>
     </div>
@@ -734,7 +723,7 @@ const footerMenus = [
       },
       {
         title: "Careers",
-        url: "#",
+        url: "/jobs",
       },
       {
         title: "Press",
@@ -751,11 +740,11 @@ const footerMenus = [
     menus: [
       {
         title: "Terms of Service",
-        url: "#",
+        url: "/terms",
       },
       {
         title: "Privacy Policy",
-        url: "#",
+        url: "/privacy",
       },
       {
         title: "GDPR",
@@ -768,7 +757,7 @@ const footerMenus = [
     menus: [
       {
         title: "Contact Us",
-        url: "#",
+        url: "/contact",
       },
       {
         title: "Social Link Icons",
@@ -784,37 +773,39 @@ export default function Home() {
       <Head>
         <title>Rollup — Collaborative engineering environment</title>
       </Head>
-      <div className="text-[#16181C] font-blender antialiased overflow-hidden">
-        <header className="w-full bg-[rgba(255,255,255,0.80)] border-b border-b-[#DCE0E5] sticky top-0 backdrop-blur-[20px] z-40">
-          <nav className="max-w-7xl px-4 w-full mx-auto flex items-center justify-between h-14 font-semibold text-lg">
-            <div className="flex items-center gap-8">
-              <Link href="/">
-                <LogoLight className="h-10" />
-              </Link>
+      <header className="text-[#16181C] font-blender antialiased w-full bg-[rgba(255,255,255,0.80)] border-b border-b-[#DCE0E5] sticky top-0 backdrop-blur-[20px] z-40">
+        <nav className="max-w-7xl px-4 w-full mx-auto flex items-center justify-between h-14 font-semibold text-lg">
+          <div className="flex items-center gap-8">
+            <Link href="/">
+              <LogoLight className="h-10" />
+            </Link>
+            <div className="items-center w-full gap-8 hidden lg:flex">
               {headerMenus.map((menu) => (
                 <Link key={menu.path} href={menu.path}>
                   {menu.title}
                 </Link>
               ))}
             </div>
-            <div className="flex items-center gap-3 h-max">
-              <Link href="https://app.rollup.ai/">Login</Link>
-              <Link
-                href="https://app.rollup.ai/"
-                className="py-1.5 px-3 bg-[#2D72D2] text-white"
-              >
-                Go to app
-              </Link>
-            </div>
-          </nav>
-        </header>
+          </div>
+          <div className="flex items-center gap-3 h-max shrink-0">
+            <Link href="https://app.rollup.ai/">Login</Link>
+            <Link
+              href="https://app.rollup.ai/"
+              className="py-1.5 px-3 bg-[#2D72D2] text-white"
+            >
+              Go to app
+            </Link>
+          </div>
+        </nav>
+      </header>
+      <div className="text-[#16181C] font-blender antialiased overflow-hidden">
         <section className="bg-[url('/img/home-bg-line.png')] bg-no-repeat bg-center">
           <div className="max-w-7xl px-4 mx-auto mt-24">
-            <div className="mx-auto flex flex-col justify-center items-center">
-              <h1 className="text-7xl font-semibold">
+            <div className="mx-auto flex flex-col gap-2 justify-center items-center">
+              <h1 className="text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
                 The Platform for Moonshots
               </h1>
-              <p className="font-semibold text-2xl">
+              <p className="font-semibold text-lg text-center md:text-2xl">
                 The modern collaboration + low-code platform for engineering
                 teams.
               </p>
@@ -826,26 +817,23 @@ export default function Home() {
                 <IconChevronRight className="h-4 w-4" />
               </Link>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/img/hoops-new-visions.svg"
-              alt="app"
-              className="mx-auto mt-20"
-            />
+            <Image src={HoopsNewVisions} alt="app" className="mx-auto mt-20" />
           </div>
-
-          <div className="w-full flex items-center justify-center gap-14 mt-20 px-4">
+          <div
+            id="customers"
+            className="w-full flex flex-wrap items-center justify-center gap-4 md:gap-14 mt-20 px-4"
+          >
             <Image src={ChiplyticsLogo} alt="Chiplytics" />
             <Image src={SparkmateLogo} alt="Sparkmate" />
             <Image src={OrangewoodLogo} alt="Orangewood" />
             <Image src={VuecasonLogo} alt="Vuecason" />
           </div>
 
-          <div className="w-full mx-auto flex justify-center gap-10 mt-24 px-4">
+          <div className="w-full mx-auto flex flex-wrap justify-center gap-6 md:gap-10 mt-24 px-4">
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="p-9 border border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD] rounded-lg max-w-sm w-full"
+                className="p-9 border bg-white border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD] rounded-lg max-w-sm w-full"
               >
                 <div className="flex gap-3 items-center">
                   <Image
@@ -863,7 +851,7 @@ export default function Home() {
                       {testimonial.author.title}
                     </span>
                   </div>
-                  <div className="flex self-start ml-auto gap-2">
+                  <div className="hidden sm:flex self-start ml-auto gap-2">
                     <Link href={testimonial.socials.linkedin}>
                       <IconTwitter className="h-5 w-5" />
                     </Link>
@@ -880,24 +868,25 @@ export default function Home() {
           </div>
         </section>
         <section className="max-w-7xl px-4 mx-auto mt-40">
-          <h2 className="font-bold text-5xl">Modules</h2>
-          <p className="text-2xl max-w-xl leading-tight mt-4 font-bold">
+          <h2 className="font-bold text-4xl md:text-5xl">Modules</h2>
+          <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
             Short description Technical Modules Short description Technical
             Modules Short description Technical
           </p>
 
           <ModulesMenu />
         </section>
-        <section className="max-w-7xl px-4 mx-auto mt-40">
-          <h2 className="font-bold text-5xl">Collaboration Features</h2>
-          <p className="text-2xl max-w-xl leading-tight mt-4 font-bold">
+        <section id="features" className="max-w-7xl px-4 mx-auto mt-40">
+          <h2 className="font-bold text-4xl md:text-5xl">
+            Collaboration Features
+          </h2>
+          <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
             Short description Technical Modules Short description Technical
             Modules Short description Technical
           </p>
 
-          {/* <ModulesMenu /> */}
-          <div className="grid grid-cols-12 mt-8 w-full gap-8">
-            <div className="col-span-8">
+          <div className="grid grid-cols-12 mt-8 w-full gap-6 md:gap-8">
+            <div className="md:col-span-8 col-span-12 w-full">
               <div className="h-full p-8 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]">
                 <h3 className="font-bold text-2xl">Inboxes</h3>
                 <p className="text-xl leading-tight mt-2 font-medium text-[#404854]">
@@ -914,7 +903,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="col-span-4">
+            <div className="md:col-span-4 col-span-12">
               <div className="h-full p-8 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]">
                 <h3 className="font-bold text-2xl">
                   Full-history and Versioning
@@ -931,7 +920,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="col-span-4">
+            <div className="md:col-span-4 col-span-12">
               <div className="h-full p-8 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]">
                 <Image
                   quality={100}
@@ -946,7 +935,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="col-span-8">
+            <div className="md:col-span-8 col-span-12">
               <div className="h-full p-8 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]">
                 <Image
                   quality={100}
@@ -969,17 +958,17 @@ export default function Home() {
         <section className="w-full bg-[#1C2127] text-white mt-40 py-40">
           <div className="max-w-7xl px-4 mx-auto">
             <div className="max-w-xl flex flex-col gap-4">
-              <h2 className="font-bold text-4xl">
+              <h2 className="font-bold text-3xl md:text-4xl">
                 With Rollup, you and your engineers can collaborate with
                 information-rich workspaces...
               </h2>
-              <p className="text-xl">
+              <p className="text-lg md:text-xl">
                 ...that provide a 360° view of all your project&apos;s
                 engineering data, context, and history into one place.
               </p>
             </div>
 
-            <div className="w-full grid grid-cols-2 mt-12 gap-10">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 mt-12 gap-6 md:gap-10">
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <Image
                   src={KeyboardNavigationImage}
@@ -1050,16 +1039,15 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="max-w-7xl px-4 mx-auto mt-40">
-          <h2 className="font-bold text-5xl">Integrations</h2>
-
-          <div className="grid gap-10 grid-cols-2 mt-14">
+        <section id="integrations" className="max-w-7xl px-4 mx-auto mt-40">
+          <h2 className="font-bold text-4xl md:text-5xl">Integrations</h2>
+          <div className="grid gap-6 md:gap-10 grid-cols-1 md:grid-cols-2 mt-14">
             {integrations.map((integration) => (
               <div
                 key={integration.title}
                 className="border leading-tight border-[#DBE4EF] rounded-lg p-9 w-full shadow-[0px_0px_0px_4px_#F4F8FD]"
               >
-                <div className="flex gap-6 ">
+                <div className="flex gap-6 flex-wrap">
                   {integration.images.map((image, i) => (
                     <div
                       className="h-12 w-12 shadow-[0px_0px_0px_4px_#F4F8FD] p-2 flex items-center justify-center border border-[#DBE4EF] rounded-lg"
@@ -1079,8 +1067,10 @@ export default function Home() {
         </section>
         <section className="w-full bg-[#1C2127] text-white mt-40 py-40">
           <div className="max-w-7xl px-4 mx-auto ">
-            <h2 className="font-bold text-5xl">Developer-Friendly APIs</h2>
-            <p className="text-2xl max-w-xl leading-tight mt-4 font-bold">
+            <h2 className="font-bold text-4xl md:text-5xl">
+              Developer-Friendly APIs
+            </h2>
+            <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
               Short description Technical Modules Short description Technical
               Modules Short description Technical
             </p>
@@ -1088,17 +1078,15 @@ export default function Home() {
             <DeveloperApiMenu />
           </div>
         </section>
-        <section className="max-w-7xl px-4 mx-auto mt-40">
-          <h2 className="font-bold text-5xl">Security</h2>
+        <section id="security" className="max-w-7xl px-4 mx-auto mt-40">
+          <h2 className="font-bold text-4xl md:text-5xl">Security</h2>
           <p className="text-2xl max-w-2xl leading-tight mt-4 font-bold">
             Rollup has experience helping our customers meet their specific
             regulatory and industry requirements. Our platform provides
             functionality that can be configured so that it operates to meet our
             customers&apos; requirements including:
           </p>
-
-          {/* <ModulesMenu /> */}
-          <div className="flex justify-between gap-8 w-full items-center mt-16">
+          <div className="flex justify-center lg:justify-between flex-wrap lg:flex-nowrap gap-8 w-full items-center mt-16">
             {securities.map((security, i) => (
               <Fragment key={security.title}>
                 <div className="flex flex-col justify-center items-center text-center">
@@ -1112,7 +1100,7 @@ export default function Home() {
                       background:
                         "linear-gradient(270deg, rgba(109, 150, 215, 0.00) 0%, rgba(109, 150, 215, 0.40) 49.61%, rgba(109, 150, 215, 0.00) 100%)",
                     }}
-                    className="w-0.5 h-36 flex-grow "
+                    className="w-0.5 hidden lg:block h-36"
                   />
                 ) : null}
               </Fragment>
@@ -1121,7 +1109,7 @@ export default function Home() {
         </section>
         <section className="bg-[url(/img/footer-blue-line.png)] bg-[#2D72D2] mt-40 bg-no-repeat w-full bg-right bg-contain">
           <div className="max-w-7xl px-4 mx-auto w-full py-32">
-            <h2 className="font-bold text-white text-5xl">
+            <h2 className="font-bold text-white text-3xl md:text-4xl lg:text-5xl">
               Ready to engineer faster?
             </h2>
             <div className="flex gap-4 mt-4">
@@ -1143,7 +1131,7 @@ export default function Home() {
         </section>
         <footer className="bg-[#16181C] w-full">
           <div className="max-w-7xl mx-auto px-4 text-white py-24">
-            <div className="w-full flex">
+            <div className="w-full flex flex-col gap-8 md:gap-0 md:flex-row">
               <div className="w-4/12">
                 <Link href="/">
                   <LogoDark />
@@ -1153,7 +1141,7 @@ export default function Home() {
                 </p>
                 <p>1710 Rose Street, Berkeley, CA 94703</p>
               </div>
-              <div className="w-8/12 flex justify-between">
+              <div className="w-8/12 flex flex-wrap gap-8 lg:gap-0 justify-between">
                 {footerMenus.map((menu) => (
                   <div key={menu.title} className="flex flex-col gap-2">
                     <h4 className="text-2xl font-medium">{menu.title}</h4>
