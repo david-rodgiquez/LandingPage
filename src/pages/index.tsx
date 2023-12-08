@@ -848,7 +848,7 @@ export default function Home() {
         </nav>
       </header>
       <div className="text-[#16181C] font-blender antialiased overflow-hidden">
-        <section className="bg-[url('/img/home-bg-line.png')] bg-no-repeat bg-center">
+        <section className="bg-[url('/img/home-bg-line.png')] bg-no-repeat bg-top">
           <div className="max-w-7xl px-4 mx-auto mt-24">
             <div className="mx-auto flex flex-col gap-2 justify-center items-center">
               <h1 className="text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
