@@ -17,23 +17,23 @@ import ProjectManagementImage from "../../public/img/project-management.svg";
 import AnotationImage from "../../public/img/anotation.svg";
 
 // integrations
-import Microsoft365Image from "../../public/img/integrations/microsoft-365.png";
-import GoogleImage from "../../public/img/integrations/google.png";
-import NotionImage from "../../public/img/integrations/notion.png";
+import Microsoft365Image from "../../public/img/integrations/microsoft-365.svg";
+import GoogleImage from "../../public/img/integrations/google.svg";
+import NotionImage from "../../public/img/integrations/notion.svg";
 import JiraImage from "../../public/img/integrations/jira.png";
 import LinearAppImage from "../../public/img/integrations/linear-app.png";
 
-import SlackImage from "../../public/img/integrations/slack.png";
-import MicrosoftTeamImage from "../../public/img/integrations/microsoft-team.png";
-import GmailImage from "../../public/img/integrations/gmail.png";
+import SlackImage from "../../public/img/integrations/slack.svg";
+import MicrosoftTeamImage from "../../public/img/integrations/microsoft-team.svg";
+import GmailImage from "../../public/img/integrations/gmail.svg";
 
 import SmartsheetImage from "../../public/img/integrations/smartsheet.png";
 import JamaImage from "../../public/img/integrations/jama.png";
 
 import SolidWorksImage from "../../public/img/integrations/solidworks.png";
 import IproImage from "../../public/img/integrations/ipro.png";
-import NxImage from "../../public/img/integrations/nx.png";
-import OnshapeImage from "../../public/img/integrations/onshape.png";
+import NxImage from "../../public/img/integrations/nx.svg";
+import OnshapeImage from "../../public/img/integrations/onshape.svg";
 import SwImage from "../../public/img/integrations/sw.png";
 
 import SOCImage from "../../public/img/soc.svg";
@@ -1135,7 +1135,11 @@ export default function Home() {
                       className="h-12 w-12 shadow-[0px_0px_0px_4px_#F4F8FD] p-2 flex items-center justify-center border border-[#DBE4EF] rounded-lg"
                       key={i}
                     >
-                      <Image alt={integration.title} src={image} />
+                      <Image
+                        quality={100}
+                        alt={integration.title}
+                        src={image}
+                      />
                     </div>
                   ))}
                 </div>
