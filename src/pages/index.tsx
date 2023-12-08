@@ -1171,7 +1171,7 @@ export default function Home() {
           <div className="flex justify-center lg:justify-between flex-wrap lg:flex-nowrap gap-8 w-full items-center mt-16">
             {securities.map((security, i) => (
               <Fragment key={security.title}>
-                <div className="flex flex-col justify-center items-center text-center">
+                <div className="flex flex-col gap-2 justify-center items-center text-center">
                   <Image src={security.image} alt={security.title} />
                   <h3 className="font-semibold text-2xl">{security.title}</h3>
                   <p className="text-lg">{security.description}</p>
