@@ -15,14 +15,7 @@ import CollaborationFeaturesImage from "../../public/img/collaboration-features.
 import FullHistoryAndVersioningImage from "../../public/img/full-history-and-versioning.svg";
 import ProjectManagementImage from "../../public/img/project-management.svg";
 import AnotationImage from "../../public/img/anotation.svg";
-import KeyboardNavigationImage from "../../public/img/keyboard-navigation.svg";
-import DragAndDropImage from "../../public/img/drag-and-drop.svg";
-import RealTimeImage from "../../public/img/realtime.svg";
-import ReferenceAnyObjectAnywhereImage from "../../public/img/reference-any-object-anywhere.svg";
-import ApiImage from "../../public/img/api.svg";
-import CommandBarImage from "../../public/img/command-bar.svg";
 
-import HoopsNewVisions from "../../public/img/hoops-new-visions.svg";
 // integrations
 import Microsoft365Image from "../../public/img/integrations/microsoft-365.png";
 import GoogleImage from "../../public/img/integrations/google.png";
@@ -47,6 +40,8 @@ import SOCImage from "../../public/img/soc.svg";
 import ItarImage from "../../public/img/itar.svg";
 import SelfHostImage from "../../public/img/self-host.png";
 import LogoDark from "@/components/icons/LogoDark";
+
+import { useRive } from "@rive-app/react-canvas";
 
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
@@ -328,35 +323,60 @@ const moduleMenus = [
     icon: IconSystemModeling,
     description:
       "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
-    videoUrl: "/video/system-modeling.mp4",
+    RiveComponent: ({ className }: { className: string }) => (
+      <RiveComponent
+        className={className}
+        src="https://public.rive.app/hosted/311509/109741/a5KUF5v7_06g_6szzyZJmw.riv"
+      />
+    ),
   },
   {
     title: "Digital Threads",
     icon: IconDigitalThreads,
     description:
       "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
-    videoUrl: "/video/digital-threads.mp4",
+    RiveComponent: ({ className }: { className: string }) => (
+      <RiveComponent
+        className={className}
+        src="https://public.rive.app/hosted/311509/109744/Et3bwYpUX0OIJmbIsyU3rw.riv"
+      />
+    ),
   },
   {
     title: "CAD Reviews",
     icon: IconCadReviews,
     description:
       "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
-    videoUrl: "/video/cad-reviews.mp4",
+    RiveComponent: ({ className }: { className: string }) => (
+      <RiveComponent
+        className={className}
+        src="https://public.rive.app/hosted/311509/109742/s6g0qd24cUGkTBaksnefIg.riv"
+      />
+    ),
   },
   {
     title: "Requirements",
     icon: IconRequirements,
     description:
       "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
-    videoUrl: "/video/cad-reviews.mp4",
+    RiveComponent: ({ className }: { className: string }) => (
+      <RiveComponent
+        className={className}
+        src="https://public.rive.app/hosted/311509/109742/s6g0qd24cUGkTBaksnefIg.riv"
+      />
+    ),
   },
   {
     title: "Product Data Management",
     icon: IconProductDataManagement,
     description:
       "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
-    videoUrl: "/video/product-data-management.mp4",
+    RiveComponent: ({ className }: { className: string }) => (
+      <RiveComponent
+        className={className}
+        src="https://public.rive.app/hosted/311509/109743/gMjssTaEN0e2lFYDzW76lQ.riv"
+      />
+    ),
   },
 ] as const;
 
@@ -364,9 +384,9 @@ function ModulesMenu() {
   const [openedModule, setOpenedModule] =
     useState<(typeof moduleMenus)[number]["title"]>("System Modeling");
 
-  const videoUrl = moduleMenus.find(
+  const RiveComponent = moduleMenus.find(
     (menu) => menu.title === openedModule
-  )!.videoUrl;
+  )!.RiveComponent;
 
   return (
     <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
@@ -414,9 +434,7 @@ function ModulesMenu() {
         </div>
       </div>
       <div className="w-full md:w-8/12 ">
-        <div className="rounded-xl overflow-hidden md:w-max md:ml-8">
-          <video loop autoPlay muted src={videoUrl} />
-        </div>
+        <RiveComponent className="md:ml-8" />
       </div>
     </div>
   );
@@ -767,6 +785,37 @@ const footerMenus = [
   },
 ];
 
+function RiveComponent({
+  className,
+  src,
+  autoPlay = true,
+  playOnHover,
+  animations = true,
+}: {
+  playOnHover?: boolean;
+  autoPlay?: boolean;
+  className: string;
+  src: string;
+  animations?: boolean;
+}) {
+  const { rive, RiveComponent } = useRive(
+    {
+      src: src,
+      autoplay: autoPlay,
+      animations: animations ? "animation" : undefined,
+    },
+    { fitCanvasToArtboardHeight: true }
+  );
+
+  return (
+    <RiveComponent
+      className={className}
+      onMouseLeave={() => playOnHover && rive && rive.pause()}
+      onMouseEnter={() => playOnHover && rive && rive.play()}
+    />
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -817,7 +866,10 @@ export default function Home() {
                 <IconChevronRight className="h-4 w-4" />
               </Link>
             </div>
-            <Image src={HoopsNewVisions} alt="app" className="mx-auto mt-20" />
+            <RiveComponent
+              className="max-w-6xl mx-auto mt-20"
+              src="https://public.rive.app/hosted/311509/109176/se9bOJUhVU6KQVhSoJLL2w.riv"
+            />
           </div>
           <div
             id="customers"
@@ -970,9 +1022,12 @@ export default function Home() {
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 mt-12 gap-6 md:gap-10">
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image
-                  src={KeyboardNavigationImage}
-                  alt="Keyboard Navigation"
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv"
+                  className="w-full"
                 />
                 <div>
                   <h3 className="text-xl font-semibold">Keyboard Navigation</h3>
@@ -982,7 +1037,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image src={DragAndDropImage} alt="Drag and Drop" />
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109749/yNB4JjwcnkKlEcur2guJ3w.riv"
+                  className="w-full"
+                />
                 <div>
                   <h3 className="text-xl font-semibold">Drag and Drop</h3>
                   <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
@@ -991,7 +1052,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image src={RealTimeImage} alt="Realtime" />
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109750/etUe4KXQ3E25rXYWkhKewA.riv"
+                  className="w-full"
+                />
                 <div>
                   <h3 className="text-xl font-semibold">Realtime</h3>
                   <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
@@ -1001,9 +1068,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image
-                  src={ReferenceAnyObjectAnywhereImage}
-                  alt="Reference any object anywhere"
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109751/zzbOWOvUcEmYwTfbGqNXRw.riv"
+                  className="w-full"
                 />
                 <div>
                   <h3 className="text-xl font-semibold">
@@ -1016,7 +1086,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image src={ApiImage} alt="Api" />
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109752/tPSIiP4hREaS8ZFbPqd4Cg.riv"
+                  className="w-full"
+                />
                 <div>
                   <h3 className="text-xl font-semibold">Api</h3>
                   <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
@@ -1027,7 +1103,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <Image src={CommandBarImage} alt="Command Bar" />
+                <RiveComponent
+                  playOnHover={true}
+                  autoPlay={false}
+                  animations={false}
+                  src="https://public.rive.app/hosted/311509/109753/Xy9a6mP-V0qFpUnZaOFTuA.riv"
+                  className="w-full"
+                />
                 <div>
                   <h3 className="text-xl font-semibold">Command Bar</h3>
                   <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
