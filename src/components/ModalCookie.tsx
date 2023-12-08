@@ -202,7 +202,7 @@ export default function ModalCookie() {
   return (
     <>
       {!cookie.isAllowed && (
-        <div className="font-blender max-w-xl w-full absolute bottom-3 dark:text-[#ABB3BF] bg-white dark:bg-[#1C2127] left-3 p-4 border border-[#D3D8DE] dark:border-[#383E47] rounded z-10 shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)]">
+        <div className="font-blender max-w-xl w-full fixed bottom-3 dark:text-[#ABB3BF] bg-white dark:bg-[#1C2127] left-3 p-4 border border-[#D3D8DE] dark:border-[#383E47] rounded z-10 shadow-[0px_0px_0px_1px_rgba(16,22,26,0.08),0px_8px_24px_0px_rgba(16,22,26,0.10)]">
           <div className="w-full flex justify-between items-center mb-1">
             <h4 className="text-2xl font-bold dark:text-white">
               This system uses cookies

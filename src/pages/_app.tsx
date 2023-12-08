@@ -6,6 +6,8 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import { Analytics } from '@vercel/analytics/react';
+
 
 const ModalCookie = dynamic(() => import("@/components/ModalCookie"), {
   ssr: false,
@@ -40,6 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
         id="segment-analytics"
       />
+      <Analytics />
       <ModalCookie />
     </>
   );
