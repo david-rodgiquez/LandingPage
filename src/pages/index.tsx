@@ -380,31 +380,6 @@ const moduleMenus = [
   },
 ] as const;
 
-function ModuleMenuItemDescription({
-  bulletRef,
-  containerRef,
-  description,
-}: {
-  description: string;
-  bulletRef: React.RefObject<HTMLDivElement>;
-  containerRef: React.RefObject<HTMLButtonElement>;
-}) {
-  useEffect(() => {
-    const cardElement = containerRef.current;
-    const bulletElement = bulletRef.current;
-    if (!cardElement || !bulletElement) return;
-    const cardElementRect = cardElement.getBoundingClientRect();
-    const bodyRect = document.body.getBoundingClientRect();
-
-    bulletElement.style.transform = `translate(${0}px, ${
-      cardElementRect.top - bodyRect.top
-    }px)`;
-    console.log(cardElementRect);
-  }, [bulletRef, containerRef]);
-
-  return <p className="text-lg leading-tight mt-1">{description}</p>;
-}
-
 function ModuleMenuItem({
   setOpenedModule,
   module,
@@ -484,34 +459,6 @@ function ModulesMenu() {
       const isActive = item.getAttribute("data-is-active") === "true";
 
       if (isActive) {
-        let lastActiveIndex = items.findIndex((itm) => {
-          return itm.getAttribute("data-active-type") === "last";
-        });
-
-        // outLastIndex = lastActiveIndex;
-
-        // const isBottomToTop = lastActiveIndex < i;
-
-        // // console.log({ containerRect, lastActiveIndex, currentActiveIndex });
-        // const itemRect = item.getBoundingClientRect();
-        // const height = (item as HTMLElement).style.maxHeight.replace("px", "");
-
-        // console.log(itemRect, height);
-
-        // bulletElement.style.top = `${
-        //   Math.abs(
-        //     containerRect.top - itemRect.top
-        //     // -
-        //     //   Number(height) / 2 +
-        //     //   bulletElement.clientHeight / 2
-        //   )
-        //   // +
-        //   //   // window.scrollY +
-        //   //   Number(height) / 2 +
-        //   //   bulletElement.clientHeight / 2
-        // }px`;
-        // // console.log(itemRect);
-
         const last = items.find(
           (item) => item.getAttribute("data-active-type") === "last"
         );
