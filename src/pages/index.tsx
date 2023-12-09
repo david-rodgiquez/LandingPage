@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
-import { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import LogoLight from "@/components/icons/LogoLight";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import Image from "next/image";
@@ -380,60 +380,231 @@ const moduleMenus = [
   },
 ] as const;
 
+function ModuleMenuItemDescription({
+  bulletRef,
+  containerRef,
+  description,
+}: {
+  description: string;
+  bulletRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLButtonElement>;
+}) {
+  useEffect(() => {
+    const cardElement = containerRef.current;
+    const bulletElement = bulletRef.current;
+    if (!cardElement || !bulletElement) return;
+    const cardElementRect = cardElement.getBoundingClientRect();
+    const bodyRect = document.body.getBoundingClientRect();
+
+    bulletElement.style.transform = `translate(${0}px, ${
+      cardElementRect.top - bodyRect.top
+    }px)`;
+    console.log(cardElementRect);
+  }, [bulletRef, containerRef]);
+
+  return <p className="text-lg leading-tight mt-1">{description}</p>;
+}
+
+function ModuleMenuItem({
+  setOpenedModule,
+  module,
+  isOpened,
+}: {
+  isOpened: boolean;
+  module: (typeof moduleMenus)[number];
+  setOpenedModule: React.Dispatch<
+    React.SetStateAction<(typeof moduleMenus)[number]["title"]>
+  >;
+}) {
+  const cardContainerRef = useRef<HTMLButtonElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const descriptionElement = cardContainerRef.current;
+    const titleElement = titleRef.current;
+
+    if (!descriptionElement || !titleElement) return;
+
+    if (isOpened) {
+      descriptionElement.style.maxHeight = `${descriptionElement.scrollHeight}px`;
+    } else {
+      descriptionElement.style.maxHeight = `${titleElement.clientHeight}px`;
+    }
+  }, [isOpened, cardContainerRef, titleRef]);
+
+  return (
+    <button
+      data-is-active={isOpened}
+      ref={cardContainerRef}
+      type="button"
+      onClick={() => {
+        setOpenedModule(module.title);
+      }}
+      key={module.title}
+      className={`text-left relative rounded-lg flex flex-col border overflow-hidden ${
+        isOpened ? " border-[#DBE4EF]" : "hover:bg-gray-50 border-transparent"
+      }`}
+      style={{ transition: "max-height 0.5s" }}
+    >
+      <div className="flex items-center gap-2 p-5" ref={titleRef}>
+        <module.icon className={`w-10 ${isOpened ? "stroke-[#4C90F0]" : ""}`} />
+        <h3 className="font-bold text-xl">{module.title}</h3>
+      </div>
+      <p ref={descriptionRef} className="text-lg leading-tight px-5 pb-5">
+        {module.description}
+      </p>
+    </button>
+  );
+}
+
 function ModulesMenu() {
+  const bulletRef = useRef<HTMLDivElement>(null);
+  const menuItemContainerRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+
   const [openedModule, setOpenedModule] =
     useState<(typeof moduleMenus)[number]["title"]>("System Modeling");
 
   const RiveComponent = moduleMenus.find(
-    (menu) => menu.title === openedModule
+    (m) => m.title === openedModule
   )!.RiveComponent;
 
-  return (
-    <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
-      <div className="flex w-full md:w-4/12 gap-5 shrink-0">
-        <div className="h-full w-0.5 shrink-0 rounded-full bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9]"></div>
-        <div className="flex flex-col">
-          {moduleMenus.map((module) => {
-            const isOpened = openedModule === module.title;
+  useEffect(() => {
+    const itemContainerElement = menuItemContainerRef.current;
+    const bulletElement = bulletRef.current;
 
+    if (!itemContainerElement || !bulletElement) return;
+
+    const items = Array.from(itemContainerElement.children);
+    const containerRect = itemContainerElement.getBoundingClientRect();
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const isActive = item.getAttribute("data-is-active") === "true";
+
+      if (isActive) {
+        let lastActiveIndex = items.findIndex((itm) => {
+          return itm.getAttribute("data-active-type") === "last";
+        });
+
+        // outLastIndex = lastActiveIndex;
+
+        // const isBottomToTop = lastActiveIndex < i;
+
+        // // console.log({ containerRect, lastActiveIndex, currentActiveIndex });
+        // const itemRect = item.getBoundingClientRect();
+        // const height = (item as HTMLElement).style.maxHeight.replace("px", "");
+
+        // console.log(itemRect, height);
+
+        // bulletElement.style.top = `${
+        //   Math.abs(
+        //     containerRect.top - itemRect.top
+        //     // -
+        //     //   Number(height) / 2 +
+        //     //   bulletElement.clientHeight / 2
+        //   )
+        //   // +
+        //   //   // window.scrollY +
+        //   //   Number(height) / 2 +
+        //   //   bulletElement.clientHeight / 2
+        // }px`;
+        // // console.log(itemRect);
+
+        const last = items.find(
+          (item) => item.getAttribute("data-active-type") === "last"
+        );
+        last?.removeAttribute("data-active-type");
+
+        const current = items.find(
+          (item) => item.getAttribute("data-active-type") === "current"
+        );
+        current?.setAttribute("data-active-type", "last");
+
+        item.setAttribute("data-active-type", "current");
+      }
+
+      if (isActive) {
+        const activeIndex = items.findIndex(
+          (item) => item.getAttribute("data-is-active") === "true"
+        );
+
+        let lastActiveIndex = items.findIndex((itm) => {
+          return itm.getAttribute("data-active-type") === "last";
+        });
+
+        const isBottomToTop = lastActiveIndex > activeIndex;
+
+        const itemRect = item.getBoundingClientRect();
+        const height = (item as HTMLElement).style.maxHeight.replace("px", "");
+
+        if (lastActiveIndex < 0 || isBottomToTop) {
+          const middle = Math.abs(
+            containerRect.top -
+              itemRect.top -
+              Number(height) / 2 +
+              bulletElement.clientHeight / 2
+          );
+          bulletElement.style.top = `${middle}px`;
+          if (lineRef.current) {
+            lineRef.current.style.top = `${middle - Number(height) / 2}px`;
+            lineRef.current.style.height = `${Number(height)}px`;
+          }
+        } else {
+          const middle = Math.abs(
+            containerRect.top -
+              itemRect.bottom +
+              Number(height) / 2 +
+              bulletElement.clientHeight / 2
+          );
+
+          bulletElement.style.top = `${middle}px`;
+          if (lineRef.current) {
+            lineRef.current.style.top = `${middle - Number(height) / 2}px`;
+            lineRef.current.style.height = `${Number(height)}px`;
+          }
+        }
+        break;
+      }
+    }
+  }, [openedModule]);
+
+  return (
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 h-[520px]">
+      <div className="flex w-full md:w-4/12 gap-5 shrink-0">
+        <div className="h-full relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9] ">
+          <div
+            ref={lineRef}
+            style={{ transition: "top 0.5s" }}
+            className="absolute z-20 bg-gradient-to-b from-20% from-[#B7D7F9] via-50% via-[#4C90F0] to-80% to-[#B7D7F9] w-0.5 rounded-full h-40 "
+          ></div>
+          <div
+            className="absolute z-20"
+            ref={bulletRef}
+            style={{ transition: "top 0.5s" }}
+          >
+            <div className="border-gray-300/60 border-4 rounded-full">
+              <div className="border border-gray-300 rounded-full">
+                <div className="h-3 w-3 bg-blue-500 border-2 border-white rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col" ref={menuItemContainerRef}>
+          {moduleMenus.map((module) => {
             return (
-              <button
-                type="button"
-                onClick={() => setOpenedModule(module.title)}
+              <ModuleMenuItem
                 key={module.title}
-                className={`p-5 text-left relative rounded-lg flex flex-col justify-center ${
-                  isOpened ? "border border-[#DBE4EF]" : "hover:bg-gray-50 "
-                }`}
-              >
-                {isOpened && (
-                  <div className="absolute z-10 -left-[33px] ">
-                    <div className="border-gray-300/60 border-4 rounded-full">
-                      <div className="border border-gray-300 rounded-full">
-                        <div className="h-3 w-3 bg-blue-500 border-2 border-white rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {isOpened && (
-                  <div className="bg-gradient-to-b from-20% from-[#B7D7F9] via-50% via-[#4C90F0] to-80% to-[#B7D7F9] w-0.5 rounded-full absolute -left-[23px] h-full top-0"></div>
-                )}
-                <div className="flex items-center gap-2">
-                  <module.icon
-                    className={`w-10 ${isOpened ? "stroke-[#4C90F0]" : ""}`}
-                  />
-                  <h3 className="font-bold text-xl">{module.title}</h3>
-                </div>
-                {isOpened && (
-                  <p className="text-lg leading-tight mt-1">
-                    {module.description}
-                  </p>
-                )}
-              </button>
+                isOpened={openedModule === module.title}
+                module={module}
+                setOpenedModule={setOpenedModule}
+              />
             );
           })}
         </div>
       </div>
-      <div className="w-full md:w-8/12 ">
+      <div className="w-full md:w-8/12">
         <RiveComponent className="md:ml-8" />
       </div>
     </div>
