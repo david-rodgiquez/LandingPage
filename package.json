@@ -11,6 +11,7 @@
   "dependencies": {
     "@frigade/react": "^1.38.3",
     "@fullstory/browser": "^1.7.1",
+    "@react-spring/web": "^9.7.3",
     "@rive-app/react-canvas": "^4.5.6",
     "@segment/snippet": "^4.16.2",
     "@stytch/nextjs": "^7.0.0",

@@ -42,6 +42,7 @@ import SelfHostImage from "../../public/img/self-host.png";
 import LogoDark from "@/components/icons/LogoDark";
 
 import { useRive } from "@rive-app/react-canvas";
+import { useSpring, animated, Spring } from "@react-spring/web";
 
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
@@ -418,7 +419,7 @@ function ModuleMenuItem({
       }}
       key={module.title}
       className={`text-left relative rounded-lg flex flex-col border overflow-hidden ${
-        isOpened ? " border-[#DBE4EF]" : "hover:bg-gray-50 border-transparent"
+        isOpened ? " border-[#DBE4EF] " : "border-transparent opacity-50"
       }`}
       style={{ transition: "max-height 0.5s" }}
     >
@@ -433,6 +434,18 @@ function ModuleMenuItem({
   );
 }
 
+function ModuleMenuRiveComponentWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const styles = useSpring({
+    from: { opacity: 0.5 },
+    to: { opacity: 1 },
+    delay: 300,
+  });
+  return <animated.div style={styles}>{children}</animated.div>;
+}
 function ModulesMenu() {
   const bulletRef = useRef<HTMLDivElement>(null);
   const menuItemContainerRef = useRef<HTMLDivElement>(null);
@@ -552,7 +565,9 @@ function ModulesMenu() {
         </div>
       </div>
       <div className="w-full md:w-8/12">
-        <RiveComponent className="md:ml-8" />
+        <ModuleMenuRiveComponentWrapper key={openedModule}>
+          <RiveComponent className="md:ml-8" />
+        </ModuleMenuRiveComponentWrapper>
       </div>
     </div>
   );
@@ -934,6 +949,25 @@ function RiveComponent({
   );
 }
 
+function HeadlineAnimation({ children }: { children: React.ReactNode }) {
+  const styles = useSpring({
+    from: { y: -100, opacity: 0 },
+    to: { y: 0, opacity: 1 },
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+}
+
+function HeroImageAnimation({ children }: { children: React.ReactNode }) {
+  const styles = useSpring({
+    from: { y: 100, opacity: 0 },
+    to: { y: 0, opacity: 1 },
+    delay: 1000,
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+}
+
 export default function Home() {
   return (
     <>
@@ -966,28 +1000,34 @@ export default function Home() {
         </nav>
       </header>
       <div className="text-[#16181C] font-blender antialiased overflow-hidden">
-        <section className="bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-top">
+        <section className="bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-[50%_20%]">
           <div className="max-w-7xl px-4 mx-auto mt-24">
-            <div className="mx-auto flex flex-col gap-2 justify-center items-center">
-              <h1 className="text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
-                The Platform for Moonshots
-              </h1>
-              <p className="font-semibold text-lg text-center md:text-2xl">
-                The modern collaboration + low-code platform for engineering
-                teams.
-              </p>
-              <Link
-                href="https://app.rollup.ai/"
-                className="flex items-center gap-1 mt-6 bg-[#2D72D2] text-white px-5 py-2"
-              >
-                <span>Get Started</span>
-                <IconChevronRight className="h-4 w-4" />
-              </Link>
-            </div>
-            <RiveComponent
-              className="max-w-6xl mx-auto mt-20"
-              src="https://public.rive.app/hosted/311509/109176/se9bOJUhVU6KQVhSoJLL2w.riv"
-            />
+            <HeadlineAnimation>
+              <div className="mx-auto flex flex-col gap-2 justify-center items-center">
+                <h1 className="text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
+                  The Platform for Moonshots
+                </h1>
+                <p className="font-semibold text-lg text-center md:text-2xl">
+                  The modern collaboration + low-code platform for engineering
+                  teams.
+                </p>
+                <Link
+                  href="https://app.rollup.ai/"
+                  className="flex items-center rounded-sm gap-2 mt-6 transition-colors bg-[#2D72D2] hover:bg-[#2862b4] font-semibold text-white px-6 py-3"
+                >
+                  <span>Get Started</span>
+                  <IconChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </HeadlineAnimation>
+            <HeroImageAnimation>
+              <div className="lg:min-h-[671px]">
+                <RiveComponent
+                  className="max-w-6xl mx-auto mt-20"
+                  src="https://public.rive.app/hosted/311509/109176/se9bOJUhVU6KQVhSoJLL2w.riv"
+                />
+              </div>
+            </HeroImageAnimation>
           </div>
           <div
             id="customers"
@@ -1139,7 +1179,7 @@ export default function Home() {
             </div>
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 mt-12 gap-6 md:gap-10">
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1154,7 +1194,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1169,7 +1209,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1185,7 +1225,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1203,7 +1243,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1220,7 +1260,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="border flex flex-col gap-8 rounded-lg border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
                 <RiveComponent
                   playOnHover={true}
                   autoPlay={false}
@@ -1319,14 +1359,14 @@ export default function Home() {
             <div className="flex gap-4 mt-4">
               <Link
                 href="https://app.rollup.ai/"
-                className="bg-white hover:bg-[#ffffffe0] text-[#2D72D2] font-medium flex gap-2 rounded-sm px-4 items-center justify-center py-2"
+                className="bg-white hover:bg-[#ffffffe0] text-[#2D72D2] font-semibold flex gap-2 rounded-sm px-4 items-center justify-center py-2"
               >
                 <span>Start for Free</span>
                 <IconChevronRight className="h-3 w-3 text-[#2D72D2]" />
               </Link>
               <Link
                 href="https://app.rollup.ai/"
-                className="bg-[#f6f7f918] hover:bg-[#f6f7f93d] transition-colors text-white border border-white font-medium flex gap-2 rounded-sm px-4 items-center justify-center py-2"
+                className="bg-[#f6f7f918] hover:bg-[#f6f7f93d] transition-colors text-white border border-white font-semibold flex gap-2 rounded-sm px-4 items-center justify-center py-2"
               >
                 <span>Talk to Sales</span>
               </Link>
@@ -1340,16 +1380,18 @@ export default function Home() {
                 <Link href="/">
                   <LogoDark />
                 </Link>
-                <p className="mt-3">
+                <p className="mt-3 text-[#ABB3BF]">
                   © Copyright {new Date().getFullYear()} Rollup
                 </p>
-                <p>1710 Rose Street, Berkeley, CA 94703</p>
+                <p className="text-[#ABB3BF] mt-1">
+                  1710 Rose Street, Berkeley, CA 94703
+                </p>
               </div>
               <div className="w-8/12 flex flex-wrap gap-8 lg:gap-0 justify-between">
                 {footerMenus.map((menu) => (
-                  <div key={menu.title} className="flex flex-col gap-2">
+                  <div key={menu.title} className="flex flex-col gap-3">
                     <h4 className="text-2xl font-medium">{menu.title}</h4>
-                    <ul className="list-none text-lg">
+                    <ul className="list-none text-lg space-y-3 text-[#ABB3BF]">
                       {menu.menus.map((menu) => (
                         <li key={menu.title}>
                           <Link href={menu.url}>{menu.title}</Link>
