@@ -16,7 +16,7 @@ export default function About() {
             </h1>
             <div className="text-lg text-[#404854] dark:text-[#ABB3BF]">
               Last updated:{" "}
-              {new Date("2023-07-17").toLocaleDateString(undefined, {
+              {new Date("2023-12-10").toLocaleDateString(undefined, {
                 dateStyle: "long",
               })}
             </div>
@@ -84,7 +84,7 @@ export default function About() {
               this Privacy Notice does not apply to job applicants and
               candidates who apply for employment with us, or to employees in
               the context of the employment relationship, which are subject to
-              other notices.
+              separately provided notices.
             </p>
             <p>
               If you are a California resident, for more information about your
@@ -93,16 +93,16 @@ export default function About() {
             </p>
             <h3>1.1. Rollup Platform</h3>
             <p>
-              This Privacy Notice may apply to portions of Rollup&apos;s
-              software-as-a-service products where you engage with Rollup via
-              our Sites, Services, or Direct Sales, including licensed software
-              available through our platform via https://app.Rollup.ai, and any
-              software, mobile applications, products, devices, or other
-              services (collectively &ldquo;Rollup Platform&rdquo;).
+              This Privacy Notice applies to Rollup&apos;s software-as-a-service
+              products where you engage with Rollup via our Sites, Services, or
+              Direct Sales, including licensed software available through our
+              platform via https://app.Rollup.ai, and any software, mobile
+              applications, products, devices, or other services (collectively
+              &ldquo;Rollup Platform&rdquo;).
             </p>
             <p>
               This Privacy Notice does not apply to the extent we process
-              Personal Data while acting as a processor or service provider on
+              Personal Data while acting as a Processor or Service Provider on
               behalf of a customer; under such circumstances we only process
               Personal Data on behalf of and in accordance with the instructions
               from our customer and any related data processing agreements,
@@ -135,7 +135,7 @@ export default function About() {
               signature, postal address, phone numbers, unique personal
               identifier, online identifier, Internet Protocol (IP) address,
               email address, account name, national ID such as social security
-              number, driver’s license number or state identification card
+              number, driver&apos;s license number or state identification card
               number, and passport number.
             </p>
             <p>
@@ -154,7 +154,7 @@ export default function About() {
             </p>
             <p>
               <strong>Sensitive Personal Data:</strong> such as social security
-              number, driver’s license number, or passport number, union
+              number, driver&apos;s license number, or passport number, union
               membership, and Protected Classification data as described above.
             </p>
             <p>
@@ -167,7 +167,7 @@ export default function About() {
               <strong>
                 Internet and Network Activity Data (“Usage Data”):
               </strong>{" "}
-              such as information required to provide access to Rollup’s IT
+              such as information required to provide access to Rollup&apos;s IT
               systems and networks, including IP addresses, log files, and login
               information, the type of Web browser you use; device type; your
               operating system; your web request; your Internet Service Provider
@@ -204,11 +204,11 @@ export default function About() {
               usage history of Rollup Sites and predictions about consumer
               preferences.
             </p>
-            <h2>3. Source</h2>
+            <h2>3. Sources</h2>
             <h3>3.1. Where we Collect Personal Data</h3>
             <p>
-              Most often, the Personal Data we collect about you is collected
-              from you directly. In some cases, we may collect Personal Data
+              The Personal Data we collect about you is collected from you
+              directly. In some cases, we may collect Personal Data
               automatically when you engage with Sites, Services, networks, and
               technology resources. Rollup may also collect Personal Data
               through our services providers, as further described below.
@@ -260,8 +260,8 @@ export default function About() {
               collect Usage Data regarding the actions you take on the Sites,
               Services, Direct Sales and the Rollup Platform from your browser,
               device, or network activity. This type of data helps us understand
-              trends in our users’ needs so we can better consider new features
-              or otherwise tailor the Sites and Rollup Platform.
+              trends in our users&apos; needs so we can better consider new
+              features or otherwise tailor the Sites and Rollup Platform.
             </p>
             <h2>4. Sharing Data</h2>
             <h3>4.1. Recipients with Whom We Disclose Personal Data</h3>
@@ -321,15 +321,6 @@ export default function About() {
               subpoenas), to protect the safety, property, or rights of Rollup
               or of any third party, to prevent or stop any illegal, unethical,
               or legally actionable activity, or to comply with the law.
-            </p>
-            <p>
-              <strong>Professional Services:</strong> In certain instances, we
-              may disclose your Personal Data with professional advisers acting
-              as service providers, processors, or joint controllers - including
-              lawyers, bankers, auditors, and insurers who provide consultancy,
-              banking, legal, insurance and accounting services, and to the
-              extent we are legally obliged to disclose or have a legitimate
-              interest in disclosing your Personal Data.
             </p>
             <p>
               <strong>Acquirer or Successor of Rollup:</strong> Potential or
@@ -431,10 +422,11 @@ export default function About() {
               analytics providers. We may use such information and pool it with
               other information, for example, to track the total number of
               visitors to our Sites or authorized users of the Rollup Platform,
-              or each page of our Sites, etc. We use this information to help us
-              understand how people use the Sites and Rollup Platform, support
-              our advertising and marketing efforts, and to enhance our
-              Services.
+              or each page of our Sites, and your use of the software, including
+              where and when you click a certain section of our Sites. We use
+              this information to help us understand how people use the Sites
+              and Rollup Platform, support our advertising and marketing
+              efforts, and to enhance our Services.
             </p>
             <h2>7. Tracking Technologies</h2>
             <p>
@@ -453,18 +445,18 @@ export default function About() {
             <p>
               You can remove persistent cookies and change your privacy
               preferences by following directions provided in your Internet
-              browser’s “help” directory, or by clicking the Cookie Settings
-              button above. However, certain features of the Sites or Rollup
-              Platform may not work if you delete or disable cookies. Some of
-              our service providers may use their own cookies and web beacons in
-              connection with the services they perform on our behalf, as
-              further explained below.
+              browser&apos;s “help” directory, or by clicking the Cookie
+              Settings button above. However, certain features of the Sites or
+              Rollup Platform may not work if you delete or disable cookies.
+              Some of our service providers may use their own cookies and web
+              beacons in connection with the services they perform on our
+              behalf, as further explained below.
             </p>
             <p>
               We and our partners use similar technologies to analyze trends,
-              administer the website, track users’ movements around the website,
-              and to gather demographic information about our user base as a
-              whole. Users can control the use of cookies at the individual
+              administer the website, track users&apos; movements around the
+              website, and to gather demographic information about our user base
+              as a whole. Users can control the use of cookies at the individual
               browser level.
             </p>
             <p>
@@ -507,8 +499,8 @@ export default function About() {
             <h2>8. Children&apos;s Privacy</h2>
             <p>
               We do not knowingly collect Personal Data from children under the
-              age of 13. If we become aware that we have inadvertently received
-              Personal Data from a child under the age of 13, we will delete
+              age of 16. If we become aware that we have inadvertently received
+              Personal Data from a child under the age of 16, we will delete
               such information from our records
             </p>
             <h2>9. Security</h2>
@@ -546,9 +538,9 @@ export default function About() {
             </p>
             <p>
               When we have no ongoing legitimate business need to process your
-              Personal Data, we may either delete or de-identify it, or, if this
-              is not possible (for example, because your Personal Data has been
-              stored in backup archives), then we will securely store your
+              Personal Data, we shall either delete or de-identify it, or, if
+              this is not possible (for example, because your Personal Data has
+              been stored in backup archives), then we will securely store your
               Personal Data and isolate it from any further processing until
               deletion is possible. If we collect or use de-identified
               information, we will not attempt to re-identify it.
@@ -558,21 +550,20 @@ export default function About() {
             <p>
               From time to time, for the purposes described in this Privacy
               Notice, your Personal Data may be processed by us and our vendors
-              outside your home jurisdiction, including in the U.S. and other
-              countries. These countries may have data protection laws that are
-              different from the laws of your country. Rollup only transfers
-              Personal Data to another country, including to its subsidiaries
-              and other affiliates, in accordance with applicable data privacy
-              laws, and provided there is adequate protection in place for the
-              data. The relevant Data Controllers with respect to Rollup’s
-              Personal Data processing activities
+              (subprocessors) outside your home jurisdiction, including in the
+              U.S. and other countries. These countries may have data protection
+              laws that are different from the laws of your country. Rollup only
+              transfers Personal Data to another country, including to its
+              subsidiaries and other affiliates, in accordance with applicable
+              data privacy laws, and provided there is adequate protection in
+              place for the data.
             </p>
             <p>
               We have taken reasonable measures to require that your Personal
               Data will remain protected in accordance with this Privacy Notice
               and applicable regulations. For more information about the
-              subprocessors related to the Rollup Platform, please see our
-              subprocessor list at https://www.Rollup.com/legal/subprocessors
+              subprocessors related to the Rollup Platform, please contact us at
+              legal@rollup.ai
             </p>
             <h3>10.2. Third Parties/Links</h3>
             <p>
@@ -755,12 +746,10 @@ export default function About() {
               <strong>Marketing Communications:</strong> You can opt out of
               receiving promotional or marketing communications from us at any
               time by using the unsubscribe link in the email communications we
-              send or by filling out this Marketing Opt-Out Form. To opt out of
-              non-email forms of marketing (such as postal marketing or
-              telemarketing), please contact us using the contact details
-              provided in the How to Contact Us section below. If you set up an
-              account on our Sites, we will still send you non-promotional
-              communications like service-related emails.
+              send or by contacting us using the contact details provided in the
+              How to Contact Us section below. If you set up an account on our
+              Sites, we will still send you non-promotional communications like
+              service-related emails.
             </p>
             <p>
               If you want your phone number to be added to our internal
@@ -784,9 +773,9 @@ export default function About() {
               processor/service provider and you wish to exercise any rights you
               may have under applicable data protection laws, please directly
               inquire with the customer that granted you access to the Rollup
-              Platform. Because we may only access a customer’s data upon their
-              instructions, if you wish to make your request directly to us,
-              please provide us with the name of the Rollup customer(s) and
+              Platform. Because we may only access a customer&apos;s data upon
+              their instructions, if you wish to make your request directly to
+              us, please provide us with the name of the Rollup customer(s) and
               project name(s) relevant to your request. We will refer your
               request to that customer, and will support them as needed in
               responding to your request.
@@ -798,9 +787,10 @@ export default function About() {
               make updates or changes to this Privacy Notice because of changes
               in applicable laws or regulations. Any changes made to this
               Privacy Notice are effective as of the &ldquo;Last Updated&rdquo;
-              reference above. If necessary, we may take additional measures to
-              inform you of changes, such as by posting a prominent notice on
-              our Site.
+              reference above. For material adverse changes, we will take
+              additional measures to inform you of changes, such as by posting a
+              prominent notice on our Site and if possible, contact you at the
+              email you have provided us.
             </p>
             <h2>13. How To Contact Us</h2>
             <p>
@@ -820,16 +810,17 @@ export default function About() {
             <p>
               The CCPA provides California residents with certain rights
               regarding their Personal Data. Please note, these rights only
-              apply to Personal Data we collect and process under this Privacy
-              Notice as a business/controller. For Personal Data we process on
-              behalf of our customers in our capacity as a service
-              provider/processor, please submit your request directly to the
-              customer with whom you have a relationship, and we will provide
-              reasonable assistance to that business client as necessary to
-              enable them to respond to your requests to exercise your privacy
-              rights. In general, California residents, including our customer’s
-              employees who reside in California, have the following rights with
-              respect to their Personal Data, subject to certain exceptions:
+              apply to Personal Data we collect and process from website
+              visitors under this Privacy Notice as a Business. For Personal
+              Data we process on behalf of our customers in our capacity as a
+              service provider or processor, please submit your request directly
+              to the customer with whom you have a relationship, and we will
+              provide reasonable assistance to that business client as necessary
+              to enable them to respond to your requests to exercise your
+              privacy rights. In general, California residents, including our
+              customer&apos;s employees who reside in California, have the
+              following rights with respect to their Personal Data, subject to
+              certain exceptions:
             </p>
             <p>
               <strong>Right to know/access:</strong> you have the right to
@@ -913,7 +904,7 @@ export default function About() {
             <p>
               Before responding to your request, we must first verify your
               identity using the Personal Data you recently provided to us. You
-              must provide us with our name, street address, city, state, zip
+              must provide us with your name, street address, city, state, zip
               code and an e-mail address or phone number. We will take steps to
               verify your request by matching the Personal Data provided by you
               with the information we have in our records. In some cases, we may
@@ -933,8 +924,8 @@ export default function About() {
             <h2>15. California Shine the Light Law</h2>
             <p>
               Rollup does not disclose Personal Data to third parties for the
-              third-parties’ direct marketing purposes, under Cal. Civ. Code
-              §1798.83(d).
+              third-parties&apos; direct marketing purposes, under Cal. Civ.
+              Code §1798.83(d).
             </p>
           </div>
         </main>
