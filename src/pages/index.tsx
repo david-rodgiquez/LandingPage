@@ -20,7 +20,7 @@ import AnotationImage from "../../public/img/anotation.svg";
 import Microsoft365Image from "../../public/img/integrations/microsoft-365.svg";
 import GoogleImage from "../../public/img/integrations/google.svg";
 import NotionImage from "../../public/img/integrations/notion.svg";
-import JiraImage from "../../public/img/integrations/jira.png";
+import JiraImage from "../../public/img/integrations/jira.svg";
 import LinearAppImage from "../../public/img/integrations/linear-app.png";
 
 import SlackImage from "../../public/img/integrations/slack.svg";
@@ -42,7 +42,7 @@ import SelfHostImage from "../../public/img/self-host.png";
 import LogoDark from "@/components/icons/LogoDark";
 
 import { useRive } from "@rive-app/react-canvas";
-import { useSpring, animated, Spring } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
@@ -734,47 +734,149 @@ function CodeBlock({ codes }: { codes: Codes }) {
   );
 }
 
+function DeveloperApiMenuItem({
+  setOpenedModule,
+  menu,
+  isOpened,
+}: {
+  isOpened: boolean;
+  menu: (typeof developerApiMenus)[number];
+  setOpenedModule: React.Dispatch<
+    React.SetStateAction<(typeof developerApiMenus)[number]["title"]>
+  >;
+}) {
+  return (
+    <button
+      data-is-active={isOpened}
+      type="button"
+      onClick={() => {
+        setOpenedModule(menu.title);
+      }}
+      key={menu.title}
+      className={`text-left p-6 relative rounded-lg flex flex-col gap-1 border overflow-hidden ${
+        isOpened
+          ? "border border-[#252A31] shadow-[0px_0px_0px_4px_#2F333B]"
+          : "border-transparent opacity-50 "
+      }`}
+    >
+      <h3 className="font-bold text-xl">{menu.title}</h3>
+      <p className="text-lg leading-tight">{menu.description}</p>
+    </button>
+  );
+}
+
 function DeveloperApiMenu() {
+  const bulletRef = useRef<HTMLDivElement>(null);
+  const menuItemContainerRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+
   const [openedMenu, setOpenedMenu] =
     useState<(typeof developerApiMenus)[number]["title"]>("Set a property");
 
-  const codes = developerApiMenus.find(
-    (menu) => menu.title === openedMenu
-  )!.codes;
+  const codes = developerApiMenus.find((m) => m.title === openedMenu)!.codes;
+
+  useEffect(() => {
+    const itemContainerElement = menuItemContainerRef.current;
+    const bulletElement = bulletRef.current;
+
+    if (!itemContainerElement || !bulletElement) return;
+
+    const items = Array.from(itemContainerElement.children);
+    const containerRect = itemContainerElement.getBoundingClientRect();
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const isActive = item.getAttribute("data-is-active") === "true";
+
+      if (isActive) {
+        const last = items.find(
+          (item) => item.getAttribute("data-active-type") === "last"
+        );
+        last?.removeAttribute("data-active-type");
+
+        const current = items.find(
+          (item) => item.getAttribute("data-active-type") === "current"
+        );
+        current?.setAttribute("data-active-type", "last");
+
+        item.setAttribute("data-active-type", "current");
+      }
+
+      if (isActive) {
+        const activeIndex = items.findIndex(
+          (item) => item.getAttribute("data-is-active") === "true"
+        );
+
+        let lastActiveIndex = items.findIndex((itm) => {
+          return itm.getAttribute("data-active-type") === "last";
+        });
+
+        const isBottomToTop = lastActiveIndex > activeIndex;
+
+        const itemRect = item.getBoundingClientRect();
+        const height = item.clientHeight;
+
+        if (lastActiveIndex < 0 || isBottomToTop) {
+          const middle = Math.abs(
+            containerRect.top -
+              itemRect.top -
+              height / 2 +
+              bulletElement.clientHeight / 2
+          );
+          bulletElement.style.top = `${middle}px`;
+          if (lineRef.current) {
+            lineRef.current.style.top = `${middle - height / 2}px`;
+            lineRef.current.style.height = `${height}px`;
+          }
+        } else {
+          const middle = Math.abs(
+            containerRect.top -
+              itemRect.bottom +
+              height / 2 +
+              bulletElement.clientHeight / 2
+          );
+
+          bulletElement.style.top = `${middle}px`;
+          if (lineRef.current) {
+            lineRef.current.style.top = `${middle - height / 2}px`;
+            lineRef.current.style.height = `${height}px`;
+          }
+        }
+        break;
+      }
+    }
+  }, [openedMenu]);
 
   return (
-    <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 h-[520px]">
       <div className="flex w-full md:w-4/12 gap-5 shrink-0">
-        <div className="h-full w-0.5 shrink-0 rounded-full bg-gradient-to-b from-10% from-[#4c90f02d] via-80% via-transparent"></div>
-        <div className="flex flex-col w-full">
+        <div className="h-full relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#4c90f02d] via-80% via-transparent">
+          <div
+            ref={lineRef}
+            style={{ transition: "top 0.5s" }}
+            className="absolute z-20 bg-gradient-to-b from-20% from-transparent via-60% via-[#4C90F0] to-80% to-transpfrom-transparent w-0.5 rounded-full"
+          ></div>
+          <div
+            className="absolute z-20"
+            ref={bulletRef}
+            style={{ transition: "top 0.5s" }}
+          >
+            <div className="border-gray-600/60 border-4 rounded-full">
+              <div className="border border-[#1C2127] rounded-full">
+                <div className="h-3 w-3 bg-blue-500 border-2 border-[#1C2127] rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col" ref={menuItemContainerRef}>
           {developerApiMenus.map((menu) => {
-            const isOpened = openedMenu === menu.title;
             return (
-              <button
-                type="button"
-                onClick={() => setOpenedMenu(menu.title)}
+              <DeveloperApiMenuItem
                 key={menu.title}
-                className={`p-5 text-left relative rounded-lg flex flex-col justify-center ${
-                  isOpened
-                    ? "border border-[#252A31] shadow-[0px_0px_0px_4px_#2F333B]"
-                    : "text-[#ABB3BF]"
-                }`}
-              >
-                {isOpened && (
-                  <div className="absolute z-10 -left-[33px] ">
-                    <div className="border-gray-600/60 border-4 rounded-full">
-                      <div className="border border-[#1C2127] rounded-full">
-                        <div className="h-3 w-3 bg-blue-500 border-2 border-[#1C2127] rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {isOpened && (
-                  <div className="bg-gradient-to-b from-20% from-transparent via-50% via-[#4C90F0] to-80% to-transparent w-0.5 rounded-full absolute -left-[23px] h-full top-0"></div>
-                )}
-                <h3 className="font-bold text-xl">{menu.title}</h3>
-                <p className="text-lg leading-tight mt-1">{menu.description}</p>
-              </button>
+                isOpened={openedMenu === menu.title}
+                menu={menu}
+                setOpenedModule={setOpenedMenu}
+              />
             );
           })}
         </div>
@@ -982,17 +1084,26 @@ export default function Home() {
             </Link>
             <div className="items-center w-full gap-8 hidden lg:flex">
               {headerMenus.map((menu) => (
-                <Link key={menu.path} href={menu.path}>
+                <Link
+                  key={menu.path}
+                  href={menu.path}
+                  className="hover:text-[#2D72D2] transition-colors"
+                >
                   {menu.title}
                 </Link>
               ))}
             </div>
           </div>
           <div className="flex items-center gap-3 h-max shrink-0">
-            <Link href="https://app.rollup.ai/">Login</Link>
             <Link
               href="https://app.rollup.ai/"
-              className="py-1.5 px-3 bg-[#2D72D2] text-white"
+              className="hover:text-[#2D72D2] transition-colors"
+            >
+              Login
+            </Link>
+            <Link
+              href="https://app.rollup.ai/"
+              className="py-1.5 px-3 bg-[#2D72D2] hover:bg-[#215DB0] transition-colors text-white"
             >
               Go to app
             </Link>
@@ -1013,7 +1124,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="https://app.rollup.ai/"
-                  className="flex items-center rounded-sm gap-2 mt-6 transition-colors bg-[#2D72D2] hover:bg-[#2862b4] font-semibold text-white px-6 py-3"
+                  className="flex items-center rounded-sm gap-2 mt-6 transition-colors bg-[#2D72D2] hover:bg-[#215DB0] font-semibold text-white px-6 py-3"
                 >
                   <span>Get Started</span>
                   <IconChevronRight className="h-4 w-4" />
@@ -1400,7 +1511,7 @@ export default function Home() {
                     </ul>
                   </div>
                 ))}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                   <h4 className="text-2xl font-medium">Social</h4>
                   <div className="flex gap-4">
                     <Link href="#">
