@@ -7,10 +7,10 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import LogoLight from "@/components/icons/LogoLight";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import Image from "next/image";
-import ChiplyticsLogo from "../../public/img/chiplytics.png";
-import SparkmateLogo from "../../public/img/sparkmate.png";
-import OrangewoodLogo from "../../public/img/orangewood..png";
-import VuecasonLogo from "../../public/img/vuecason.png";
+import ChiplyticsLogo from "../../public/img/chiplytics.svg";
+import SparkmateLogo from "../../public/img/sparkmate.svg";
+import OrangewoodLogo from "../../public/img/orangewood.svg";
+import VuecasonLogo from "../../public/img/vuecason.svg";
 import CollaborationFeaturesImage from "../../public/img/collaboration-features.svg";
 import FullHistoryAndVersioningImage from "../../public/img/full-history-and-versioning.svg";
 import ProjectManagementImage from "../../public/img/project-management.svg";
@@ -1103,7 +1103,7 @@ export default function Home() {
             </Link>
             <Link
               href="https://app.rollup.ai/"
-              className="py-1.5 px-3 bg-[#2D72D2] hover:bg-[#215DB0] transition-colors text-white"
+              className="py-1.5 px-3 rounded-sm bg-[#2D72D2] hover:bg-[#215DB0] transition-colors text-white"
             >
               Go to app
             </Link>
@@ -1444,10 +1444,16 @@ export default function Home() {
           <div className="flex justify-center lg:justify-between flex-wrap lg:flex-nowrap gap-8 w-full items-center mt-16">
             {securities.map((security, i) => (
               <Fragment key={security.title}>
-                <div className="flex flex-col gap-2 justify-center items-center text-center">
-                  <Image src={security.image} alt={security.title} />
-                  <h3 className="font-semibold text-2xl">{security.title}</h3>
-                  <p className="text-lg">{security.description}</p>
+                <div className="flex flex-col justify-center items-center text-center  leading-none">
+                  <Image
+                    src={security.image}
+                    alt={security.title}
+                    quality={100}
+                  />
+                  <h3 className="font-semibold text-2xl mt-5">
+                    {security.title}
+                  </h3>
+                  <p className="text-lg mt-2">{security.description}</p>
                 </div>
                 {i % 1 === 0 && i !== securities.length - 1 ? (
                   <div
