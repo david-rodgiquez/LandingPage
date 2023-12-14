@@ -1135,7 +1135,7 @@ export default function Home() {
               <div className="lg:min-h-[671px]">
                 <RiveComponent
                   className="max-w-6xl mx-auto mt-20"
-                  src="https://public.rive.app/hosted/311509/109176/se9bOJUhVU6KQVhSoJLL2w.riv"
+                  src="https://public.rive.app/hosted/311509/111144/91nH-3Dgn06FpZU7YKk4IA.riv"
                 />
               </div>
             </HeroImageAnimation>
