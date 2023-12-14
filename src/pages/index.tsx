@@ -36,7 +36,7 @@ import NxImage from "../../public/img/integrations/nx.svg";
 import OnshapeImage from "../../public/img/integrations/onshape.svg";
 import SwImage from "../../public/img/integrations/sw.png";
 
-import SOCImage from "../../public/img/soc.svg";
+import SOCImage from "../../public/img/soc2-blue.png";
 import ItarImage from "../../public/img/itar.svg";
 import SelfHostImage from "../../public/img/self-host.png";
 import LogoDark from "@/components/icons/LogoDark";
@@ -1449,6 +1449,7 @@ export default function Home() {
                     src={security.image}
                     alt={security.title}
                     quality={100}
+                    className="max-h-[122px] w-full object-contain"
                   />
                   <h3 className="font-semibold text-2xl mt-5">
                     {security.title}
@@ -1497,12 +1498,12 @@ export default function Home() {
                 <Link href="/">
                   <LogoDark />
                 </Link>
-                <p className="mt-3 text-[#ABB3BF]">
-                  © Copyright {new Date().getFullYear()} Rollup
-                </p>
-                <p className="text-[#ABB3BF] mt-1">
-                  1710 Rose Street, Berkeley, CA 94703
-                </p>
+                <div className="text-[#ABB3BF] mt-3">
+                  <p>© Copyright {new Date().getFullYear()} Rollup</p>
+                  <p className="mt-2">9255 W Sunset Blvd STE 1100</p>
+                  <p>90069-3308 West Hollywood, CA</p>
+                  <p>United States</p>
+                </div>
               </div>
               <div className="w-8/12 flex flex-wrap gap-8 lg:gap-0 justify-between">
                 {footerMenus.map((menu) => (
