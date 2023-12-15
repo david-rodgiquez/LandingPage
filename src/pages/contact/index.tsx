@@ -184,7 +184,7 @@ export default function Page() {
           <div className="max-w-7xl w-full flex-col md:flex-row lg:px-4 mx-auto mt-16 font-blender flex gap-6">
             <ContactFormSection />
             <div className="w-full md:w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
-              <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
+              <div className="w-full py-12 md:py-16 px-8 md:px-16 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Get in touch</h3>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Headquarters Address</h4>
