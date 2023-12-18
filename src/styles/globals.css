@@ -110,3 +110,26 @@ body {
 .page-content a {
   @apply text-blue-600 underline decoration-1;
 }
+
+/* swiper */
+.swiper .swiper-pagination .swiper-pagination-bullet {
+  background-color: #757575;
+  margin: 0 2px !important;
+  width: 12px;
+  @apply rounded-full;
+}
+.swiper
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply w-8 transition rounded-full bg-[#4C90F0];
+}
+
+.swiper.custom-grid .swiper-wrapper .swiper-slide {
+  @apply lg:!m-0 lg:h-full lg:!w-full;
+}
+.swiper.custom-grid .swiper-wrapper {
+  @apply lg:grid lg:grid-cols-2 lg:gap-12;
+}
+.swiper .swiper-pagination .swiper-pagination-bullet {
+  @apply lg:hidden;
+}

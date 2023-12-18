@@ -44,6 +44,16 @@ import LogoDark from "@/components/icons/LogoDark";
 import { useRive } from "@rive-app/react-canvas";
 import { useSpring, animated } from "@react-spring/web";
 
+// import "slick-carousel/slick/slick.css";
+// import Slider from "react-slick";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
 });
@@ -531,7 +541,7 @@ function ModulesMenu() {
   }, [openedModule]);
 
   return (
-    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 h-[520px]">
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 md:h-[520px]">
       <div className="flex w-full md:w-4/12 gap-5 shrink-0">
         <div className="h-full relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9] ">
           <div
@@ -848,7 +858,7 @@ function DeveloperApiMenu() {
   }, [openedMenu]);
 
   return (
-    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 h-[520px]">
+    <div className="w-full mt-8 flex flex-col md:flex-row gap-8 md:h-[520px]">
       <div className="flex w-full md:w-4/12 gap-5 shrink-0">
         <div className="h-full relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#4c90f02d] via-80% via-transparent">
           <div
@@ -1070,6 +1080,48 @@ function HeroImageAnimation({ children }: { children: React.ReactNode }) {
   return <animated.div style={styles}>{children}</animated.div>;
 }
 
+const animationItemsOnHover = [
+  {
+    title: "Keyboard Navigation",
+    description: "Jump between contexts and execute changes in milliseconds.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv",
+  },
+  {
+    title: "Drag and Drop",
+    description: "Intuitive drag and drop interactions are everywhere.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109749/yNB4JjwcnkKlEcur2guJ3w.riv",
+  },
+  {
+    title: "Realtime",
+    description:
+      "Never think about refreshing the browser, or hitting save again.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109750/etUe4KXQ3E25rXYWkhKewA.riv",
+  },
+  {
+    title: "Reference any object anywhere",
+    description:
+      "Our powerful syntax for linking objects and their values means you&apos;ll never repeat yourself.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109751/zzbOWOvUcEmYwTfbGqNXRw.riv",
+  },
+  {
+    title: "Api",
+    description:
+      "Great engineering teams build their own tools. First-class APIs and Developer-friendly features mean you can incorporate Rollup into your new and exisgting systems easy.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109752/tPSIiP4hREaS8ZFbPqd4Cg.riv",
+  },
+  {
+    title: "Command Bar",
+    description:
+      "Our global command bar lets you do anything anywhere in seconds in Rollup.",
+    riveUrl:
+      "https://public.rive.app/hosted/311509/109753/Xy9a6mP-V0qFpUnZaOFTuA.riv",
+  },
+];
 export default function Home() {
   return (
     <>
@@ -1111,11 +1163,11 @@ export default function Home() {
         </nav>
       </header>
       <div className="text-[#16181C] font-blender antialiased overflow-hidden">
-        <section className="bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-[50%_20%]">
-          <div className="max-w-7xl px-4 mx-auto mt-24">
+        <section className="">
+          <div className="max-w-7xl px-4 mx-auto mt-16 md:mt-24 bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-cover bg-[50%_160px] md:bg-auto md:bg-[50%_40%] md:pb-12">
             <HeadlineAnimation>
               <div className="mx-auto flex flex-col gap-2 justify-center items-center">
-                <h1 className="text-4xl text-center sm:text-5xl md:text-6xl lg:text-7xl font-semibold">
+                <h1 className="text-5xl font-bold text-center sm:text-5xl md:text-6xl lg:text-7xl md:font-semibold">
                   The Platform for Moonshots
                 </h1>
                 <p className="font-semibold text-lg text-center md:text-2xl">
@@ -1132,9 +1184,9 @@ export default function Home() {
               </div>
             </HeadlineAnimation>
             <HeroImageAnimation>
-              <div className="lg:min-h-[671px]">
+              <div className="min-h-[200px] md:min-h-[413px] lg:min-h-[671px]">
                 <RiveComponent
-                  className="max-w-6xl mx-auto mt-20"
+                  className="max-w-6xl mx-auto mt-10 md:mt-20"
                   src="https://public.rive.app/hosted/311509/111144/91nH-3Dgn06FpZU7YKk4IA.riv"
                 />
               </div>
@@ -1142,53 +1194,92 @@ export default function Home() {
           </div>
           <div
             id="customers"
-            className="w-full flex flex-wrap items-center justify-center gap-4 md:gap-14 mt-20 px-4"
+            className="w-full flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-y-0 md:gap-x-8 lg:gap-14 mt-10 md:mt-14 px-4"
           >
-            <Image quality={100} src={ChiplyticsLogo} alt="Chiplytics" />
-            <Image quality={100} src={SparkmateLogo} alt="Sparkmate" />
-            <Image quality={100} src={OrangewoodLogo} alt="Orangewood" />
-            <Image quality={100} src={VuecasonLogo} alt="Vuecason" />
+            <Image
+              quality={100}
+              src={ChiplyticsLogo}
+              alt="Chiplytics"
+              className="max-w-[100px] md:max-w-none"
+            />
+            <Image
+              quality={100}
+              src={SparkmateLogo}
+              alt="Sparkmate"
+              className="max-w-[100px] md:max-w-none"
+            />
+            <Image
+              quality={100}
+              src={OrangewoodLogo}
+              alt="Orangewood"
+              className="max-w-[100px] md:max-w-none"
+            />
+            <Image
+              quality={100}
+              src={VuecasonLogo}
+              alt="Vuecason"
+              className="max-w-[100px] md:max-w-none"
+            />
           </div>
 
-          <div className="w-full mx-auto flex flex-wrap justify-center gap-6 md:gap-10 mt-24 px-4">
-            {testimonials.map((testimonial, i) => (
-              <div
-                key={i}
-                className="p-9 border bg-white border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD] rounded-lg max-w-sm w-full"
-              >
-                <div className="flex gap-3 items-center">
-                  <Image
-                    src={testimonial.author.imgUrl}
-                    alt={testimonial.author.name}
-                    height={48}
-                    width={48}
-                    className="shrink-0 h-12 w-12"
-                  />
-                  <div className="flex flex-col gap-1">
-                    <span className="font-semibold text-lg leading-none">
-                      {testimonial.author.name}
-                    </span>
-                    <span className="text-base leading-none font-medium">
-                      {testimonial.author.title}
-                    </span>
+          <div className="w-full max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-10 md:mt-24 px-4">
+            <Swiper
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              spaceBetween={50}
+              slidesPerView={1}
+              onSlideChange={() => console.log("slide change")}
+              onSwiper={(swiper) => console.log(swiper)}
+              className="!pb-12 "
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+              }}
+            >
+              {testimonials.map((testimonial, i) => (
+                <SwiperSlide key={i}>
+                  <div className="p-6 md:p-9 border bg-white border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD] rounded-lg">
+                    <div className="flex gap-3 items-center">
+                      <Image
+                        src={testimonial.author.imgUrl}
+                        alt={testimonial.author.name}
+                        height={48}
+                        width={48}
+                        className="shrink-0 h-12 w-12"
+                      />
+                      <div className="flex flex-col gap-1">
+                        <span className="font-semibold text-lg leading-none">
+                          {testimonial.author.name}
+                        </span>
+                        <span className="text-base leading-none font-medium">
+                          {testimonial.author.title}
+                        </span>
+                      </div>
+                      <div className="flex self-start ml-auto gap-2">
+                        <Link href={testimonial.socials.linkedin}>
+                          <IconTwitter className="h-5 w-5" />
+                        </Link>
+                        <Link href={testimonial.socials.linkedin}>
+                          <IconLinkedin className="h-5 w-5" />
+                        </Link>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-lg leading-tight">
+                      {testimonial.testimonail}
+                    </p>
                   </div>
-                  <div className="hidden sm:flex self-start ml-auto gap-2">
-                    <Link href={testimonial.socials.linkedin}>
-                      <IconTwitter className="h-5 w-5" />
-                    </Link>
-                    <Link href={testimonial.socials.linkedin}>
-                      <IconLinkedin className="h-5 w-5" />
-                    </Link>
-                  </div>
-                </div>
-                <p className="mt-4 text-lg leading-tight">
-                  {testimonial.testimonail}
-                </p>
-              </div>
-            ))}
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
-        <section className="max-w-7xl px-4 mx-auto mt-40">
+        <section className="max-w-7xl px-4 mx-auto mt-20 md:mt-40">
           <h2 className="font-bold text-4xl md:text-5xl">Modules</h2>
           <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
             Short description Technical Modules Short description Technical
@@ -1197,7 +1288,10 @@ export default function Home() {
 
           <ModulesMenu />
         </section>
-        <section id="features" className="max-w-7xl px-4 mx-auto mt-40">
+        <section
+          id="features"
+          className="max-w-7xl px-4 mx-auto mt-20 md:mt-40"
+        >
           <h2 className="font-bold text-4xl md:text-5xl">
             Collaboration Features
           </h2>
@@ -1289,108 +1383,48 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 mt-12 gap-6 md:gap-10">
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">Keyboard Navigation</h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Jump between contexts and execute changes in milliseconds.
-                  </p>
-                </div>
-              </div>
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109749/yNB4JjwcnkKlEcur2guJ3w.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">Drag and Drop</h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Intuitive drag and drop interactions are everywhere.
-                  </p>
-                </div>
-              </div>
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109750/etUe4KXQ3E25rXYWkhKewA.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">Realtime</h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Never think about refreshing the browser, or hitting save
-                    again.
-                  </p>
-                </div>
-              </div>
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109751/zzbOWOvUcEmYwTfbGqNXRw.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">
-                    Reference any object anywhere
-                  </h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Our powerful syntax for linking objects and their values
-                    means you&apos;ll never repeat yourself.
-                  </p>
-                </div>
-              </div>
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109752/tPSIiP4hREaS8ZFbPqd4Cg.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">Api</h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Great engineering teams build their own tools. First-class
-                    APIs and Developer-friendly features mean you can
-                    incorporate Rollup into your new and exisgting systems easy.
-                  </p>
-                </div>
-              </div>
-              <div className="border flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                <RiveComponent
-                  playOnHover={true}
-                  autoPlay={false}
-                  animations={false}
-                  src="https://public.rive.app/hosted/311509/109753/Xy9a6mP-V0qFpUnZaOFTuA.riv"
-                  className="w-full"
-                />
-                <div>
-                  <h3 className="text-xl font-semibold">Command Bar</h3>
-                  <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
-                    Our global command bar lets you do anything anywhere in
-                    seconds in Rollup.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Swiper
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              spaceBetween={50}
+              slidesPerView={1}
+              className="!pb-12 custom-grid mt-12"
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+                1024: {
+                  slidesPerView: "auto",
+                },
+              }}
+            >
+              {animationItemsOnHover.map((item) => (
+                <SwiperSlide key={item.title}>
+                  <div className="border h-full flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
+                    <RiveComponent
+                      playOnHover={true}
+                      autoPlay={false}
+                      animations={false}
+                      src={item.riveUrl}
+                      className="w-full"
+                    />
+                    <div className="flex flex-col flex-grow">
+                      <h3 className="text-xl font-semibold">{item.title}</h3>
+                      <p className="text-[#ABB3BF] text-lg leading-tight mt-1">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
-        <section id="integrations" className="max-w-7xl px-4 mx-auto mt-40">
+        <section
+          id="integrations"
+          className="max-w-7xl px-4 mx-auto mt-20 md:mt-40"
+        >
           <h2 className="font-bold text-4xl md:text-5xl">Integrations</h2>
           <div className="grid gap-6 md:gap-10 grid-cols-1 md:grid-cols-2 mt-14">
             {integrations.map((integration) => (
@@ -1470,7 +1504,7 @@ export default function Home() {
           </div>
         </section>
         <section className="bg-[url(/img/footer-blue-line.png)] bg-[#2D72D2] mt-40 bg-no-repeat w-full bg-right bg-contain">
-          <div className="max-w-7xl px-4 mx-auto w-full py-32">
+          <div className="max-w-7xl px-4 mx-auto w-full py-20 md:py-32">
             <h2 className="font-bold text-white text-3xl md:text-4xl lg:text-5xl">
               Ready to engineer faster?
             </h2>
@@ -1494,7 +1528,7 @@ export default function Home() {
         <footer className="bg-[#16181C] w-full">
           <div className="max-w-7xl mx-auto px-4 text-white py-24">
             <div className="w-full flex flex-col gap-8 md:gap-0 md:flex-row">
-              <div className="w-4/12">
+              <div className="md:w-4/12">
                 <Link href="/">
                   <LogoDark />
                 </Link>
@@ -1505,7 +1539,7 @@ export default function Home() {
                   <p>United States</p>
                 </div>
               </div>
-              <div className="w-8/12 flex flex-wrap gap-8 lg:gap-0 justify-between">
+              <div className="md:w-8/12 flex flex-wrap gap-8 lg:gap-0 justify-between">
                 {footerMenus.map((menu) => (
                   <div key={menu.title} className="flex flex-col gap-3">
                     <h4 className="text-2xl font-medium">{menu.title}</h4>
