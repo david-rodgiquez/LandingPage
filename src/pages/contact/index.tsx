@@ -5,7 +5,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import MapDark from "../../../public/img/map_dark.png";
-import MapLight from "../../../public/img/map_light.png";
+import MapLight from "../../../public/img/new-map-light.svg";
+import NewLayout from "@/components/NewLayout";
 
 type ContactFormPayload = {
   fullName: string;
@@ -89,11 +90,15 @@ function ContactFormSection() {
   };
 
   return (
-    <div className="md:w-8/12 w-full bg-white dark:bg-[#1C2127] text-black dark:text-white">
+    <div className="md:w-8/12 w-full border-[#DBE4EF] border rounded-lg md:shadow-[0px_0px_0px_4px_#F4F8FD] bg-white dark:bg-[#1C2127] text-black dark:text-white">
       <div className="w-full py-12 md:py-16 px-8 md:px-28 flex flex-col gap-8">
-        <h3 className="text-4xl font-semibold">Contact</h3>
+        <h3 className="text-4xl font-semibold">Contact Form</h3>
         {status !== "success" ? (
-          <form onSubmit={onSubmitForm} className="w-full flex flex-col gap-4">
+          <form
+            onSubmit={onSubmitForm}
+            autoComplete="off"
+            className="w-full flex flex-col gap-4"
+          >
             <div className="w-full text-xl flex gap-2 flex-col">
               <label htmlFor="fullName">
                 Full name <span className="text-[#2D72D2]">*</span>
@@ -145,7 +150,7 @@ function ContactFormSection() {
             <button
               disabled={status === "loading"}
               type="submit"
-              className="dark:bg-[#252A31] disabled:opacity-50 disabled:pointer-events-none dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+              className="disabled:opacity-50 disabled:pointer-events-none py-2 mt-6 font-medium px-6 rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-lg text-white bg-[#2D72D2]"
             >
               {status === "loading" ? (
                 <IconSpinner className="h-6 w-6 text-black" />
@@ -171,50 +176,56 @@ export default function Page() {
       <Head>
         <title>Contact | Rollup</title>
       </Head>
-      <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] mt-10 mb-20">
-          <div className="w-full max-w-4xl px-4 flex gap-4 mx-auto flex-col items-center justify-center">
-            <span className="uppercase text-base font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
+      <NewLayout>
+        <main className="w-full font-blender mt-24 mb-20">
+          <div className="w-full max-w-4xl px-4 flex gap-3 mx-auto flex-col items-center justify-center">
+            <span className="uppercase text-lg font-bold font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
               Contact Us
             </span>
-            <h1 className="text-5xl text-center font-bold dark:text-white">
-              Let&apos;s do something great together.
+            <h1 className="text-[3.25rem] leading-[3rem] lg:text-7xl lg:leading-[4rem] max-w-lg  text-center font-bold dark:text-white">
+              Something great together
             </h1>
           </div>
-          <div className="max-w-7xl w-full flex-col md:flex-row lg:px-4 mx-auto mt-16 font-blender flex gap-6">
+          <div className="max-w-7xl w-full flex-col md:flex-row px-4 mx-auto mt-16 font-blender flex gap-6">
             <ContactFormSection />
-            <div className="w-full md:w-4/12 bg-white dark:bg-[#1C2127] text-black dark:text-white">
+            <div className="w-full md:w-4/12 border-[#DBE4EF] border rounded-lg md:shadow-[0px_0px_0px_4px_#F4F8FD] bg-white dark:bg-[#1C2127] text-black dark:text-white">
               <div className="w-full py-12 md:py-16 px-8 md:px-16 flex flex-col gap-8">
                 <h3 className="text-4xl font-semibold">Get in touch</h3>
                 <div className="flex flex-col gap-2 leading-tight">
-                  <h4 className="text-xl font-bold">Headquarters Address</h4>
+                  <h4 className="text-xl font-bold">Headquarters</h4>
                   <p className="text-lg dark:text-[#ABB3BF]">
-                    Rollup HQ 10250 Constellation Blvd Suite 100 Los Angeles, CA
-                    90067
+                    9255 W Sunset Blvd STE 1100
+                    <br />
+                    90069-3308 West Hollywood, CA
+                    <br />
+                    United States
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 leading-tight">
-                  <h4 className="text-xl font-bold">Rollup London</h4>
-                  <p className="text-lg dark:text-[#ABB3BF]">United Kingdom</p>
+                  <h4 className="text-xl font-bold">Engineering</h4>
+                  <p className="text-lg dark:text-[#ABB3BF]">
+                    Rollup Engineering
+                    <br />
+                    Number + Street London,
+                    <br />
+                    United Kingdom
+                  </p>
                 </div>
                 <div className="flex flex-col gap-2 leading-tight">
                   <h4 className="text-xl font-bold">Contact Email</h4>
                   <p className="text-lg dark:text-[#ABB3BF]">
-                    Info: info@rollup.ai
-                    <br />
-                    Legal: legal@rollup.ai
-                    <br />
-                    Support: support@rollup.ai
-                    <br />
-                    Sales: sales@rollup.ai
+                    contact@rollup.com
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="lg:px-4 mt-6 max-w-7xl mx-auto w-full ">
-            <div data-hide-on-theme="dark">
+          <div className="px-4 mt-6 max-w-7xl mx-auto w-full ">
+            <div
+              data-hide-on-theme="dark"
+              className="border-[#DBE4EF] border rounded-lg md:shadow-[0px_0px_0px_4px_#F4F8FD]"
+            >
               <Image
                 src={MapLight}
                 alt="Map"
@@ -230,7 +241,7 @@ export default function Page() {
             </div>
           </div>
         </main>
-      </LayoutPage>
+      </NewLayout>
     </>
   );
 }

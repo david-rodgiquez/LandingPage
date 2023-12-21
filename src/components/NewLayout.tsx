@@ -117,7 +117,7 @@ const footerMenus = [
 
 export default function NewLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[#16181C] font-blender antialiased overflow-hidden">
+    <div className="text-[#16181C] font-blender antialiased">
       <header className="text-[#16181C] font-blender antialiased w-full bg-[rgba(255,255,255,0.80)] border-b border-b-[#DCE0E5] sticky top-0 backdrop-blur-[20px] z-40">
         <nav className="max-w-7xl px-4 w-full mx-auto flex items-center justify-between h-14 font-semibold text-lg">
           <div className="flex items-center gap-8">
