@@ -1,4 +1,3 @@
-import LayoutPage from "@/components/LayoutPage";
 import IconSpinner from "@/components/icons/IconSpinner";
 import axios from "axios";
 import Head from "next/head";

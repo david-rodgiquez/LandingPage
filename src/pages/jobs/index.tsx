@@ -1,9 +1,10 @@
-import LayoutPage from "@/components/LayoutPage";
 import Head from "next/head";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { getJobPostings } from "@/lib/ashby";
 import { InferGetServerSidePropsType } from "next";
+import NewLayout from "@/components/NewLayout";
+import IconChevronRight from "@/components/icons/IconChevronRight";
 
 function BlueLine(props: SVGProps<SVGSVGElement>) {
   return (
@@ -143,19 +144,25 @@ export default function Page({
       <Head>
         <title>Jobs | Rollup</title>
       </Head>
-      <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] dark:text-white my-20 ">
-          {/*  */}
-          <div className="w-full max-w-4xl px-4 flex gap-4 mx-auto flex-col items-center justify-center">
-            <span className="uppercase text-base font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
+      <NewLayout>
+        <main className="">
+          <div className="w-full max-w-4xl px-4 mt-24 flex gap-4 mx-auto flex-col items-center justify-center">
+            <span className="uppercase font-bold text-lg font-berkeley text-[#2D72D2] dark:text-[#4C90F0]">
               Careers
             </span>
-            <h1 className="text-5xl text-center font-bold ">
-              We are bringing magical software to the world of hardware
+            <h1 className="text-5xl lg:text-7xl text-center font-bold">
+              We are bringing magic back to software
             </h1>
+            <Link
+              href="#"
+              className="bg-[#2D72D2] hover:bg-[#215DB0] mt-4 font-medium text-white text-lg flex px-6 transition-colors rounded-sm items-center py-3 gap-2"
+            >
+              <span>See Open Positions</span>
+              <IconChevronRight className="h-4 w-4" />
+            </Link>
           </div>
 
-          <div className="max-w-7xl lg:px-4 mx-auto mt-36 font-blender flex flex-col gap-8">
+          <div className="max-w-7xl px-4 mx-auto mt-36 font-blender flex flex-col gap-8">
             <h2 className="font-bold text-4xl">Join us</h2>
             <div className="w-full flex flex-col gap-16">
               {departments.map((department) => (
@@ -163,7 +170,7 @@ export default function Page({
                   <h3 className="text-2xl font-bold">
                     {department.departmentName}
                   </h3>
-                  <div className="flex flex-col ">
+                  <div className="flex flex-col font-medium">
                     {department.jobs.map((job) => (
                       <div
                         key={job.id}
@@ -173,8 +180,8 @@ export default function Page({
                           href={`/jobs/${job.id}`}
                           className="flex flex-col gap-2 md:gap-0 items-start md:flex-row md:items-center justify-between hover:text-[#2D72D2] dark:text-[#ABB3BF] dark:hover:text-[#4C90F0] transition-colors"
                         >
-                          <h4 className="text-2xl">{job.title}</h4>
-                          <div className="flex flex-col md:flex-row gap-2 md:gap-6 lg:gap-14 text-base font-berkeley ">
+                          <h4 className="text-lg">{job.title}</h4>
+                          <div className="flex flex-col md:items-center md:flex-row gap-2 md:gap-6 lg:gap-14 text-lg">
                             <span>
                               {
                                 job.jobPostingInfo.address.postalAddress
@@ -190,8 +197,8 @@ export default function Page({
                               <span>{job.jobPostingInfo.salary}</span>
                             )}
                             <span>{job.employmentType}</span>
-                            <span className="flex items-center gap-6 text-[#2D72D2] dark:text-[#4C90F0]">
-                              <span>Apply</span> <span>&gt;</span>
+                            <span className="flex px-3 py-1 w-max items-center gap-6 bg-[#2D72D2] text-white">
+                              <span>Apply</span>
                             </span>
                           </div>
                         </Link>
@@ -206,7 +213,7 @@ export default function Page({
             </div>
           </div>
         </main>
-      </LayoutPage>
+      </NewLayout>
     </>
   );
 }
