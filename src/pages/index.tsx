@@ -1209,7 +1209,7 @@ export default function Home() {
                   alt="Anotation"
                   className="w-full rounded-lg h-96 object-cover overflow-hidden mb-8"
                 />
-                <h3 className="font-bold text-2xl">Anotation</h3>
+                <h3 className="font-bold text-2xl">Annotations</h3>
                 <p className="text-xl leading-tight mt-2 font-medium text-[#404854]">
                   Short description of the opportunity provided by Rollup system
                   Short description of the opportunity provided by Rollup system
