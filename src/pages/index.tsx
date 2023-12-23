@@ -1375,12 +1375,12 @@ export default function Home() {
             {integrations.map((integration) => (
               <div
                 key={integration.title}
-                className="border leading-tight border-[#DBE4EF] rounded-lg p-9 w-full shadow-[0px_0px_0px_4px_#F4F8FD]"
+                className="border leading-tight border-[#DBE4EF] rounded-lg p-6 md:p-9 w-full shadow-[0px_0px_0px_4px_#F4F8FD]"
               >
-                <div className="flex gap-6 flex-wrap">
+                <div className="flex gap-2 lg:gap-6 flex-wrap">
                   {integration.images.map((image, i) => (
                     <div
-                      className="h-12 w-12 shadow-[0px_0px_0px_4px_#F4F8FD] p-2 flex items-center justify-center border border-[#DBE4EF] rounded-lg"
+                      className="h-10 md:h-12 w-10 md:w-12 shadow-[0px_0px_0px_4px_#F4F8FD] p-2 flex items-center justify-center border border-[#DBE4EF] rounded-lg"
                       key={i}
                     >
                       <Image
@@ -1391,7 +1391,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-6">
+                <div className="mt-4 md:mt-6">
                   <h3 className="font-bold text-xl">{integration.title}</h3>
                   <p className="text-lg">{integration.description}</p>
                 </div>
