@@ -4,6 +4,8 @@ import IconLinkedin from "./icons/IconLinkedin";
 import IconTwitter from "./icons/IconTwitter";
 import LogoDark from "./icons/LogoDark";
 import IconChevronRight from "./icons/IconChevronRight";
+import { ComponentProps, useState } from "react";
+import IconXMark from "./icons/IconXMark";
 
 const headerMenus = [
   {
@@ -115,31 +117,61 @@ const footerMenus = [
   },
 ];
 
+function IconBar3(props: ComponentProps<"svg">) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg>
+  );
+}
+
 export default function NewLayout({ children }: { children: React.ReactNode }) {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
   return (
     <div className="text-[#16181C] font-blender antialiased">
       <header className="text-[#16181C] font-blender antialiased w-full bg-[rgba(255,255,255,0.80)] border-b border-b-[#DCE0E5] sticky top-0 backdrop-blur-[20px] z-40">
-        <nav className="max-w-7xl px-4 w-full mx-auto flex items-center justify-between h-14 font-semibold text-lg">
-          <div className="flex items-center gap-8">
-            <Link href="/">
-              <LogoLight className="h-10" />
+        <nav className="max-w-7xl px-4 py-3 lg:py-2 w-full flex-wrap lg:flex-nowrap mx-auto flex items-center justify-between font-semibold text-lg">
+          <Link href="/">
+            <LogoLight className="h-10" />
+          </Link>
+          <div
+            className={`lg:items-center flex min-h-screen lg:min-h-0 items-start flex-col lg:flex-row gap-4 mt-5 lg:mt-0 w-full lg:gap-8 lg:ml-8 order-1 lg:order-none ${
+              isOpenMenu ? "" : "hidden lg:flex"
+            }`}
+          >
+            {headerMenus.map((menu) => (
+              <Link
+                key={menu.path}
+                href={menu.path}
+                className="hover:text-[#2D72D2] transition-colors"
+              >
+                {menu.title}
+              </Link>
+            ))}
+            <Link
+              href="https://app.rollup.ai/"
+              className="hover:text-[#2D72D2] transition-colors lg:hidden"
+            >
+              Login
             </Link>
-            <div className="items-center w-full gap-8 hidden lg:flex">
-              {headerMenus.map((menu) => (
-                <Link
-                  key={menu.path}
-                  href={menu.path}
-                  className="hover:text-[#2D72D2] transition-colors"
-                >
-                  {menu.title}
-                </Link>
-              ))}
-            </div>
           </div>
           <div className="flex items-center gap-3 h-max shrink-0">
             <Link
               href="https://app.rollup.ai/"
-              className="hover:text-[#2D72D2] transition-colors"
+              className="hover:text-[#2D72D2] transition-colors hidden lg:block"
             >
               Login
             </Link>
@@ -149,6 +181,13 @@ export default function NewLayout({ children }: { children: React.ReactNode }) {
             >
               Go to app
             </Link>
+            <button
+              onClick={() => setIsOpenMenu((prev) => !prev)}
+              type="button"
+              className="lg:hidden"
+            >
+              {isOpenMenu ? <IconXMark /> : <IconBar3 />}
+            </button>
           </div>
         </nav>
       </header>
