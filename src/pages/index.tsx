@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, RefObject, useEffect, useRef, useState } from "react";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import Image from "next/image";
 import ChiplyticsLogo from "../../public/img/chiplytics.svg";
@@ -916,6 +916,52 @@ const securities = [
   },
 ];
 
+interface Args extends IntersectionObserverInit {
+  freezeOnceVisible?: boolean;
+}
+
+export function useIntersectionObserver(
+  elementRef: RefObject<Element>,
+  {
+    threshold = 0,
+    root = null,
+    rootMargin = "0%",
+    freezeOnceVisible = false,
+  }: Args
+): IntersectionObserverEntry | undefined {
+  const [entry, setEntry] = useState<IntersectionObserverEntry>();
+
+  const frozen = entry?.isIntersecting && freezeOnceVisible;
+
+  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
+    setEntry(entry);
+  };
+
+  useEffect(() => {
+    const node = elementRef?.current; // DOM Ref
+    const hasIOSupport = !!window.IntersectionObserver;
+
+    if (!hasIOSupport || frozen || !node) return;
+
+    const observerParams = { threshold, root, rootMargin };
+    const observer = new IntersectionObserver(updateEntry, observerParams);
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    elementRef?.current,
+    JSON.stringify(threshold),
+    root,
+    rootMargin,
+    frozen,
+  ]);
+
+  return entry;
+}
+
 function RiveComponent({
   className,
   src,
@@ -944,6 +990,54 @@ function RiveComponent({
       onMouseLeave={() => playOnHover && rive && rive.pause()}
       onMouseEnter={() => playOnHover && rive && rive.play()}
     />
+  );
+}
+
+function RiveComponentInteractiveOnHover({
+  className,
+  src,
+  autoPlay = true,
+  playOnHover,
+  animations = true,
+}: {
+  playOnHover?: boolean;
+  autoPlay?: boolean;
+  className: string;
+  src: string;
+  animations?: boolean;
+}) {
+  const riveRef = useRef<HTMLDivElement>(null);
+  const intersection = useIntersectionObserver(riveRef, {
+    freezeOnceVisible: true,
+  });
+  const isIntersect = !!intersection?.isIntersecting;
+
+  const { rive, RiveComponent } = useRive(
+    {
+      src: src,
+      autoplay: autoPlay,
+      animations: animations ? "animation" : undefined,
+    },
+    { fitCanvasToArtboardHeight: true }
+  );
+
+  useEffect(() => {
+    if (!rive || window.innerWidth >= 1280) return;
+    if (isIntersect) {
+      rive?.play();
+    } else {
+      rive?.stop("animation");
+    }
+  }, [isIntersect, rive]);
+
+  return (
+    <div ref={riveRef}>
+      <RiveComponent
+        className={className}
+        onMouseLeave={() => playOnHover && rive && rive.pause()}
+        onMouseEnter={() => playOnHover && rive && rive.play()}
+      />
+    </div>
   );
 }
 
@@ -1253,7 +1347,7 @@ export default function Home() {
               {animationItemsOnHover.map((item) => (
                 <SwiperSlide key={item.title}>
                   <div className="border h-full flex flex-col gap-8 rounded-lg hover:border-[#4C90F0] transition-colors border-[#383E47] p-9 bg-[#1C2127] shadow-[0px_0px_0px_4px_rgba(47,51,59,0.50)]">
-                    <RiveComponent
+                    <RiveComponentInteractiveOnHover
                       playOnHover={true}
                       autoPlay={false}
                       animations={false}
