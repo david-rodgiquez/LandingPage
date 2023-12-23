@@ -13,7 +13,7 @@ import VuecasonLogo from "../../public/img/vuecason.svg";
 import CollaborationFeaturesImage from "../../public/img/collaboration-features.svg";
 import FullHistoryAndVersioningImage from "../../public/img/full-history-and-versioning.svg";
 import ProjectManagementImage from "../../public/img/project-management.svg";
-import AnotationImage from "../../public/img/anotation.svg";
+import AnotationImage from "../../public/img/annotations-mobile.svg";
 
 // integrations
 import Microsoft365Image from "../../public/img/integrations/microsoft-365.svg";
