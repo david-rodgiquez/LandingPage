@@ -3,7 +3,14 @@ import Head from "next/head";
 import Link from "next/link";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
-import React, { Fragment, RefObject, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  RefObject,
+  lazy,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import Image from "next/image";
 import ChiplyticsLogo from "../../public/img/chiplytics.svg";
@@ -360,60 +367,72 @@ const moduleMenus = [
   },
 ] as const;
 
-function ModuleMenuItem({
-  setOpenedModule,
-  module,
-  isOpened,
-}: {
-  isOpened: boolean;
-  module: (typeof moduleMenus)[number];
-  setOpenedModule: React.Dispatch<
-    React.SetStateAction<(typeof moduleMenus)[number]["title"]>
-  >;
-}) {
-  const cardContainerRef = useRef<HTMLButtonElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+export type Modules = typeof moduleMenus;
+const ModuleMenuItem = dynamic(() => import("../components/ModuleMenuItem"), {
+  ssr: false,
+});
 
-  useEffect(() => {
-    const descriptionElement = cardContainerRef.current;
-    const titleElement = titleRef.current;
+const ModuleMenuItemDesktop = dynamic(
+  () => import("../components/ModuleMenuItemDesktop"),
+  {
+    ssr: false,
+  }
+);
 
-    if (!descriptionElement || !titleElement) return;
+// function ModuleMenuItem({
+//   setOpenedModule,
+//   module,
+//   isOpened,
+// }: {
+//   isOpened: boolean;
+//   module: (typeof moduleMenus)[number];
+//   setOpenedModule: React.Dispatch<
+//     React.SetStateAction<(typeof moduleMenus)[number]["title"]>
+//   >;
+// }) {
+//   const cardContainerRef = useRef<HTMLButtonElement>(null);
+//   const descriptionRef = useRef<HTMLParagraphElement>(null);
+//   const titleRef = useRef<HTMLDivElement>(null);
 
-    if (isOpened) {
-      descriptionElement.style.maxHeight = `${descriptionElement.scrollHeight}px`;
-    } else {
-      descriptionElement.style.maxHeight = `${titleElement.clientHeight}px`;
-    }
-  }, [isOpened, cardContainerRef, titleRef]);
+//   useEffect(() => {
+//     const descriptionElement = cardContainerRef.current;
+//     const titleElement = titleRef.current;
 
-  return (
-    <button
-      data-is-active={isOpened}
-      ref={cardContainerRef}
-      type="button"
-      onClick={() => {
-        setOpenedModule(module.title);
-      }}
-      key={module.title}
-      className={`text-left relative rounded-lg flex flex-col border overflow-hidden ${
-        isOpened ? " border-[#DBE4EF] " : "border-transparent opacity-50"
-      }`}
-      style={{ transition: "max-height 0.5s" }}
-    >
-      <div className="flex items-center gap-2 p-5" ref={titleRef}>
-        <module.icon className={`w-10 ${isOpened ? "stroke-[#4C90F0]" : ""}`} />
-        <h3 className="font-bold text-xl">{module.title}</h3>
-      </div>
-      <p ref={descriptionRef} className="text-lg leading-tight px-5 pb-5">
-        {module.description}
-      </p>
-    </button>
-  );
-}
+//     if (!descriptionElement || !titleElement) return;
 
-function ModuleMenuRiveComponentWrapper({
+//     if (isOpened) {
+//       descriptionElement.style.maxHeight = `${descriptionElement.scrollHeight}px`;
+//     } else {
+//       descriptionElement.style.maxHeight = `${titleElement.clientHeight}px`;
+//     }
+//   }, [isOpened, cardContainerRef, titleRef]);
+
+//   return (
+//     <button
+//       data-is-active={isOpened}
+//       ref={cardContainerRef}
+//       type="button"
+//       onClick={() => {
+//         setOpenedModule(module.title);
+//       }}
+//       key={module.title}
+//       className={`text-left relative rounded-lg flex flex-col border overflow-hidden ${
+//         isOpened ? " border-[#DBE4EF] " : "border-transparent opacity-50"
+//       }`}
+//       style={{ transition: "max-height 0.5s" }}
+//     >
+//       <div className="flex items-center gap-2 p-5" ref={titleRef}>
+//         <module.icon className={`w-10 ${isOpened ? "stroke-[#4C90F0]" : ""}`} />
+//         <h3 className="font-bold text-xl">{module.title}</h3>
+//       </div>
+//       <p ref={descriptionRef} className="text-lg leading-tight px-5 pb-5">
+//         {module.description}
+//       </p>
+//     </button>
+//   );
+// }
+
+export function ModuleMenuRiveComponentWrapper({
   children,
 }: {
   children: React.ReactNode;
@@ -538,15 +557,37 @@ function ModulesMenu() {
                 isOpened={openedModule === module.title}
                 module={module}
                 setOpenedModule={setOpenedModule}
+                RiveComponent={module.RiveComponent}
               />
             );
+            // return (
+            //   <Fragment key={module.title}>
+            //     <ModuleMenuItem
+            //       activeModuleTitle={module.title}
+            //       key={module.title}
+            //       isOpened={openedModule === module.title}
+            //       module={module}
+            //       setOpenedModule={setOpenedModule}
+            //     />
+            //     {typeof window !== "undefined" &&
+            //       window.innerWidth <= 768 &&
+            //       openedModule === module.title && (
+            //         <RiveComponent className="md:ml-8" />
+            //       )}
+            //   </Fragment>
+            // );
           })}
         </div>
       </div>
       <div className="w-full md:w-8/12">
-        <ModuleMenuRiveComponentWrapper key={openedModule}>
-          <RiveComponent className="md:ml-8" />
-        </ModuleMenuRiveComponentWrapper>
+        <ModuleMenuItemDesktop
+          RiveComponent={() => <RiveComponent className="" />}
+        />
+        {/* {window?.innerWidth > 768 && (
+          <ModuleMenuRiveComponentWrapper key={openedModule}>
+            <RiveComponent className="md:ml-8" />
+          </ModuleMenuRiveComponentWrapper>
+        )} */}
       </div>
     </div>
   );
@@ -962,7 +1003,7 @@ export function useIntersectionObserver(
   return entry;
 }
 
-function RiveComponent({
+export function RiveComponent({
   className,
   src,
   autoPlay = true,
