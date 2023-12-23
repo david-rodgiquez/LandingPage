@@ -1,4 +1,5 @@
-import LayoutPage from "@/components/LayoutPage";
+import NewLayout from "@/components/NewLayout";
+import IconChevronRight from "@/components/icons/IconChevronRight";
 import { getJobPostingInfo } from "@/lib/ashby";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
@@ -13,24 +14,24 @@ export default function Page({
       <Head>
         <title>{title}</title>
       </Head>
-      <LayoutPage>
-        <main className="w-full font-blender text-[#1B283B] dark:text-white mt-3 mb-20 ">
+      <NewLayout>
+        <main className="w-full font-blender dark:text-white mt-20 md:mt-32 mb-20 ">
           {/*  */}
-          <div className="max-w-7xl mx-auto lg:px-4">
+          <div className="max-w-7xl mx-auto px-4">
             <Link
               href="/jobs"
-              className="font-berkeley text-base text-[#2D72D2] dark:text-[#4C90F0] flex gap-8 items-center"
+              className="text-xl hover:text-[#2D72D2] font-medium flex gap-4 items-center w-max"
             >
-              <span>&lt;</span>
+              <IconChevronRight className="rotate-180 h-4 w-4" />
               <span>Back to Careers</span>
             </Link>
           </div>
           {/*  */}
-          <div className="max-w-7xl mx-auto mt-20 lg:px-4">
+          <div className="max-w-7xl mx-auto mt-10 px-4">
             <h1 className="text-5xl font-bold">{job.title}</h1>
             <div className="w-full flex mt-10 flex-col gap-12 md:gap-0 md:flex-row">
-              <div className="w-full md:w-4/12  border-[#4C90F0] md:border-dashed md:border-r-2">
-                <div className="flex flex-col gap-4">
+              <div className="w-full md:w-4/12 font-medium border-[#4C90F0] md:border-dashed md:border-r-2">
+                <div className="flex flex-col gap-6">
                   <div>
                     <p className="font-berkeley text-sm">Location</p>
                     <p className="text-xl dark:text-[#ABB3BF]">
@@ -62,7 +63,7 @@ export default function Page({
                   <Link
                     target="_blank"
                     href={job.externalLink + "/application"}
-                    className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                    className="bg-[#2D72D2] rounded-sm hover:bg-[#215DB0] transition-colors text-white w-full text-center md:w-max px-6 py-2 text-xl"
                   >
                     Apply
                   </Link>
@@ -76,7 +77,7 @@ export default function Page({
                 <Link
                   target="_blank"
                   href={job.externalLink + "/application"}
-                  className="dark:bg-[#252A31] dark:border-[#ABB3BF] dark:shadow-[3px_3px_0_0_#ffffff] py-3 mt-6 font-berkeley px-6 border-2 border-[#1B283B] rounded-sm flex justify-center md:justify-between items-center w-full md:w-max gap-10 text-base bg-[#EDEFF2] hover:shadow-none dark:hover:shadow-none transition-shadow shadow-[3px_3px_0_0_#3B3F44]"
+                  className="bg-[#2D72D2] rounded-sm hover:bg-[#215DB0] transition-colors text-white w-full text-center md:w-max px-6 py-2 text-xl"
                 >
                   Apply
                 </Link>
@@ -84,7 +85,7 @@ export default function Page({
             </div>
           </div>
         </main>
-      </LayoutPage>
+      </NewLayout>
     </>
   );
 }

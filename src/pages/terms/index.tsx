@@ -1,6 +1,6 @@
 import Head from "next/head";
-import LayoutPage from "@/components/LayoutPage";
 import Link from "next/link";
+import NewLayout from "@/components/NewLayout";
 
 export default function About() {
   return (
@@ -8,16 +8,14 @@ export default function About() {
       <Head>
         <title>Terms of Service</title>
       </Head>
-      <LayoutPage>
-        <main className="w-full mx-auto max-w-3xl mt-12 font-blender mb-28">
-          <div className="flex justify-center items-center flex-col gap-4 mb-14">
-            <h1 className="font-bold text-4xl text-[#1B283B] dark:text-white">
+      <NewLayout>
+        <main className="w-full mx-auto max-w-4xl mt-20 mb-28 px-4">
+          <div className="flex justify-center items-center flex-col gap-4 mb-10 md:mb-14">
+            <h1 className="font-bold text-5xl md:text-7xl dark:text-white">
               Terms of Service
             </h1>
-            <div className="text-lg text-[#404854] dark:text-[#ABB3BF]">
+            <div className="text-xl font-bold">
               Last updated: September 15, 2023
-              {/* Last updated:{" "} */}
-              {/* {new Date().toLocaleDateString(undefined, { dateStyle: "long" })} */}
             </div>
           </div>
           <div className="space-y-5 text-xl w-full page-content">
@@ -687,7 +685,7 @@ export default function About() {
             </p>
           </div>
         </main>
-      </LayoutPage>
+      </NewLayout>
     </>
   );
 }

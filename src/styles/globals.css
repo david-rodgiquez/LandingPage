@@ -59,38 +59,37 @@ body {
 
 /* job info */
 .jobinfo-content {
-  @apply space-y-4 font-blender leading-tight text-lg;
+  @apply space-y-4 font-blender leading-tight text-lg font-medium;
 }
 .jobinfo-content h1,
 .jobinfo-content h2,
 .jobinfo-content h3 {
-  @apply font-bold;
+  @apply font-bold !mt-8;
 }
 .jobinfo-content h1 {
-  @apply text-4xl;
+  @apply text-2xl;
 }
 .jobinfo-content h2 {
-  @apply text-3xl;
+  @apply text-xl;
 }
 .jobinfo-content h3 {
-  @apply text-2xl;
+  @apply text-xl;
 }
 .jobinfo-content ol,
 .jobinfo-content ul {
   @apply pl-8 space-y-2;
 }
-
 .jobinfo-content ol {
   @apply list-decimal;
 }
 .jobinfo-content ul {
   @apply list-disc;
 }
-.jobinfo-content :not(h1, h2, h3, h4) {
-  @apply dark:text-[#ABB3BF];
-}
 
 /* page content */
+.page-content {
+  @apply font-medium;
+}
 .page-content h2 {
   @apply text-3xl font-bold;
 }
