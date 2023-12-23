@@ -512,7 +512,7 @@ function ModulesMenu() {
   return (
     <div className="w-full mt-8 flex flex-col md:flex-row gap-8 md:h-[520px]">
       <div className="flex w-full md:w-4/12 gap-5 shrink-0">
-        <div className="h-full relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9] ">
+        <div className="relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9] ">
           <div
             ref={lineRef}
             style={{ transition: "top 0.5s" }}
