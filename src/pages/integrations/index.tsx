@@ -1014,7 +1014,7 @@ export default function Page() {
 
         {/* menu */}
         <section className="border-b w-full sticky top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
-          <div className="max-w-7xl overflow-scroll mx-auto md:px-4 flex justify-between">
+          <div className="max-w-7xl overflow-auto mx-auto md:px-4 flex justify-between">
             {menus.map((menu) => (
               <button
                 key={menu.name}
