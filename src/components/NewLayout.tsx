@@ -14,7 +14,7 @@ const headerMenus = [
   },
   {
     title: "Integrations",
-    path: "#integrations",
+    path: "/integrations",
   },
   {
     title: "Customers",
