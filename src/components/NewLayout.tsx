@@ -109,10 +109,6 @@ const footerMenus = [
         title: "Contact Us",
         url: "/contact",
       },
-      {
-        title: "Social Link Icons",
-        url: "#",
-      },
     ],
   },
 ];
