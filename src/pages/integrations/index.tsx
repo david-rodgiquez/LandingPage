@@ -424,7 +424,7 @@ function IconMsExcel(props: ComponentProps<"svg">) {
 
 function Logos() {
   return (
-    <div className="w-full gap-8 bg-[url('/img/horizontal-line.png')] bg-no-repeat bg-center flex justify-center items-center">
+    <div className="w-full gap-1 sm:gap-4 md:gap-8 bg-[url('/img/horizontal-line.png')] bg-no-repeat bg-center flex justify-center items-center">
       <div
         style={{
           background:
@@ -434,7 +434,17 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconMsWord className="w-8 h-8" />
+        <IconMsWord className="w-4 h-4 md:w-8 md:h-8" />
+      </div>
+      <div
+        style={{
+          background:
+            "linear-gradient(white, white) padding-box, linear-gradient(#0085FF80, #7267F573, #67A2F540) border-box",
+          borderRadius: "8px",
+        }}
+        className="p-1 border md:border-2 border-transparent rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
+      >
+        <IconCloud className="w-5 h-5 md:w-10 md:h-10" />
       </div>
       <div
         style={{
@@ -445,7 +455,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconCloud className="w-10 h-10" />
+        <IconGitlab className="w-6 h-6 md:w-12 md:h-12" />
       </div>
       <div
         style={{
@@ -456,7 +466,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconGitlab className="w-12 h-12" />
+        <IconPython className="w-7 h-7 md:w-14 md:h-14" />
       </div>
       <div
         style={{
@@ -467,7 +477,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconPython className="w-14 h-14" />
+        <IconGithub className="w-8 h-8 md:w-14 md:h-14 p-1" />
       </div>
       <div
         style={{
@@ -478,7 +488,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconGithub className="w-14 h-14 p-1" />
+        <IconNx className="w-7 h-7 md:w-14 md:h-14" />
       </div>
       <div
         style={{
@@ -489,7 +499,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconNx className="w-14 h-14" />
+        <IconF className="h-6 w-6 md:w-12 md:h-12 p-1" />
       </div>
       <div
         style={{
@@ -500,7 +510,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconF className="w-12 h-12 p-1" />
+        <IconBs className="w-5 h-5 md:w-10 md:h-10 p-1" />
       </div>
       <div
         style={{
@@ -511,18 +521,7 @@ function Logos() {
         }}
         className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
       >
-        <IconBs className="w-10 h-10 p-1" />
-      </div>
-      <div
-        style={{
-          background:
-            "linear-gradient(white, white) padding-box, linear-gradient(#0085FF80, #7267F573, #67A2F540) border-box",
-          borderRadius: "8px",
-          border: "2px solid transparent",
-        }}
-        className="p-1 rounded-lg bg-white shadow-[0px_0px_0px_4px_#F4F8FD]"
-      >
-        <IconMsExcel className="w-8 h-8 " />
+        <IconMsExcel className="w-4 h-4 md:w-8 md:h-8 " />
       </div>
     </div>
   );
@@ -927,7 +926,9 @@ function SectionFeature({
   description,
   items,
   id,
+  className = "",
 }: {
+  className?: string;
   id: (typeof menus)[number]["name"];
   title: string;
   description: string;
@@ -938,11 +939,14 @@ function SectionFeature({
   }[];
 }) {
   return (
-    <section id={id} className="w-full max-w-7xl mx-auto mt-40">
+    <section
+      id={id}
+      className={`w-full max-w-7xl px-4 mx-auto mt-40 ${className}`}
+    >
       <h2 className="font-semibold text-4xl">{title}</h2>
       <p className="text-xl font-semibold">{description}</p>
 
-      <div className="mt-16 grid grid-cols-2 gap-10">
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
         {items.map((item) => (
           <CardWrapper key={item.name} className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
@@ -966,9 +970,10 @@ function SectionFeature({
 
 export default function Page() {
   const [selectedMenu, setSelectedMenu] =
-    useState<(typeof menus)[number]["name"]>("Productivity");
+    useState<(typeof menus)[number]["name"]>();
 
   useEffect(() => {
+    if (!selectedMenu) return;
     const section = document.getElementById(selectedMenu);
     if (!section) return;
     const sectionTop = section.getBoundingClientRect().top;
@@ -986,36 +991,37 @@ export default function Page() {
         <title>Integrations</title>
       </Head>
       <NewLayout>
-        <div className="w-full mt-40">
+        <div className="w-full mt-20 md:mt-40">
           <Logos />
         </div>
+
         <section className="relative flex items-center justify-center min-h-[384px] mb-32">
-          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] bg-no-repeat absolute left-0"></div>
+          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-0"></div>
           <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center mt-20">
             <span className="uppercase font-medium text-[#4C90F0] text-xl">
               Integrations
             </span>
-            <h1 className="text-7xl font-semibold ">
+            <h1 className="text-5xl md:text-7xl font-semibold ">
               Dozens of apps. Endless possibilities.
             </h1>
-            <p className="font-semibold text-xl max-w-md mx-auto">
+            <p className="font-semibold text-xl max-w-xs md:max-w-md mx-auto">
               Some details here Some details here Some details here Some details
               here Some details here
             </p>
           </div>
-          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] bg-no-repeat absolute right-0"></div>
+          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] bg-no-repeat hidden lg:block absolute right-0"></div>
         </section>
 
         {/* menu */}
-        <section className="border-b w-full sticky top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
-          <div className="max-w-7xl mx-auto px-4 flex justify-between">
+        <section className="border-b w-full sticky top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
+          <div className="max-w-7xl overflow-scroll mx-auto md:px-4 flex justify-between">
             {menus.map((menu) => (
               <button
                 key={menu.name}
                 onClick={() => {
                   setSelectedMenu(menu.name);
                 }}
-                className={`flex gap-3 py-3 border-b-2 px-4 items-center group hover:text-[#4C90F0] transition-colors ${
+                className={`flex gap-3 whitespace-nowrap py-2 md:py-3 border-b-2 px-3 md:px-4 items-center group hover:text-[#4C90F0] transition-colors ${
                   selectedMenu === menu.name
                     ? "text-[#4C90F0] border-b-[#4C90F0]"
                     : "text-[#2F343C] border-b-transparent"
@@ -1030,8 +1036,8 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto mt-28">
+        <section className="overflow-hidden hidden md:block">
+          <div className="w-full max-w-7xl mx-auto mt-28 px-4">
             <h2 className="font-semibold text-4xl">Featured integrations</h2>
             <p className="text-xl font-semibold">
               Must-have add-ons you can&apos;t miss out on.
@@ -1079,6 +1085,7 @@ export default function Page() {
         </section>
 
         <SectionFeature
+          className="!mt-20"
           id="Productivity"
           title="Productivity"
           description="Some details here Some details here Some details here Some details here Some details here"
