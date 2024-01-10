@@ -3,14 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import IconLinkedin from "@/components/icons/IconLinkedin";
 import IconTwitter from "@/components/icons/IconTwitter";
-import React, {
-  Fragment,
-  RefObject,
-  lazy,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, RefObject, useEffect, useRef, useState } from "react";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import Image from "next/image";
 import ChiplyticsLogo from "../../public/img/chiplytics.svg";
@@ -56,6 +49,10 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import NewLayout from "@/components/NewLayout";
+import IconSystemModeling from "@/components/icons/IconSystemModeling";
+import IconDigitalThreads from "@/components/icons/IconDigitalThreads";
+import IconRequirements from "@/components/icons/IconRequirement";
+import IconProductDataManagement from "@/components/icons/IconProductDataManagement";
 
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
@@ -79,104 +76,6 @@ const testimonials = Array.from<typeof testimonial>({ length: 3 }).fill(
   testimonial
 );
 
-function IconSystemModeling(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      stroke="#738091"
-      {...props}
-    >
-      <path
-        d="M2.66699 20H16.0003V26.6666H22.667V20H29.3337V13.3333H16.0003V6.66663H9.33366V13.3333H2.66699V20Z"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M9.33301 20V13.3334H15.9997V20H22.6663V13.3334"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="9.33301"
-        y="6.66663"
-        width="6.66667"
-        height="6.66667"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="16"
-        y="20"
-        width="6.66667"
-        height="6.66667"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-function IconDigitalThreads(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      stroke="#738091"
-      {...props}
-    >
-      <path
-        d="M9 15.6667L9 23C9 24.1046 9.89543 25 11 25L19 25M9 15.6667L19 15.6667M9 15.6667L9 10"
-        strokeWidth="1.44444"
-        stroke="inherit"
-      />
-      <mask id="path-2-inside-1_6690_7704" fill="white">
-        <rect x="4" y="4" width="10" height="6" rx="1.17308" />
-      </mask>
-      <rect
-        x="4"
-        y="4"
-        width="10"
-        height="6"
-        rx="1.17308"
-        stroke="inherit"
-        strokeWidth="3.38889"
-        mask="url(#path-2-inside-1_6690_7704)"
-      />
-      <mask id="path-3-inside-2_6690_7704" fill="white">
-        <rect x="18" y="13" width="10" height="6" rx="1.16669" />
-      </mask>
-      <rect
-        x="18"
-        y="13"
-        width="10"
-        height="6"
-        rx="1.16669"
-        stroke="inherit"
-        strokeWidth="3.37044"
-        mask="url(#path-3-inside-2_6690_7704)"
-      />
-      <mask id="path-4-inside-3_6690_7704" fill="white">
-        <rect x="18" y="22" width="10" height="6" rx="1.16669" />
-      </mask>
-      <rect
-        x="18"
-        y="22"
-        width="10"
-        height="6"
-        rx="1.16669"
-        stroke="inherit"
-        strokeWidth="3.37044"
-        mask="url(#path-4-inside-3_6690_7704)"
-      />
-    </svg>
-  );
-}
 function IconCadReviews(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -207,98 +106,6 @@ function IconCadReviews(props: React.SVGProps<SVGSVGElement>) {
         d="M0.75 8.75H15.25L15.25 23.25H0.75L0.75 8.75Z"
         stroke="inherit"
         strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-function IconRequirements(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      stroke="#738091"
-      {...props}
-    >
-      <rect
-        x="4"
-        y="4"
-        width="24"
-        height="24"
-        rx="1.33333"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M17.333 8L21.7775 8H23.9997"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M17.333 13.3334H21.7775H23.9997"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M17.333 18.6666H21.7775H23.9997"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M17.333 24H21.7775H23.9997"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <rect
-        x="8"
-        y="8"
-        width="5.33333"
-        height="5.33333"
-        rx="0.666667"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="8"
-        y="18.6666"
-        width="5.33333"
-        height="5.33333"
-        rx="0.666667"
-        stroke="inherit"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-function IconProductDataManagement(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      stroke="#738091"
-      {...props}
-    >
-      <path
-        d="M6.66699 28V6.66667C6.66699 5.95942 6.94794 5.28115 7.44804 4.78105C7.94814 4.28095 8.62641 4 9.33366 4H22.667C23.3742 4 24.0525 4.28095 24.5526 4.78105C25.0527 5.28115 25.3337 5.95942 25.3337 6.66667V28L21.3337 25.3333L18.667 28L16.0003 25.3333L13.3337 28L10.667 25.3333L6.66699 28Z"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 9.33337H20M12 14.6667H20M17.3333 20H20"
-        stroke="inherit"
-        strokeWidth="1.5"
-        strokeLinecap="round"
       />
     </svg>
   );
@@ -378,59 +185,6 @@ const ModuleMenuItemDesktop = dynamic(
     ssr: false,
   }
 );
-
-// function ModuleMenuItem({
-//   setOpenedModule,
-//   module,
-//   isOpened,
-// }: {
-//   isOpened: boolean;
-//   module: (typeof moduleMenus)[number];
-//   setOpenedModule: React.Dispatch<
-//     React.SetStateAction<(typeof moduleMenus)[number]["title"]>
-//   >;
-// }) {
-//   const cardContainerRef = useRef<HTMLButtonElement>(null);
-//   const descriptionRef = useRef<HTMLParagraphElement>(null);
-//   const titleRef = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     const descriptionElement = cardContainerRef.current;
-//     const titleElement = titleRef.current;
-
-//     if (!descriptionElement || !titleElement) return;
-
-//     if (isOpened) {
-//       descriptionElement.style.maxHeight = `${descriptionElement.scrollHeight}px`;
-//     } else {
-//       descriptionElement.style.maxHeight = `${titleElement.clientHeight}px`;
-//     }
-//   }, [isOpened, cardContainerRef, titleRef]);
-
-//   return (
-//     <button
-//       data-is-active={isOpened}
-//       ref={cardContainerRef}
-//       type="button"
-//       onClick={() => {
-//         setOpenedModule(module.title);
-//       }}
-//       key={module.title}
-//       className={`text-left relative rounded-lg flex flex-col border overflow-hidden ${
-//         isOpened ? " border-[#DBE4EF] " : "border-transparent opacity-50"
-//       }`}
-//       style={{ transition: "max-height 0.5s" }}
-//     >
-//       <div className="flex items-center gap-2 p-5" ref={titleRef}>
-//         <module.icon className={`w-10 ${isOpened ? "stroke-[#4C90F0]" : ""}`} />
-//         <h3 className="font-bold text-xl">{module.title}</h3>
-//       </div>
-//       <p ref={descriptionRef} className="text-lg leading-tight px-5 pb-5">
-//         {module.description}
-//       </p>
-//     </button>
-//   );
-// }
 
 export function ModuleMenuRiveComponentWrapper({
   children,

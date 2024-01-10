@@ -9,8 +9,8 @@ import IconXMark from "./icons/IconXMark";
 
 const headerMenus = [
   {
-    title: "Features",
-    path: "#features",
+    title: "Modules",
+    path: "/modules",
   },
   {
     title: "Integrations",
