@@ -134,17 +134,34 @@ body {
 }
 
 /* modules-section */
+.modules-section .content {
+  @apply space-y-3 text-lg font-medium;
+}
+.modules-section .content h3,
+.modules-section .content h4 {
+  @apply font-semibold;
+}
+.modules-section .content h3 {
+  @apply text-2xl;
+}
+.modules-section .content h4 {
+  @apply text-xl;
+}
+.modules-section .content ul {
+  @apply list-disc pl-6;
+}
 .modules-section .menu {
   @apply hover:bg-[#E4F0FF];
 }
 .modules-section .menu.active {
   @apply bg-[#E4F0FF];
 }
-.modules-section .menu:hover .square {
-  @apply border-[#215DB0];
-}
+.modules-section .menu:hover .square,
 .modules-section .menu.active .square {
   @apply border-[#215DB0];
+}
+.modules-section.dark .menu:not(:hover, .active) .square {
+  @apply border-[#ABB3BF];
 }
 .modules-section .menu:hover .title-menu {
   @apply text-[#215DB0];
@@ -158,7 +175,6 @@ body {
 .modules-section .menu.active .description-menu {
   @apply text-[#215DB0];
 }
-
 .modules-section.dark .title,
 .modules-section.dark .description {
   @apply text-white;
@@ -173,7 +189,6 @@ body {
 .modules-section.dark .menu .title-menu {
   @apply text-white;
 }
-
 .modules-section.dark .menu:hover .title-menu,
 .modules-section.dark .menu.active .title-menu {
   @apply text-[#8ABBFF];
@@ -185,10 +200,26 @@ body {
 .modules-section.dark .menu:hover .description-menu {
   @apply text-[#8ABBFF];
 }
-
-.modules-section.dark .content h3 {
+.modules-section.dark .content h3,
+.modules-section.dark .content h4 {
   @apply text-white;
 }
-.modules-section.dark .content * {
-  @apply text-gray-300;
+.modules-section.dark .content {
+  @apply text-[#ABB3BF];
+}
+.modules-section.dark .vertical-line {
+  @apply border-[#1C2127];
+  background: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(to bottom, #4c90f0, #4c90f0 49%, #4c90f000) border-box;
+}
+.modules-section .vertical-line {
+  @apply border-white;
+  background: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(to bottom, #94bbe9, #94bbe9 49%, #94bce900) border-box;
+}
+.modules-section .content .box-content {
+  @apply bg-[#E5E8EB];
+}
+.modules-section.dark .content .box-content {
+  @apply bg-[#2F343C];
 }

@@ -133,7 +133,13 @@ function IconBar3(props: ComponentProps<"svg">) {
   );
 }
 
-export default function NewLayout({ children }: { children: React.ReactNode }) {
+export default function NewLayout({
+  children,
+  className = "mt-40",
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   return (
@@ -188,7 +194,9 @@ export default function NewLayout({ children }: { children: React.ReactNode }) {
         </nav>
       </header>
       {children}
-      <section className="bg-[url(/img/footer-blue-line.png)] bg-[#2D72D2] mt-40 bg-no-repeat w-full bg-right bg-contain">
+      <section
+        className={`bg-[url(/img/footer-blue-line.png)] bg-[#2D72D2] bg-no-repeat w-full bg-right bg-contain ${className}`}
+      >
         <div className="max-w-7xl px-4 mx-auto w-full py-20 md:py-32">
           <h2 className="font-bold text-white text-3xl md:text-4xl lg:text-5xl">
             Ready to engineer faster?
