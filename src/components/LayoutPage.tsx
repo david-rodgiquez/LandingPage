@@ -2,12 +2,9 @@ import Link from "next/link";
 import IconLinkedin from "./icons/IconLinkedin";
 import IconTwitter from "./icons/IconTwitter";
 import { ReactNode } from "react";
-import { useTheme } from "next-themes";
 import Logo from "./Logo";
 
 export default function LayoutPage({ children }: { children: ReactNode }) {
-  const { theme, setTheme } = useTheme();
-
   return (
     <div className="min-h-screen w-full bg-[#F6F7F9] dark:bg-[#111418] dark:text-white relative overflow-x-hidden ">
       <header className="w-full py-6 md:py-10 max-w-7xl px-4 mx-auto relative">
@@ -30,10 +27,6 @@ export default function LayoutPage({ children }: { children: ReactNode }) {
             >
               Go to app
             </Link>
-            <button
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="bg-[url(/img/icon-dark-mode.svg)] dark:bg-[url(/img/icon-light-mode.svg)] h-6 w-6"
-            />
           </div>
         </nav>
       </header>
