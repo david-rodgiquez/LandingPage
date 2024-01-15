@@ -128,7 +128,7 @@ const moduleMenus = [
     title: "Digital Threads",
     icon: IconDigitalThreads,
     description:
-      "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
+      "Centralize Your Engineering Universe. Trace and Connect Every Design Change and Parameter in One Integrated Digital Thread.",
     RiveComponent: ({ className }: { className: string }) => (
       <RiveComponent
         className={className}
@@ -140,7 +140,7 @@ const moduleMenus = [
     title: "CAD Reviews",
     icon: IconCadReviews,
     description:
-      "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
+      "Speed up the Mechanical Design process, with design reviews and real-time feedback pinpointed onto the geometry",
     RiveComponent: ({ className }: { className: string }) => (
       <RiveComponent
         className={className}
@@ -152,7 +152,7 @@ const moduleMenus = [
     title: "Requirements",
     icon: IconRequirements,
     description:
-      "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
+      "Write and manage requirements with enhanced collaboration, approvals, and real-time verification with Rollup data sources",
     RiveComponent: ({ className }: { className: string }) => (
       <RiveComponent
         className={className}
@@ -164,7 +164,7 @@ const moduleMenus = [
     title: "Product Data Management",
     icon: IconProductDataManagement,
     description:
-      "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
+      "Ensure complete coverage of components across mechnical and electrical domains without data duplication issues.",
     RiveComponent: ({ className }: { className: string }) => (
       <RiveComponent
         className={className}
@@ -209,6 +209,7 @@ function ModulesMenu() {
   const RiveComponent = moduleMenus.find(
     (m) => m.title === openedModule
   )!.RiveComponent;
+  const [items, setItems] = useState<Element[]>([]);
 
   useEffect(() => {
     const itemContainerElement = menuItemContainerRef.current;
@@ -216,7 +217,7 @@ function ModulesMenu() {
 
     if (!itemContainerElement || !bulletElement) return;
 
-    const items = Array.from(itemContainerElement.children);
+    // const items = Array.from(itemContainerElement.children);
     const containerRect = itemContainerElement.getBoundingClientRect();
 
     for (let i = 0; i < items.length; i++) {
@@ -280,7 +281,21 @@ function ModulesMenu() {
         break;
       }
     }
-  }, [openedModule]);
+  }, [openedModule, items]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const childrenItems = menuItemContainerRef.current?.children;
+      if (!items.length && childrenItems?.length) {
+        setItems(Array.from(childrenItems));
+      }
+    };
+
+    document.addEventListener("scroll", onScroll);
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  }, [items.length]);
 
   return (
     <div className="w-full mt-8 flex flex-col md:flex-row gap-8 md:h-[520px]">
@@ -294,7 +309,7 @@ function ModulesMenu() {
           <div
             className="absolute z-20"
             ref={bulletRef}
-            style={{ transition: "top 0.5s" }}
+            style={{ transition: "top 0.5s", top: "69px" }}
           >
             <div className="border-gray-300/60 border-4 rounded-full">
               <div className="border border-gray-300 rounded-full">
@@ -314,22 +329,6 @@ function ModulesMenu() {
                 RiveComponent={module.RiveComponent}
               />
             );
-            // return (
-            //   <Fragment key={module.title}>
-            //     <ModuleMenuItem
-            //       activeModuleTitle={module.title}
-            //       key={module.title}
-            //       isOpened={openedModule === module.title}
-            //       module={module}
-            //       setOpenedModule={setOpenedModule}
-            //     />
-            //     {typeof window !== "undefined" &&
-            //       window.innerWidth <= 768 &&
-            //       openedModule === module.title && (
-            //         <RiveComponent className="md:ml-8" />
-            //       )}
-            //   </Fragment>
-            // );
           })}
         </div>
       </div>
@@ -337,11 +336,6 @@ function ModulesMenu() {
         <ModuleMenuItemDesktop
           RiveComponent={() => <RiveComponent className="" />}
         />
-        {/* {window?.innerWidth > 768 && (
-          <ModuleMenuRiveComponentWrapper key={openedModule}>
-            <RiveComponent className="md:ml-8" />
-          </ModuleMenuRiveComponentWrapper>
-        )} */}
       </div>
     </div>
   );
