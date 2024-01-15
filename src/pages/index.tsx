@@ -1122,7 +1122,7 @@ export default function Home() {
               pagination={{ clickable: true }}
               spaceBetween={50}
               slidesPerView={1}
-              className="!pb-12 custom-grid mt-12"
+              className="!pb-12 custom-grid mt-12 home-swiper"
               breakpoints={{
                 768: {
                   slidesPerView: 2,

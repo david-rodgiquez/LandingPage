@@ -1,7 +1,14 @@
 import NewLayout from "@/components/NewLayout";
-import { ComponentProps, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  ComponentProps,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
 
 import FeaturedIntegrationsGoogleImage from "../../../public/img/featured-integrations-google.png";
 import FeaturedIntegrationsSlackImage from "../../../public/img/featured-integrations-slack.png";
@@ -33,6 +40,13 @@ import IconImageGithub from "../../../public/img/integrations/github.svg";
 import IconImagePython from "../../../public/img/integrations/python.svg";
 import IconImageGitlab from "../../../public/img/integrations/gitlab.svg";
 import Head from "next/head";
+import IconChevronRight from "@/components/icons/IconChevronRight";
+import { Navigation, Pagination } from "swiper/modules";
+import ReactDOM from "react-dom";
+// import "swiper/modules/navigation.scss"; // Navigation module
+// import "swiper/modules/pagination.scss"; // Pagination module
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
 
 function IconMsWord(props: ComponentProps<"svg">) {
   return (
@@ -748,6 +762,10 @@ function IconDeveloperTool(props: ComponentProps<"svg">) {
 
 const menus = [
   {
+    icon: IconEngineeringTools,
+    name: "Engineering Tools",
+  },
+  {
     icon: IconRocket,
     name: "Productivity",
   },
@@ -760,10 +778,6 @@ const menus = [
     name: "Program Management",
   },
   {
-    icon: IconEngineeringTools,
-    name: "Engineering Tools",
-  },
-  {
     icon: IconDeveloperTool,
     name: "Developer Tools",
   },
@@ -771,14 +785,14 @@ const menus = [
 
 const featuredIntegrations = [
   {
-    name: "Slack",
-    icon: IconSlack,
-    image: FeaturedIntegrationsSlackImage,
-  },
-  {
     name: "Google",
     icon: IconGoogle,
     image: FeaturedIntegrationsGoogleImage,
+  },
+  {
+    name: "Slack",
+    icon: IconSlack,
+    image: FeaturedIntegrationsSlackImage,
   },
   {
     name: "GitHub",
@@ -941,12 +955,12 @@ function SectionFeature({
   return (
     <section
       id={id}
-      className={`w-full max-w-7xl px-4 mx-auto mt-40 ${className}`}
+      className={`w-full max-w-7xl px-4 mx-auto mt-20 ${className}`}
     >
       <h2 className="font-semibold text-4xl">{title}</h2>
       <p className="text-xl font-semibold">{description}</p>
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
         {items.map((item) => (
           <CardWrapper key={item.name} className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
@@ -963,6 +977,82 @@ function SectionFeature({
             <p className="text-xl text-[#404854]">{item.description}</p>
           </CardWrapper>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function FeaturedIntegration() {
+  const sliderRef = useRef<SwiperRef>(null);
+
+  const prevSlide = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
+
+  return (
+    <section className="overflow-hidden hidden md:block">
+      <div className="w-full max-w-7xl mx-auto mt-28 px-4">
+        <h2 className="font-semibold text-4xl">Featured integrations</h2>
+        <p className="text-xl font-semibold">
+          Must-have add-ons you can&apos;t miss out on.
+        </p>
+
+        <Swiper
+          ref={sliderRef}
+          slidesPerView="auto"
+          spaceBetween={24}
+          className="!overflow-visible mt-8 integration-swiper"
+          modules={[Pagination, Navigation]}
+          pagination={{ clickable: true }}
+        >
+          {featuredIntegrations.map((integration, i) => (
+            <SwiperSlide key={i} className="!max-w-[1068px]">
+              <div className="w-full relative rounded-2xl flex justify-center items-center shrink-0 bg-gray-800 text-white">
+                <Image
+                  quality={100}
+                  src={integration.image}
+                  alt={integration.name}
+                  className="w-full"
+                />
+                <div className="absolute bottom-7 flex justify-between items-center w-full px-6">
+                  <div className="flex items-center gap-5">
+                    <div className="bg-white h-14 w-14 flex items-center justify-center rounded">
+                      <integration.icon className="h-10 w-10" />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <h3 className="text-3xl font-medium">
+                        {integration.name}
+                      </h3>
+                      <div className="font-medium">
+                        <span>Built by: </span>
+                        <span className="text-[#4C90F0]">
+                          {integration.name}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white  px-5 py-2 text-xl rounded-sm">
+                    Learn more
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+          <div className="w-full flex justify-between items-center mt-4 z-30 relative">
+            <button type="button" onClick={prevSlide}>
+              <IconChevronRight className="h-5 w-5 rotate-180" />
+            </button>
+            <button type="button" onClick={nextSlide}>
+              <IconChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </Swiper>
       </div>
     </section>
   );
@@ -991,7 +1081,7 @@ export default function Page() {
         <title>Integrations</title>
       </Head>
       <NewLayout>
-        <div className="w-full mt-20 md:mt-40">
+        <div className="w-full mt-20 md:mt-24">
           <Logos />
         </div>
 
@@ -1036,56 +1126,16 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="overflow-hidden hidden md:block">
-          <div className="w-full max-w-7xl mx-auto mt-28 px-4">
-            <h2 className="font-semibold text-4xl">Featured integrations</h2>
-            <p className="text-xl font-semibold">
-              Must-have add-ons you can&apos;t miss out on.
-            </p>
-
-            <Swiper
-              slidesPerView="auto"
-              spaceBetween={24}
-              className="!overflow-visible mt-16"
-            >
-              {featuredIntegrations.map((integration, i) => (
-                <SwiperSlide key={i} className="!max-w-[912px]">
-                  <div className="w-full relative rounded-2xl flex justify-center items-center shrink-0 bg-gray-800 text-white">
-                    <Image
-                      quality={100}
-                      src={integration.image}
-                      alt={integration.name}
-                    />
-                    <div className="absolute bottom-7 flex justify-between items-center w-full px-6">
-                      <div className="flex items-center gap-5">
-                        <div className="bg-white h-14 w-14 flex items-center justify-center rounded">
-                          <integration.icon className="h-10 w-10" />
-                        </div>
-                        <div className="flex flex-col justify-center">
-                          <h3 className="text-3xl font-medium">
-                            {integration.name}
-                          </h3>
-                          <div className="font-medium">
-                            <span>Built by: </span>
-                            <span className="text-[#4C90F0]">
-                              {integration.name}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white  px-5 py-2 text-xl rounded-sm">
-                        Learn more
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </section>
+        <FeaturedIntegration />
 
         <SectionFeature
-          className="!mt-20"
+          id="Engineering Tools"
+          title="CAD + Engineering Tools"
+          description="Some details here Some details here Some details here Some details here Some details here"
+          items={cadEngineeringTools}
+        />
+
+        <SectionFeature
           id="Productivity"
           title="Productivity"
           description="Some details here Some details here Some details here Some details here Some details here"
@@ -1104,13 +1154,6 @@ export default function Page() {
           title="Program management"
           description="Some details here Some details here Some details here Some details here Some details here"
           items={programManagements}
-        />
-
-        <SectionFeature
-          id="Engineering Tools"
-          title="CAD + Engineering Tools"
-          description="Some details here Some details here Some details here Some details here Some details here"
-          items={cadEngineeringTools}
         />
 
         <SectionFeature

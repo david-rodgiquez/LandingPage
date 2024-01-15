@@ -110,26 +110,25 @@ body {
   @apply text-blue-600 underline decoration-1;
 }
 
-/* swiper */
-.swiper .swiper-pagination .swiper-pagination-bullet {
+/* home swiper */
+.home-swiper .swiper-pagination .swiper-pagination-bullet {
   background-color: #757575;
   margin: 0 2px !important;
   width: 12px;
   @apply rounded-full;
 }
-.swiper
+.home-swiper
   .swiper-pagination
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply w-8 transition rounded-full bg-[#4C90F0];
 }
-
-.swiper.custom-grid .swiper-wrapper .swiper-slide {
+.home-swiper.custom-grid .swiper-wrapper .swiper-slide {
   @apply lg:!m-0 lg:h-full lg:!w-full;
 }
-.swiper.custom-grid .swiper-wrapper {
+.home-swiper.custom-grid .swiper-wrapper {
   @apply lg:grid lg:grid-cols-2 lg:gap-12;
 }
-.swiper .swiper-pagination .swiper-pagination-bullet {
+.home-swiper .swiper-pagination .swiper-pagination-bullet {
   @apply lg:hidden;
 }
 
@@ -223,3 +222,35 @@ body {
 .modules-section.dark .content .box-content {
   @apply bg-[#2F343C];
 }
+
+/* integration page swiper */
+.integration-swiper {
+  /* @apply !pb-4; */
+}
+.integration-swiper .swiper-pagination .swiper-pagination-bullet {
+  background-color: #757575;
+  margin: 0 2px !important;
+  width: 12px;
+  @apply rounded-full;
+}
+.integration-swiper
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply w-8 transition rounded-full bg-[#4C90F0];
+}
+.integration-swiper.custom-grid .swiper-wrapper .swiper-slide {
+  @apply lg:!m-0 lg:h-full lg:!w-full;
+}
+.integration-swiper.custom-grid .swiper-wrapper {
+  @apply lg:grid lg:grid-cols-2 lg:gap-12;
+}
+.integration-swiper
+  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-clickable {
+  @apply !-bottom-0;
+}
+/* .integration-swiper .swiper-button-prev {
+  @apply bg-[url('/img/icons/chevron-left.svg')] text-gray-500 h-6 w-6 mt-6 absolute left-0;
+}
+.integration-swiper .swiper-button-next {
+  @apply bg-[url('/img/icons/chevron-right.svg')] text-gray-500 h-6 w-6 mt-6 absolute right-0;
+} */
