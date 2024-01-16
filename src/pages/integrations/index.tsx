@@ -43,6 +43,7 @@ import Head from "next/head";
 import IconChevronRight from "@/components/icons/IconChevronRight";
 import { Navigation, Pagination } from "swiper/modules";
 import ReactDOM from "react-dom";
+import Link from "next/link";
 // import "swiper/modules/navigation.scss"; // Navigation module
 // import "swiper/modules/pagination.scss"; // Pagination module
 // import "swiper/css/pagination";
@@ -1037,9 +1038,12 @@ function FeaturedIntegration() {
                       </div>
                     </div>
                   </div>
-                  <button className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white  px-5 py-2 text-xl rounded-sm">
+                  <Link
+                    href={`/integrations/${integration.name.toLowerCase()}`}
+                    className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white  px-5 py-2 text-xl rounded-sm"
+                  >
                     Learn more
-                  </button>
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>
