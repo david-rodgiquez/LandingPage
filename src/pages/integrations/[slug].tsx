@@ -1,5 +1,6 @@
 import NewLayout from "@/components/NewLayout";
 import IconChevronRight from "@/components/icons/IconChevronRight";
+import Head from "next/head";
 import Link from "next/link";
 import { ComponentProps } from "react";
 
@@ -25,166 +26,171 @@ function IconGithub(props: ComponentProps<"svg">) {
 
 export default function Page() {
   return (
-    <NewLayout>
-      <main className="max-w-7xl px-4 w-full mx-auto mt-20 md:mt-24 overflow-x-hidden -mb-16">
-        <Link
-          href="/integrations"
-          className="font-medium text-lg flex items-center gap-2 w-max px-3 py-1 hover:bg-gray-100 rounded transition-colors"
-        >
-          <IconChevronRight className="h-4 w-4 rotate-180" />
-          <span>Back to Integrations</span>
-        </Link>
+    <>
+      <Head>
+        <title>Github Integration</title>
+      </Head>
+      <NewLayout>
+        <main className="max-w-7xl px-4 w-full mx-auto mt-20 md:mt-24 overflow-x-hidden -mb-16">
+          <Link
+            href="/integrations"
+            className="font-medium text-lg flex items-center gap-2 w-max px-3 py-1 hover:bg-gray-100 rounded transition-colors"
+          >
+            <IconChevronRight className="h-4 w-4 rotate-180" />
+            <span>Back to Integrations</span>
+          </Link>
 
-        <div className="w-full mt-6 md:mt-10 flex flex-col md:flex-row gap-8 md:gap-16">
-          <div className="w-full md:w-[132px] flex flex-col gap-4 md:gap-6">
-            <div className="flex gap-4">
-              <IconGithub className="bg-[#16181C] w-14 md:w-full h-auto p-2 shrink-0 rounded-lg" />
-              <div className="md:hidden leading-[1]">
-                <h1 className="font-bold text-3xl">GitHub</h1>
-                <p className="font-semibold">
-                  Built by: <span className="font-medium">Creator name</span>
-                </p>
+          <div className="w-full mt-6 md:mt-10 flex flex-col md:flex-row gap-8 md:gap-16">
+            <div className="w-full md:w-[132px] flex flex-col gap-4 md:gap-6">
+              <div className="flex gap-4">
+                <IconGithub className="bg-[#16181C] w-14 md:w-full h-auto p-2 shrink-0 rounded-lg" />
+                <div className="md:hidden leading-[1]">
+                  <h1 className="font-bold text-3xl">GitHub</h1>
+                  <p className="font-semibold">
+                    Built by: <span className="font-medium">Creator name</span>
+                  </p>
+                </div>
               </div>
-            </div>
-            <Link
-              href="#"
-              className="text-white bg-[#2D72D2] hover:bg-[#215DB0] transition-colors py-1.5 rounded font-medium text-center text-lg"
-            >
-              Add Github
-            </Link>
-
-            <div className="text-lg flex flex-col font-medium leading-snug">
-              <span
-                style={{
-                  fontFeatureSettings: "'clig' off, 'liga' off",
-                }}
-                className="text-[#5F6B7C] tracking-widest"
+              <Link
+                href="#"
+                className="text-white bg-[#2D72D2] hover:bg-[#215DB0] transition-colors py-1.5 rounded font-medium text-center text-lg"
               >
-                Website
-              </span>
-              <Link href="#" className="text-[#404854] underline">
-                www.solidworks.com
+                Add Github
               </Link>
-            </div>
 
-            <div className="text-lg flex flex-col font-medium leading-snug">
-              <span
-                style={{
-                  fontFeatureSettings: "clig off, liga off",
-                }}
-                className="text-[#5F6B7C] tracking-widest"
-              >
-                Categories
-              </span>
-              <div className="inline-flex gap-2 flex-wrap gap-y-0">
+              <div className="text-lg flex flex-col font-medium leading-snug">
+                <span
+                  style={{
+                    fontFeatureSettings: "'clig' off, 'liga' off",
+                  }}
+                  className="text-[#5F6B7C] tracking-widest"
+                >
+                  Website
+                </span>
                 <Link href="#" className="text-[#404854] underline">
-                  Plug-in
-                </Link>
-                <Link href="#" className="text-[#404854] underline">
-                  Internal
-                </Link>
-                <Link href="#" className="text-[#404854] underline">
-                  Engineering
+                  www.solidworks.com
                 </Link>
               </div>
-            </div>
 
-            <div className="text-lg flex flex-col font-medium leading-snug">
-              <span
-                style={{
-                  fontFeatureSettings: "'clig' off, 'liga' off",
-                }}
-                className="text-[#5F6B7C] tracking-widest"
-              >
-                Docs
-              </span>
-              <Link href="#" className="text-[#404854] underline">
-                Solidworks docs
-              </Link>
-            </div>
+              <div className="text-lg flex flex-col font-medium leading-snug">
+                <span
+                  style={{
+                    fontFeatureSettings: "clig off, liga off",
+                  }}
+                  className="text-[#5F6B7C] tracking-widest"
+                >
+                  Categories
+                </span>
+                <div className="inline-flex gap-2 flex-wrap gap-y-0">
+                  <Link href="#" className="text-[#404854] underline">
+                    Plug-in
+                  </Link>
+                  <Link href="#" className="text-[#404854] underline">
+                    Internal
+                  </Link>
+                  <Link href="#" className="text-[#404854] underline">
+                    Engineering
+                  </Link>
+                </div>
+              </div>
 
-            <div className="text-lg flex flex-col font-medium leading-snug">
-              <span
-                style={{
-                  fontFeatureSettings: "'clig' off, 'liga' off",
-                }}
-                className="text-[#5F6B7C] tracking-widest"
-              >
-                Contact
-              </span>
-              <Link href="#" className="text-[#404854] underline">
-                Email Rollup
-              </Link>
-            </div>
-          </div>
+              <div className="text-lg flex flex-col font-medium leading-snug">
+                <span
+                  style={{
+                    fontFeatureSettings: "'clig' off, 'liga' off",
+                  }}
+                  className="text-[#5F6B7C] tracking-widest"
+                >
+                  Docs
+                </span>
+                <Link href="#" className="text-[#404854] underline">
+                  Solidworks docs
+                </Link>
+              </div>
 
-          <div className="flex flex-grow flex-col">
-            <h1 className="font-bold text-4xl hidden md:block">GitHub</h1>
-            <p className="font-semibold hidden md:block">
-              Built by:{" "}
-              <Link href="#" className="text-[#2D72D2]">
-                Github
-              </Link>
-            </p>
-
-            <div className="w-full flex gap-2 md:gap-4 mt-0 md:mt-6 md:flex-row flex-col">
-              <div className="flex flex-grow bg-[#2F343C] h-36 md:h-[460px] rounded-lg"></div>
-              <div className="w-36 flex md:flex-col gap-2 md:gap-4 flex-row ">
-                <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
-                <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
-                <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
+              <div className="text-lg flex flex-col font-medium leading-snug">
+                <span
+                  style={{
+                    fontFeatureSettings: "'clig' off, 'liga' off",
+                  }}
+                  className="text-[#5F6B7C] tracking-widest"
+                >
+                  Contact
+                </span>
+                <Link href="#" className="text-[#404854] underline">
+                  Email Rollup
+                </Link>
               </div>
             </div>
 
-            <div className="font-medium text-lg text-[#383E47] mt-8">
-              <p>
-                The GitHub and GitLab integrations move issues from In Progress
-                to Done automatically so you never have to update issues
-                manually. It takes less than a minute to connect GitHub to the
-                workspace and then go to team settings to configure the
-                automatic updates.
+            <div className="flex flex-grow flex-col">
+              <h1 className="font-bold text-4xl hidden md:block">GitHub</h1>
+              <p className="font-semibold hidden md:block">
+                Built by:{" "}
+                <Link href="#" className="text-[#2D72D2]">
+                  Github
+                </Link>
               </p>
-              <h2 className="text-3xl font-semibold mt-4 mb-2 text-[#16181C]">
-                How it works
-              </h2>
-              <p>Description text for the integration</p>
-              <h2 className="text-3xl font-semibold mt-4 mb-2 text-[#16181C]">
-                Features
-              </h2>
-              <ol className="list-decimal pl-6 font-semibold space-y-2 text-[#16181C]">
-                <li className="leading-tight">
-                  <span>Feature 1</span>
-                  {"\r\n"}
-                  <p className="font-medium">
-                    Description text for the integration
-                  </p>
-                </li>
-                <li className="leading-tight">
-                  <span>Feature 2</span>
-                  {"\r\n"}
-                  <p className="font-medium">
-                    Description text for the integration
-                  </p>
-                </li>
-                <li className="leading-tight">
-                  <span>Feature 3</span>
-                  {"\r\n"}
-                  <p className="font-medium">
-                    Description text for the integration
-                  </p>
-                </li>
-                <li className="leading-tight">
-                  <span>Feature 4</span>
-                  {"\r\n"}
-                  <p className="font-medium">
-                    Description text for the integration
-                  </p>
-                </li>
-              </ol>
+
+              <div className="w-full flex gap-2 md:gap-4 mt-0 md:mt-6 md:flex-row flex-col">
+                <div className="flex flex-grow bg-[#2F343C] h-36 md:h-[460px] rounded-lg"></div>
+                <div className="w-36 flex md:flex-col gap-2 md:gap-4 flex-row ">
+                  <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
+                  <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
+                  <div className="w-full h-16 aspect-video md:h-24 bg-[#2F343C] rounded-lg"></div>
+                </div>
+              </div>
+
+              <div className="font-medium text-lg text-[#383E47] mt-8">
+                <p>
+                  The GitHub and GitLab integrations move issues from In
+                  Progress to Done automatically so you never have to update
+                  issues manually. It takes less than a minute to connect GitHub
+                  to the workspace and then go to team settings to configure the
+                  automatic updates.
+                </p>
+                <h2 className="text-3xl font-semibold mt-4 mb-2 text-[#16181C]">
+                  How it works
+                </h2>
+                <p>Description text for the integration</p>
+                <h2 className="text-3xl font-semibold mt-4 mb-2 text-[#16181C]">
+                  Features
+                </h2>
+                <ol className="list-decimal pl-6 font-semibold space-y-2 text-[#16181C]">
+                  <li className="leading-tight">
+                    <span>Feature 1</span>
+                    {"\r\n"}
+                    <p className="font-medium">
+                      Description text for the integration
+                    </p>
+                  </li>
+                  <li className="leading-tight">
+                    <span>Feature 2</span>
+                    {"\r\n"}
+                    <p className="font-medium">
+                      Description text for the integration
+                    </p>
+                  </li>
+                  <li className="leading-tight">
+                    <span>Feature 3</span>
+                    {"\r\n"}
+                    <p className="font-medium">
+                      Description text for the integration
+                    </p>
+                  </li>
+                  <li className="leading-tight">
+                    <span>Feature 4</span>
+                    {"\r\n"}
+                    <p className="font-medium">
+                      Description text for the integration
+                    </p>
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </NewLayout>
+        </main>
+      </NewLayout>
+    </>
   );
 }
