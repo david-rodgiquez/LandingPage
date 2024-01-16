@@ -8,6 +8,7 @@ import IconSystemModeling from "@/components/icons/IconSystemModeling";
 import React, { useEffect, useState } from "react";
 import { RiveComponent } from "..";
 import Head from "next/head";
+import { useInView } from "react-intersection-observer";
 
 const menus = [
   {
@@ -32,7 +33,7 @@ const menus = [
   },
   {
     icon: IconAnotation,
-    name: "Anotations",
+    name: "Annotations",
   },
 ] as const;
 
@@ -175,6 +176,7 @@ function Section<T extends string>({
   items,
   initialSelectedItem,
   isDark,
+  setSelectedMenu: setSelectedNavigationMenu,
 }: {
   isDark?: boolean;
   initialSelectedItem: T;
@@ -187,14 +189,27 @@ function Section<T extends string>({
       content: (args: { title: string }) => React.JSX.Element;
     }[]
   >;
+  setSelectedMenu: () => void;
 }) {
   const [selectedMenu, setSelectedMenu] =
     useState<(typeof items)[number]["name"]>(initialSelectedItem);
-
   const Content = items.find((menu) => menu.name === selectedMenu)!.content;
+  const { ref, entry } = useInView({
+    trackVisibility: true,
+    delay: 100,
+  });
+  const isVisible = (entry as unknown as { isVisible: boolean | undefined })
+    ?.isVisible;
+
+  useEffect(() => {
+    if (isVisible) {
+      setSelectedNavigationMenu();
+    }
+  }, [isVisible, setSelectedNavigationMenu]);
 
   return (
     <section
+      ref={ref}
       id={title}
       className={`modules-section w-full ${isDark ? "dark" : ""}`}
     >
@@ -292,19 +307,6 @@ export default function Page() {
   const [selectedMenu, setSelectedMenu] =
     useState<(typeof menus)[number]["name"]>();
 
-  useEffect(() => {
-    if (!selectedMenu) return;
-    const section = document.getElementById(selectedMenu);
-    if (!section) return;
-    const sectionTop = section.getBoundingClientRect().top;
-
-    const topGap = 57;
-    window.scrollTo({
-      top: sectionTop + window.scrollY - topGap,
-      behavior: "smooth",
-    });
-  }, [selectedMenu]);
-
   return (
     <>
       <Head>
@@ -332,12 +334,23 @@ export default function Page() {
           <div className="border-b w-full sticky overflow-x-auto top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
             <div className="max-w-7xl overflow-visible mx-auto md:px-4 flex justify-between">
               {menus.map((menu) => {
-                const isActive = menu.name === selectedMenu;
+                const menuName = menu.name;
+                const isActive = menuName === selectedMenu;
                 return (
                   <button
+                    type="button"
                     key={menu.name}
                     onClick={() => {
-                      setSelectedMenu(menu.name);
+                      setSelectedMenu(menuName);
+                      if (!menuName) return;
+                      const section = document.getElementById(menuName);
+                      if (!section) return;
+                      const sectionTop = section.getBoundingClientRect().top;
+                      const topGap = 57;
+                      window.scrollTo({
+                        top: sectionTop + window.scrollY - topGap,
+                        behavior: "smooth",
+                      });
                     }}
                     className={`flex gap-3 whitespace-nowrap py-2 md:py-3 border-b-2 px-3 md:px-6 items-center group hover:stroke-[#4C90F0] hover:text-[#4C90F0] transition-colors ${
                       isActive
@@ -356,6 +369,7 @@ export default function Page() {
           </div>
         </section>
         <Section
+          setSelectedMenu={() => setSelectedMenu("System Modeling")}
           title="System Modeling"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Properties"
@@ -363,18 +377,21 @@ export default function Page() {
         />
         <Section
           isDark
+          setSelectedMenu={() => setSelectedMenu("Digital Threads")}
           title="Digital Threads"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Property relations"
           items={digitalThreadsMenus}
         />
         <Section
+          setSelectedMenu={() => setSelectedMenu("Project Management")}
           title="Project Management"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Feature 1"
           items={projectManagementMenus}
         />
         <Section
+          setSelectedMenu={() => setSelectedMenu("Annotations")}
           isDark
           title="Annotations"
           description="Some details here Some details here Some details here Some details here Some details here"
