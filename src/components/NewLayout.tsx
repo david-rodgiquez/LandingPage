@@ -22,7 +22,7 @@ const headerMenus = [
   },
   {
     title: "Pricing",
-    path: "#pricing",
+    path: "/pricing",
   },
   {
     title: "Security",
