@@ -5,10 +5,18 @@ import IconProductDataManagement from "@/components/icons/IconProductDataManagem
 import IconProjectManagement from "@/components/icons/IconProjectManagement";
 import IconRequirements from "@/components/icons/IconRequirement";
 import IconSystemModeling from "@/components/icons/IconSystemModeling";
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { RiveComponent } from "..";
 import Head from "next/head";
 import { useInView } from "react-intersection-observer";
+import { createPortal } from "react-dom";
+import IconXMark from "@/components/icons/IconXMark";
 
 const menus = [
   {
@@ -170,6 +178,66 @@ const systemModelingMenus = [
   },
 ] as const;
 
+function MenuContentFloating({
+  children,
+  close,
+}: {
+  close: () => void;
+  children: React.ReactNode;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  return createPortal(
+    <div
+      onClick={(e) => e.preventDefault()}
+      className="fixed modules-section bottom-0 z-50 h-screen backdrop-blur bg-[rgba(0,0,0,0.5)]"
+    >
+      <div
+        ref={containerRef}
+        className="bg-white relative mt-12 pb-16 overflow-y-auto h-full px-4 py-5 rounded-t-3xl w-full"
+      >
+        <button
+          onClick={close}
+          type="button"
+          className="absolute right-6 top-6"
+        >
+          <IconXMark />
+        </button>
+        {children}
+      </div>
+    </div>,
+    document.body!
+  );
+}
+
+function useContentFloating(): [
+  modalToShow: React.JSX.Element | null,
+  (component: React.JSX.Element) => void
+] {
+  const [modal, setModal] = useState<React.JSX.Element | null>(null);
+
+  const showModal = useCallback(
+    (component: React.JSX.Element) => {
+      if (!modal) {
+        setModal(component);
+      } else {
+        setModal(null);
+      }
+    },
+    [modal]
+  );
+
+  const modalToShow = useMemo(() => {
+    if (modal == null) return null;
+    return (
+      <MenuContentFloating close={() => setModal(null)}>
+        {modal}
+      </MenuContentFloating>
+    );
+  }, [modal]);
+
+  return [modalToShow, showModal];
+}
+
 function Section<T extends string>({
   title,
   description,
@@ -191,6 +259,7 @@ function Section<T extends string>({
   >;
   setSelectedMenu: () => void;
 }) {
+  const [modal, showModal] = useContentFloating();
   const [selectedMenu, setSelectedMenu] =
     useState<(typeof items)[number]["name"]>(initialSelectedItem);
   const Content = items.find((menu) => menu.name === selectedMenu)!.content;
@@ -219,14 +288,17 @@ function Section<T extends string>({
           {description}
         </p>
         <div className="w-full mt-10 flex">
-          <div className="w-80 shrink-0 flex flex-col gap-1 items-start">
+          <div className="md:w-80 w-full shrink-0 flex flex-col gap-1 items-start">
             {items.map((menu) => {
               const isSelected = selectedMenu === menu.name;
               return (
                 <button
                   key={menu.name}
                   type="button"
-                  onClick={() => setSelectedMenu(menu.name)}
+                  onClick={() => {
+                    setSelectedMenu(menu.name);
+                    showModal(<Content title={selectedMenu} />);
+                  }}
                   className={`menu px-2 transition-colors py-1.5 flex group gap-2 rounded-lg w-full text-left ${
                     isSelected ? "active" : ""
                   }`}
@@ -244,10 +316,11 @@ function Section<T extends string>({
               );
             })}
           </div>
-          <div className="vertical-line w-[3px] rounded-sm border-r shrink-0 border-dashed border-2 mx-12"></div>
-          <div className="grow">
+          <div className="hidden md:block vertical-line w-[3px] rounded-sm border-r shrink-0 border-dashed border-2 mx-12"></div>
+          <div className="hidden md:block grow">
             <Content title={selectedMenu} />
           </div>
+          {modal}
         </div>
       </div>
     </section>
@@ -303,6 +376,52 @@ const annotationsMenus = [
   },
 ] as const;
 
+const requirementsMenus = [
+  {
+    name: "Requirement packages",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "Requirements views",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "ID Editor",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "Requirements Management",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "Exchange",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+] as const;
+
+const productDataManagementMenus = [
+  {
+    name: "Feature 1",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "Feature 2",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+  {
+    name: "Feature 3",
+    description: "Short description",
+    content: GenericContentSystemModeling,
+  },
+] as const;
+
 export default function Page() {
   const [selectedMenu, setSelectedMenu] =
     useState<(typeof menus)[number]["name"]>();
@@ -330,8 +449,8 @@ export default function Page() {
           <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] bg-no-repeat hidden lg:block absolute right-0"></div>
         </section>
 
-        <section className="overflow-x-hidden sticky top-14 ">
-          <div className="border-b w-full sticky overflow-x-auto top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
+        <section className="overflow-x-hidden sticky top-16 md:top-14 ">
+          <div className="border-b w-full sticky overflow-x-auto no-scrollbar top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
             <div className="max-w-7xl overflow-visible mx-auto md:px-4 flex justify-between">
               {menus.map((menu) => {
                 const menuName = menu.name;
@@ -382,6 +501,21 @@ export default function Page() {
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Property relations"
           items={digitalThreadsMenus}
+        />
+        <Section
+          setSelectedMenu={() => setSelectedMenu("Requirements")}
+          title="Requirements"
+          description="Some details here Some details here Some details here Some details here Some details here"
+          initialSelectedItem="Requirement packages"
+          items={requirementsMenus}
+        />
+        <Section
+          isDark
+          setSelectedMenu={() => setSelectedMenu("Product Data Management")}
+          title="Product Data Management"
+          description="Some details here Some details here Some details here Some details here Some details here"
+          initialSelectedItem="Feature 1"
+          items={productDataManagementMenus}
         />
         <Section
           setSelectedMenu={() => setSelectedMenu("Project Management")}

@@ -197,7 +197,7 @@ export default function NewLayout({
       <section
         className={`bg-[url(/img/footer-blue-line.png)] bg-[#2D72D2] bg-no-repeat w-full bg-right bg-contain ${className}`}
       >
-        <div className="max-w-7xl px-4 mx-auto w-full py-20 md:py-32">
+        <div className="max-w-7xl px-4 mx-auto w-full py-20 md:py-24">
           <h2 className="font-bold text-white text-3xl md:text-4xl lg:text-5xl">
             Ready to engineer faster?
           </h2>
@@ -210,7 +210,7 @@ export default function NewLayout({
               <IconChevronRight className="h-3 w-3 text-[#2D72D2]" />
             </Link>
             <Link
-              href="https://app.rollup.ai/"
+              href="#"
               className="bg-[#f6f7f918] hover:bg-[#f6f7f93d] transition-colors text-white border border-white font-semibold flex gap-2 rounded-sm px-4 items-center justify-center py-2"
             >
               <span>Talk to Sales</span>

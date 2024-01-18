@@ -997,7 +997,7 @@ function FeaturedIntegration() {
   }, []);
 
   return (
-    <section className="overflow-hidden hidden md:block">
+    <section className="overflow-hidden ">
       <div className="w-full max-w-7xl mx-auto mt-28 px-4">
         <h2 className="font-semibold text-4xl">Featured integrations</h2>
         <p className="text-xl font-semibold">
@@ -1008,7 +1008,7 @@ function FeaturedIntegration() {
           ref={sliderRef}
           slidesPerView="auto"
           spaceBetween={24}
-          className="!overflow-visible mt-8 integration-swiper"
+          className="md:!overflow-visible mt-8 integration-swiper"
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
         >
@@ -1021,13 +1021,13 @@ function FeaturedIntegration() {
                   alt={integration.name}
                   className="w-full"
                 />
-                <div className="absolute bottom-7 flex justify-between items-center w-full px-6">
-                  <div className="flex items-center gap-5">
-                    <div className="bg-white h-14 w-14 flex items-center justify-center rounded">
-                      <integration.icon className="h-10 w-10" />
+                <div className="absolute bottom-3 md:bottom-7 flex justify-between items-center w-full px-3 md:px-6">
+                  <div className="flex items-center gap-3 md:gap-5">
+                    <div className="bg-white h-12 w-12 md:h-14 md:w-14  flex items-center justify-center rounded">
+                      <integration.icon className="md:h-10 md:w-10 h-8 w-8" />
                     </div>
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-3xl font-medium">
+                    <div className="flex flex-col justify-center gap-1 leading-none">
+                      <h3 className="text-2xl md:text-3xl font-medium leading-none">
                         {integration.name}
                       </h3>
                       <div className="font-medium">
@@ -1040,7 +1040,7 @@ function FeaturedIntegration() {
                   </div>
                   <Link
                     href={`/integrations/${integration.name.toLowerCase()}`}
-                    className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white  px-5 py-2 text-xl rounded-sm"
+                    className="bg-[#2D72D2] hover:bg-[#2d72d2b2] transition-colors text-white px-3 md:px-5 py-2 text-base md:text-xl rounded-sm"
                   >
                     Learn more
                   </Link>
@@ -1048,7 +1048,7 @@ function FeaturedIntegration() {
               </div>
             </SwiperSlide>
           ))}
-          <div className="w-full flex justify-between items-center mt-4 z-30 relative">
+          <div className="w-full justify-between items-center mt-4 z-30 relative flex">
             <button type="button" onClick={prevSlide}>
               <IconChevronRight className="h-5 w-5 rotate-180" />
             </button>
@@ -1108,7 +1108,7 @@ export default function Page() {
 
         {/* menu */}
         <section className="border-b w-full sticky top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
-          <div className="max-w-7xl overflow-auto mx-auto md:px-4 flex justify-between">
+          <div className="max-w-7xl overflow-auto no-scrollbar mx-auto md:px-4 flex justify-between">
             {menus.map((menu) => (
               <button
                 key={menu.name}

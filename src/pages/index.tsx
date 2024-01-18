@@ -299,7 +299,7 @@ function ModulesMenu() {
 
   return (
     <div className="w-full mt-8 flex flex-col md:flex-row gap-8 md:h-[520px]">
-      <div className="flex w-full md:w-4/12 gap-5 shrink-0">
+      <div className="flex w-full md:w-4/12 gap-5 shrink-0 relative">
         <div className="relative w-0.5 shrink-0 rounded-full flex justify-center bg-gradient-to-b from-10% from-[#eef6ff] via-50% via-[#B7D7F9] ">
           <div
             ref={lineRef}
@@ -331,6 +331,12 @@ function ModulesMenu() {
             );
           })}
         </div>
+        <Link
+          href="/modules"
+          className="absolute inset-x-0 -bottom-12 md:bottom-6 text-xl mx-auto text-center text-[#2D72D2]"
+        >
+          Learn more
+        </Link>
       </div>
       <div className="w-full md:w-8/12">
         <ModuleMenuItemDesktop
@@ -658,6 +664,12 @@ function DeveloperApiMenu() {
 
 const integrations = [
   {
+    images: [SolidWorksImage, OnshapeImage, SwImage, NxImage, IproImage],
+    title: "CAD + Engineering Tools",
+    description:
+      "Build an end to end digital thread with the tools engineers know and love",
+  },
+  {
     images: [
       Microsoft365Image,
       GoogleImage,
@@ -679,12 +691,6 @@ const integrations = [
     description:
       "Enhance your programmatic with digital threads and traceability..",
   },
-  {
-    images: [SolidWorksImage, OnshapeImage, SwImage, NxImage, IproImage],
-    title: "CAD + Engineering Tools",
-    description:
-      "Build an end to end digital thread with the tools engineers know and love",
-  },
 ];
 
 const securities = [
@@ -701,6 +707,11 @@ const securities = [
   {
     image: SelfHostImage,
     title: "Self-host or GovCloud",
+    description: "Maximum 2 sentence and the restrictions is 120 symbols",
+  },
+  {
+    image: ItarImage,
+    title: "ISO",
     description: "Maximum 2 sentence and the restrictions is 120 symbols",
   },
 ];

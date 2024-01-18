@@ -110,6 +110,15 @@ body {
   @apply text-blue-600 underline decoration-1;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 /* home swiper */
 .home-swiper .swiper-pagination .swiper-pagination-bullet {
   background-color: #757575;
@@ -246,7 +255,7 @@ body {
 }
 .integration-swiper
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-clickable {
-  @apply !-bottom-0;
+  @apply !-bottom-0 mt-4;
 }
 /* .integration-swiper .swiper-button-prev {
   @apply bg-[url('/img/icons/chevron-left.svg')] text-gray-500 h-6 w-6 mt-6 absolute left-0;
