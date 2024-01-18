@@ -210,7 +210,7 @@ function MenuContentFloating({
 }
 
 function useContentFloating(): [
-  modalToShow: React.JSX.Element | null,
+  React.JSX.Element | null,
   (component: React.JSX.Element) => void
 ] {
   const [modal, setModal] = useState<React.JSX.Element | null>(null);
