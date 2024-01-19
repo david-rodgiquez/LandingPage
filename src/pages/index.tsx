@@ -26,6 +26,10 @@ import SlackImage from "../../public/img/integrations/slack.svg";
 import MicrosoftTeamImage from "../../public/img/integrations/microsoft-team.svg";
 import GmailImage from "../../public/img/integrations/gmail.svg";
 
+import PythonImage from "../../public/img/integrations/python.svg";
+import GithubImage from "../../public/img/integrations/github.svg";
+import GitlabImage from "../../public/img/integrations/gitlab.svg";
+
 import SmartsheetImage from "../../public/img/integrations/smartsheet.png";
 import JamaImage from "../../public/img/integrations/jama.png";
 
@@ -686,6 +690,11 @@ const integrations = [
     description: "Keep your team up to date in real time.",
   },
   {
+    images: [GithubImage, PythonImage, GitlabImage],
+    title: "Developer tools",
+    description: "Text description here",
+  },
+  {
     images: [SmartsheetImage, JamaImage],
     title: "Program management",
     description:
@@ -911,7 +920,7 @@ export default function Home() {
 
       <NewLayout>
         <section className="">
-          <div className="max-w-7xl px-4 mx-auto mt-16 md:mt-24 bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-cover bg-[50%_160px] md:bg-auto md:bg-[50%_83%] md:pb-12">
+          <div className="max-w-7xl px-4 mx-auto mt-16 md:mt-24 bg-[url('/img/home-bg-line.svg')] bg-no-repeat bg-cover bg-[50%_160px] md:bg-auto md:bg-[50%_70%] md:pb-12">
             <HeadlineAnimation>
               <div className="mx-auto flex flex-col gap-2 justify-center items-center">
                 <h1 className="text-5xl font-bold text-center sm:text-5xl md:text-6xl lg:text-7xl md:font-semibold">
