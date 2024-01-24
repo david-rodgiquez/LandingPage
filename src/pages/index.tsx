@@ -10,6 +10,7 @@ import ChiplyticsLogo from "../../public/img/chiplytics.svg";
 import SparkmateLogo from "../../public/img/sparkmate.svg";
 import OrangewoodLogo from "../../public/img/orangewood.svg";
 import VuecasonLogo from "../../public/img/vuecason.svg";
+import NerosLogo from "../../public/img/neros.svg";
 import CollaborationFeaturesImage from "../../public/img/collaboration-features.svg";
 import FullHistoryAndVersioningImage from "../../public/img/full-history-and-versioning.svg";
 import ProjectManagementImage from "../../public/img/project-management.svg";
@@ -945,6 +946,12 @@ export default function Home() {
               quality={100}
               src={VuecasonLogo}
               alt="Vuecason"
+              className="max-w-[100px] md:max-w-none"
+            />
+            <Image
+              quality={100}
+              src={NerosLogo}
+              alt="Neros"
               className="max-w-[100px] md:max-w-none"
             />
           </div>
