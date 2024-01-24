@@ -439,7 +439,8 @@ const developerApiMenus = [
   },
   {
     title: "Requirements statuses",
-    description: " Check the status of a requirement and change it's value to fit new constraints",
+    description:
+      " Check the status of a requirement and change it's value to fit new constraints",
     codes: codes,
   },
   {
@@ -730,6 +731,7 @@ export function useIntersectionObserver(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     elementRef?.current,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     JSON.stringify(threshold),
     root,
     rootMargin,
@@ -840,7 +842,8 @@ function HeroImageAnimation({ children }: { children: React.ReactNode }) {
 const animationItemsOnHover = [
   {
     title: "Keyboard Navigation",
-    description: "Jump between pages and contexts, and execution actions in milliseconds",
+    description:
+      "Jump between pages and contexts, and execution actions in milliseconds",
     riveUrl:
       "https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv",
   },
@@ -1004,7 +1007,8 @@ export default function Home() {
         <section className="max-w-7xl px-4 mx-auto mt-20 md:mt-40">
           <h2 className="font-bold text-4xl md:text-5xl">Modules</h2>
           <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
-            Rollup had a variety of modules for every aspect of your engineering projects, all in one realtime, browser-based environment.
+            Rollup had a variety of modules for every aspect of your engineering
+            projects, all in one realtime, browser-based environment.
           </p>
 
           <ModulesMenu />
@@ -1017,7 +1021,8 @@ export default function Home() {
             Collaboration Features
           </h2>
           <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
-            Rollup is the easiest way to collaborate with your engineering team across disciplines.
+            Rollup is the easiest way to collaborate with your engineering team
+            across disciplines.
           </p>
 
           <div className="grid grid-cols-12 mt-8 w-full gap-6 md:gap-8">
@@ -1080,7 +1085,9 @@ export default function Home() {
                 />
                 <h3 className="font-bold text-2xl">Annotations</h3>
                 <p className="text-xl leading-tight mt-2 font-medium text-[#404854]">
-                  From 3D CAD to 2D Drawings, to PDFs, images, and more -- markup your engineering media and files with built-in annotations.
+                  From 3D CAD to 2D Drawings, to PDFs, images, and more --
+                  markup your engineering media and files with built-in
+                  annotations.
                 </p>
               </div>
             </div>
@@ -1178,7 +1185,8 @@ export default function Home() {
             <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
               Our user-friendly API is accessible for all paid plan users.
               <br />
-              Leverage our API to build internal apps on top of your data in Rollup, or build and package integrations to distribute.
+              Leverage our API to build internal apps on top of your data in
+              Rollup, or build and package integrations to distribute.
             </p>
 
             <DeveloperApiMenu />

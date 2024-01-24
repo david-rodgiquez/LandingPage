@@ -182,7 +182,7 @@ export default function Page() {
               Contact Us
             </span>
             <h1 className="text-[3.25rem] leading-[3rem] lg:text-7xl lg:leading-[4rem] max-w-lg  text-center font-bold dark:text-white">
-              Let's build something great together
+              Let&apos;s build something great together
             </h1>
           </div>
           <div className="max-w-7xl w-full flex-col md:flex-row px-4 mx-auto mt-16 font-blender flex gap-6">
