@@ -336,12 +336,15 @@ function ModulesMenu() {
             );
           })}
         </div>
-        <Link
-          href="/modules"
-          className="absolute inset-x-0 -bottom-12 md:bottom-6 text-xl mx-auto text-center text-[#2D72D2]"
-        >
-          Learn more
-        </Link>
+        <div className="absolute hidden lg:block -bottom-18 md:-bottom-6 inset-x-0 ">
+          <Link
+            href="/modules"
+            className="flex items-center font-medium hover:bg-[#215DB0] transition-colors ml-6 text-lg gap-2 text-center text-white px-5 py-3 rounded w-max bg-[#2D72D2]"
+          >
+            <span>More about Modules</span>
+            <IconChevronRight className="h-5 w-5 " />
+          </Link>
+        </div>
       </div>
       <div className="w-full md:w-8/12">
         <ModuleMenuItemDesktop
@@ -430,7 +433,15 @@ type Codes = typeof codes;
 const developerApiMenus = [
   {
     title: "Set a property",
-    description: "Read and write to properties in Rollup",
+    description: (
+      <>
+        Read and write to{" "}
+        <Link href="#" className="underline">
+          properties
+        </Link>{" "}
+        in Rollup
+      </>
+    ),
     codes: codes,
   },
   {
@@ -686,7 +697,8 @@ const securities = [
   {
     image: SelfHostImage,
     title: "Self-host or GovCloud",
-    description: "Maximum 2 sentence and the restrictions is 120 symbols",
+    description:
+      "In addition to our nominal cloud-hosted offering, Rollup can be deployed on a dedicated AWS GovCloud, or on-premise.",
   },
   // {
   //   image: ItarImage,
@@ -1210,17 +1222,20 @@ export default function Home() {
           <div className="flex justify-center lg:justify-between flex-wrap lg:flex-nowrap gap-8 w-full items-center mt-16">
             {securities.map((security, i) => (
               <Fragment key={security.title}>
-                <div className="flex flex-col justify-center items-center text-center  leading-none">
+                <div className="flex flex-col justify-center items-center text-center  leading-none max-w-xs">
                   <Image
                     src={security.image}
                     alt={security.title}
                     quality={100}
-                    className="max-h-[122px] w-full object-contain"
+                    className=" object-contain max-h-28"
                   />
                   <h3 className="font-semibold text-2xl mt-5">
                     {security.title}
                   </h3>
-                  <p className="text-lg mt-2">{security.description}</p>
+                  <p className="text-lg mt-2 ">{security.description}</p>
+                  <Link href="#" className="font-medium underline mt-4">
+                    Learn More
+                  </Link>
                 </div>
                 {i % 1 === 0 && i !== securities.length - 1 ? (
                   <div
