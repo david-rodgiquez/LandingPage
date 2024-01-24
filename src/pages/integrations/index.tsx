@@ -1085,20 +1085,20 @@ export default function Page() {
         <title>Integrations</title>
       </Head>
       <NewLayout>
-        <div className="w-full mt-20 md:mt-24">
+        <div className="w-full mt-16">
           <Logos />
         </div>
 
-        <section className="relative flex items-center justify-center min-h-[384px] mb-32">
+        <section className="relative flex items-center justify-center min-h-[384px] mb-8">
           <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-0"></div>
-          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center mt-20">
+          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center ">
             <span className="uppercase font-medium text-[#4C90F0] text-xl">
               Integrations
             </span>
             <h1 className="text-5xl md:text-7xl font-semibold ">
               Dozens of apps. Endless possibilities.
             </h1>
-            <p className="font-semibold text-xl max-w-xs md:max-w-md mx-auto">
+            <p className="font-medium text-xl max-w-xs md:max-w-md mx-auto">
               Some details here Some details here Some details here Some details
               here Some details here
             </p>
@@ -1108,7 +1108,7 @@ export default function Page() {
 
         {/* menu */}
         <section className="border-b w-full sticky top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
-          <div className="max-w-7xl overflow-auto no-scrollbar mx-auto md:px-4 flex justify-between">
+          <div className="max-w-7xl overflow-auto no-scrollbar mx-auto md:px-4 flex ">
             {menus.map((menu) => (
               <button
                 key={menu.name}

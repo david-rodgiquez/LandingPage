@@ -475,7 +475,7 @@ export default function Page() {
             <h1 className="text-5xl md:text-7xl font-semibold ">
               Headline here
             </h1>
-            <p className="font-semibold text-xl max-w-xs md:max-w-md mx-auto">
+            <p className="font-medium text-xl max-w-xs md:max-w-md mx-auto">
               Some details here Some details here Some details here Some details
               here Some details here
             </p>
