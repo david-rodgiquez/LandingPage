@@ -1090,8 +1090,8 @@ export default function Page() {
         </div>
 
         <section className="relative flex items-center justify-center min-h-[384px] mb-8">
-          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-0"></div>
-          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center ">
+          <div className="h-96 w-96 bg-[90%_center] bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-8"></div>
+          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center z-10">
             <span className="uppercase font-medium text-[#4C90F0] text-xl">
               Integrations
             </span>
@@ -1103,7 +1103,7 @@ export default function Page() {
               here Some details here
             </p>
           </div>
-          <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] bg-no-repeat hidden lg:block absolute right-0"></div>
+          <div className="h-96 w-96 bg-[10%_center] bg-[url('/img/home-bg-line.svg')] bg-no-repeat hidden lg:block absolute right-8"></div>
         </section>
 
         {/* menu */}
