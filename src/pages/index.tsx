@@ -352,96 +352,64 @@ function ModulesMenu() {
 }
 
 const codes = [
-  {
-    language: "Node.js",
-    lang: "javascript",
-    code: `// Get a user's access token and
-// profile data from and Identity Provider
+  // {
+  //   language: "Node.js",
+  //   lang: "javascript",
+  //   code: `// Get a user's access token and
+  //   // profile data from and Identity Provider
 
-import WorkOS from '@workos-inc/code';
-const workos = new WorkOS('sk_example_123456789')
-const profile = await workos.sso.getProfileAndToken({
-  code: '0123928382193219321',
-  clientID: 'client_123456789'
-})
-`,
-  },
-  {
-    language: "Ruby",
-    lang: "ruby",
-    code: `# Get a user’s access token and
-# profile data from an Identity Provider
+  //   import WorkOS from '@workos-inc/code';
+  //   const workos = new WorkOS('sk_example_123456789')
+  //   const profile = await workos.sso.getProfileAndToken({
+  //     code: '0123928382193219321',
+  //     clientID: 'client_123456789'
+  //   })
+  //   `,
+  // },
+  // {
+  //   language: "Ruby",
+  //   lang: "ruby",
+  //   code: `# Get a user’s access token and
+  //   # profile data from an Identity Provider
 
-require 'workos'
+  //   require 'workos'
 
-WorkOS.key = 'sk_example_123456789'
+  //   WorkOS.key = 'sk_example_123456789'
 
-WorkOS::SSO.profile_and_token(
-  code: '01E2RJ4C05B52KKZ8FSRDAP23J',
-  client_id: 'client_123456789',
-)`,
-  },
+  //   WorkOS::SSO.profile_and_token(
+  //     code: '01E2RJ4C05B52KKZ8FSRDAP23J',
+  //     client_id: 'client_123456789',
+  //   )`,
+  // },
   {
     language: "Python",
     lang: "python",
     code: `# Get a user’s access token and
 # profile data from an Identity Provider
 
-import workos
-from workos import client
+import WorkOS from '@workos-inc/node';
 
-workos.api_key = 'sk_example_123456789'
-workos.client_id = 'client_123456789'
+const workos = newWorkOS('sk_example_123456789');
 
-client.sso.get_profile_and_token('01E2RJ4C05B52KKZ8FSRDAP23J')`,
+const profile = await workos.sso.getProfileAndToken({
+  code: '01E2RJ4C05B52KKZ8FSRDAP23J',
+  ClientID: 'client_123456789',
+})`,
   },
   {
-    language: "Java",
+    language: "Matlab",
     lang: "java",
-    code: `// Get a user’s access token and
-// profile data from an Identity Provider
+    code: `# Get a user’s access token and
+# profile data from an Identity Provider
 
-import com.workos.WorkOS;
+import WorkOS from '@workos-inc/node';
 
-WorkOS workos = new WorkOS("sk_example_123456");
+const workos = newWorkOS('sk_example_123456789');
 
-ProfileAndToken profileAndToken = workos.sso.getProfileAndToken("01E2RJ4C05B52KKZ8FSRDAP23J", "client_123456789");
-
-Profile profile = profileAndToken.profile;`,
-  },
-  {
-    language: "Go",
-    lang: "go",
-    code: `// Get a user’s access token and
-// profile data from an Identity Provider
-
-import "github.com/workos/workos-go/pkg/sso"
-
-sso.SetAPIKey("sk_example_123456789")
-
-sso.GetProfileAndToken(
-  context.Background(),
-  sso.GetProfileAndTokenOptions{
-    Code: "01E2RJ4C05B52KKZ8FSRDAP23J",
-  }
-)`,
-  },
-  {
-    language: ".NET",
-    lang: "csharp",
-    code: `// Get a user’s access token and
-// profile data from an Identity Provider
-
-WorkOS.SetApiKey("sk_example_123456");
-
-var ssoService = new SSOService();
-var options = new GetProfileAndTokenOptions
-{
-    ClientId = "client_123456789",
-    Code = "01E2RJ4C05B52KKZ8FSRDAP23J",
-};
-
-var profile = await ssoService.GetProfileAndToken(options);`,
+const profile = await workos.sso.getProfileAndToken({
+  code: '01E2RJ4C05B52KKZ8FSRDAP23J',
+  ClientID: 'client_123456789',
+})`,
   },
   {
     language: "cURL",
@@ -461,22 +429,22 @@ type Codes = typeof codes;
 const developerApiMenus = [
   {
     title: "Set a property",
-    description: "Maximum 1 sentence and the restrictions is 60",
+    description: "Read and write to properties in Rollup",
     codes: codes,
   },
   {
-    title: "Create blocks 1",
-    description: "Maximum 1 sentence and the restrictions is 60",
+    title: "Interact with Blocks",
+    description: "Create and delete blocks in Rollup",
     codes: codes,
   },
   {
-    title: "Create blocks 2",
-    description: "Maximum 1 sentence and the restrictions is 60",
+    title: "Requirements statuses",
+    description: " Check the status of a requirement and change it's value to fit new constraints",
     codes: codes,
   },
   {
-    title: "Create blocks 3",
-    description: "Maximum 1 sentence and the restrictions is 60",
+    title: "Update Data Sources",
+    description: "Update Data Source Objects with new values",
     codes: codes,
   },
 ] as const;
@@ -718,11 +686,11 @@ const securities = [
     title: "Self-host or GovCloud",
     description: "Maximum 2 sentence and the restrictions is 120 symbols",
   },
-  {
-    image: ItarImage,
-    title: "ISO",
-    description: "Maximum 2 sentence and the restrictions is 120 symbols",
-  },
+  // {
+  //   image: ItarImage,
+  //   title: "ISO",
+  //   description: "Maximum 2 sentence and the restrictions is 120 symbols",
+  // },
 ];
 
 interface Args extends IntersectionObserverInit {
@@ -872,7 +840,7 @@ function HeroImageAnimation({ children }: { children: React.ReactNode }) {
 const animationItemsOnHover = [
   {
     title: "Keyboard Navigation",
-    description: "Jump between contexts and execute changes in milliseconds.",
+    description: "Jump between pages and contexts, and execution actions in milliseconds",
     riveUrl:
       "https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv",
   },
@@ -1036,8 +1004,7 @@ export default function Home() {
         <section className="max-w-7xl px-4 mx-auto mt-20 md:mt-40">
           <h2 className="font-bold text-4xl md:text-5xl">Modules</h2>
           <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
-            Short description Technical Modules Short description Technical
-            Modules Short description Technical
+            Rollup had a variety of modules for every aspect of your engineering projects, all in one realtime, browser-based environment.
           </p>
 
           <ModulesMenu />
@@ -1050,8 +1017,7 @@ export default function Home() {
             Collaboration Features
           </h2>
           <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
-            Short description Technical Modules Short description Technical
-            Modules Short description Technical
+            Rollup is the easiest way to collaborate with your engineering team across disciplines.
           </p>
 
           <div className="grid grid-cols-12 mt-8 w-full gap-6 md:gap-8">
@@ -1114,11 +1080,7 @@ export default function Home() {
                 />
                 <h3 className="font-bold text-2xl">Annotations</h3>
                 <p className="text-xl leading-tight mt-2 font-medium text-[#404854]">
-                  Short description of the opportunity provided by Rollup system
-                  Short description of the opportunity provided by Rollup system
-                  Short description of the opportunity provided by Rollup system
-                  the opportunity provided by Rollup system Short description of
-                  the opportunity provided by Rollup system{" "}
+                  From 3D CAD to 2D Drawings, to PDFs, images, and more -- markup your engineering media and files with built-in annotations.
                 </p>
               </div>
             </div>
@@ -1214,8 +1176,9 @@ export default function Home() {
               Developer-Friendly APIs
             </h2>
             <p className="text-xl md:text-2xl max-w-xl leading-tight mt-4 font-bold">
-              Short description Technical Modules Short description Technical
-              Modules Short description Technical
+              Our user-friendly API is accessible for all paid plan users.
+              <br />
+              Leverage our API to build internal apps on top of your data in Rollup, or build and package integrations to distribute.
             </p>
 
             <DeveloperApiMenu />

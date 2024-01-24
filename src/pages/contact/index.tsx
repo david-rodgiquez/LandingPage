@@ -182,7 +182,7 @@ export default function Page() {
               Contact Us
             </span>
             <h1 className="text-[3.25rem] leading-[3rem] lg:text-7xl lg:leading-[4rem] max-w-lg  text-center font-bold dark:text-white">
-              Something great together
+              Let's build something great together
             </h1>
           </div>
           <div className="max-w-7xl w-full flex-col md:flex-row px-4 mx-auto mt-16 font-blender flex gap-6">
@@ -205,9 +205,9 @@ export default function Page() {
                   <p className="text-lg dark:text-[#ABB3BF]">
                     Rollup Engineering
                     <br />
-                    Number + Street London,
+                    Number + Street
                     <br />
-                    United Kingdom
+                    London, United Kingdom
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 leading-tight">
@@ -231,13 +231,13 @@ export default function Page() {
                 className="w-full object-contain"
               />
             </div>
-            <div data-hide-on-theme="light">
+            {/* <div data-hide-on-theme="light">
               <Image
                 src={MapDark}
                 alt="Map"
                 className="w-full object-contain"
               />
-            </div>
+            </div> */}
           </div>
         </main>
       </NewLayout>

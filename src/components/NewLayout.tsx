@@ -210,7 +210,7 @@ export default function NewLayout({
               <IconChevronRight className="h-3 w-3 text-[#2D72D2]" />
             </Link>
             <Link
-              href="#"
+              href="https://www.default.com/"
               className="bg-[#f6f7f918] hover:bg-[#f6f7f93d] transition-colors text-white border border-white font-semibold flex gap-2 rounded-sm px-4 items-center justify-center py-2"
             >
               <span>Talk to Sales</span>
