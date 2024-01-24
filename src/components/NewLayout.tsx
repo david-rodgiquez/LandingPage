@@ -6,6 +6,7 @@ import LogoDark from "./icons/LogoDark";
 import IconChevronRight from "./icons/IconChevronRight";
 import { ComponentProps, useState } from "react";
 import IconXMark from "./icons/IconXMark";
+import { useRouter } from "next/router";
 
 const headerMenus = [
   {
@@ -141,6 +142,8 @@ export default function NewLayout({
   children: React.ReactNode;
 }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const router = useRouter();
+  const currentPathname = router.pathname;
 
   return (
     <div className="text-[#16181C] font-blender antialiased">
@@ -154,15 +157,21 @@ export default function NewLayout({
               isOpenMenu ? "" : "hidden lg:flex"
             }`}
           >
-            {headerMenus.map((menu) => (
-              <Link
-                key={menu.path}
-                href={menu.path}
-                className="hover:text-[#2D72D2] transition-colors"
-              >
-                {menu.title}
-              </Link>
-            ))}
+            {headerMenus.map((menu) => {
+              const isActive = menu.path === currentPathname;
+
+              return (
+                <Link
+                  key={menu.path}
+                  href={menu.path}
+                  className={`hover:text-[#2D72D2] transition-colors ${
+                    isActive ? "text-[#2D72D2]" : ""
+                  }`}
+                >
+                  {menu.title}
+                </Link>
+              );
+            })}
             <Link
               href="https://app.rollup.ai/"
               className="hover:text-[#2D72D2] transition-colors lg:hidden"

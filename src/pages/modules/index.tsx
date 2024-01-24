@@ -17,31 +17,41 @@ import Head from "next/head";
 import { useInView } from "react-intersection-observer";
 import { createPortal } from "react-dom";
 import IconXMark from "@/components/icons/IconXMark";
+import IconCADCollaboration from "@/components/icons/IconCADCollaboration";
+import IconDesignReviews from "@/components/icons/IconDesignReviews";
 
 const menus = [
   {
-    icon: IconSystemModeling,
-    name: "System Modeling",
+    icon: IconCADCollaboration,
+    name: "CAD Collaboration",
   },
   {
     icon: IconDigitalThreads,
     name: "Digital Threads",
   },
   {
+    icon: IconSystemModeling,
+    name: "System Modeling",
+  },
+  {
+    icon: IconProductDataManagement,
+    name: "PDM",
+  },
+  {
     icon: IconRequirements,
     name: "Requirements",
   },
   {
-    icon: IconProductDataManagement,
-    name: "Product Data Management",
+    icon: IconDigitalThreads,
+    name: "Annotations",
   },
   {
     icon: IconProjectManagement,
     name: "Project Management",
   },
   {
-    icon: IconAnotation,
-    name: "Annotations",
+    icon: IconDesignReviews,
+    name: "Design Reviews",
   },
 ] as const;
 
@@ -238,6 +248,29 @@ function useContentFloating(): [
   return [modalToShow, showModal];
 }
 
+function useIsMobile() {
+  const [isInMobile, setIsInMobile] = useState(false);
+
+  useEffect(() => {
+    const changeSetIsMobile = () => {
+      if (window.innerWidth < 768) {
+        setIsInMobile(true);
+      } else {
+        setIsInMobile(false);
+      }
+    };
+
+    changeSetIsMobile();
+
+    window.addEventListener("resize", changeSetIsMobile);
+    return () => {
+      window.addEventListener("resize", changeSetIsMobile);
+    };
+  }, []);
+
+  return isInMobile;
+}
+
 function Section<T extends string>({
   title,
   description,
@@ -259,6 +292,7 @@ function Section<T extends string>({
   >;
   setSelectedMenu: () => void;
 }) {
+  const isInMobile = useIsMobile();
   const [modal, showModal] = useContentFloating();
   const [selectedMenu, setSelectedMenu] =
     useState<(typeof items)[number]["name"]>(initialSelectedItem);
@@ -320,7 +354,7 @@ function Section<T extends string>({
           <div className="hidden md:block grow">
             <Content title={selectedMenu} />
           </div>
-          {modal}
+          {isInMobile && modal}
         </div>
       </div>
     </section>
@@ -432,9 +466,9 @@ export default function Page() {
         <title>Modules</title>
       </Head>
       <NewLayout className="">
-        <section className="relative flex items-center justify-center min-h-[384px] mb-32">
+        <section className="relative flex items-center justify-center min-h-[384px] mb-16">
           <div className="h-96 w-96 bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-0"></div>
-          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center mt-20">
+          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center">
             <span className="uppercase font-medium text-[#4C90F0] text-xl">
               Modules
             </span>
@@ -471,7 +505,7 @@ export default function Page() {
                         behavior: "smooth",
                       });
                     }}
-                    className={`flex gap-3 whitespace-nowrap py-2 md:py-3 border-b-2 px-3 md:px-6 items-center group hover:stroke-[#4C90F0] hover:text-[#4C90F0] transition-colors ${
+                    className={`flex gap-3 whitespace-nowrap py-2 md:py-3 border-b-2 px-3 md:px-4 items-center group hover:stroke-[#4C90F0] hover:text-[#4C90F0] transition-colors ${
                       isActive
                         ? "text-[#4C90F0] border-b-[#4C90F0] stroke-[#4C90F0]"
                         : "text-[#2F343C] border-b-transparent stroke-gray-800"
@@ -488,8 +522,8 @@ export default function Page() {
           </div>
         </section>
         <Section
-          setSelectedMenu={() => setSelectedMenu("System Modeling")}
-          title="System Modeling"
+          setSelectedMenu={() => setSelectedMenu("CAD Collaboration")}
+          title="CAD Collaboration"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Properties"
           items={systemModelingMenus}
@@ -503,6 +537,21 @@ export default function Page() {
           items={digitalThreadsMenus}
         />
         <Section
+          setSelectedMenu={() => setSelectedMenu("System Modeling")}
+          title="System Modeling"
+          description="Some details here Some details here Some details here Some details here Some details here"
+          initialSelectedItem="Properties"
+          items={systemModelingMenus}
+        />
+        <Section
+          isDark
+          setSelectedMenu={() => setSelectedMenu("PDM")}
+          title="Product Data Management"
+          description="Some details here Some details here Some details here Some details here Some details here"
+          initialSelectedItem="Feature 1"
+          items={productDataManagementMenus}
+        />
+        <Section
           setSelectedMenu={() => setSelectedMenu("Requirements")}
           title="Requirements"
           description="Some details here Some details here Some details here Some details here Some details here"
@@ -511,8 +560,8 @@ export default function Page() {
         />
         <Section
           isDark
-          setSelectedMenu={() => setSelectedMenu("Product Data Management")}
-          title="Product Data Management"
+          setSelectedMenu={() => setSelectedMenu("Annotations")}
+          title="Annotations"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Feature 1"
           items={productDataManagementMenus}
@@ -525,9 +574,9 @@ export default function Page() {
           items={projectManagementMenus}
         />
         <Section
-          setSelectedMenu={() => setSelectedMenu("Annotations")}
+          setSelectedMenu={() => setSelectedMenu("Design Reviews")}
           isDark
-          title="Annotations"
+          title="Design Reviews"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Feature 1"
           items={annotationsMenus}
