@@ -225,6 +225,11 @@ body {
   background: linear-gradient(#fff 0 0) padding-box,
     linear-gradient(to bottom, #94bbe9, #94bbe9 49%, #94bce900) border-box;
 }
+.vertical-line {
+  @apply border-white;
+  background: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(to bottom, #94bbe9, #94bbe9 49%, #94bce900) border-box;
+}
 .modules-section .content .box-content {
   @apply bg-[#E5E8EB];
 }

@@ -119,6 +119,76 @@ function getPlanItemByTitle(
     .items;
 }
 
+const questionTopics = [
+  { name: "General", path: "#" },
+  { name: "Onboarding", path: "#" },
+  { name: "Features", path: "#" },
+  { name: "Possibilities", path: "#" },
+] as const;
+
+const questionItem = {
+  title: "Question",
+  description:
+    "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
+};
+
+const questionItems = Array.from<typeof questionItem>({ length: 4 }).fill(
+  questionItem
+);
+
+function QuestionSection() {
+  const [selectedTopic, setSelectedTopic] =
+    useState<(typeof questionTopics)[number]["name"]>("General");
+
+  return (
+    <div className="max-w-7xl px-4 w-full mx-auto mt-48">
+      <h2 className="font-bold text-4xl md:text-5xl">
+        Answers to the most popular questions
+      </h2>
+      <p className="font-bold text-xl mt-2">
+        Some details here Some details here Some details here
+      </p>
+
+      <div className="w-full flex flex-col md:flex-row mt-6 md:mt-10">
+        <div className="md:flex-[0_0_200px] mb-4 md:mb-0">
+          <span className="text-[#5F6B7C] font-medium ml-3 tracking-wider">
+            Topics
+          </span>
+          <ul className="text-xl flex flex-row overflow-x-auto md:flex-col gap-1 mt-2 font-medium">
+            {questionTopics.map((topic) => (
+              <li key={topic.name}>
+                <button
+                  onClick={() => setSelectedTopic(topic.name)}
+                  className={`px-3 py-1 transition-colors rounded hover:bg-[#EDEFF2] hover:text-[#2D72D2] ${
+                    selectedTopic === topic.name
+                      ? "bg-[#EDEFF2] text-[#2D72D2]"
+                      : ""
+                  } `}
+                >
+                  {topic.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="hidden md:block vertical-line w-[3px] rounded-sm border-r shrink-0 border-dashed border-2 mx-12"></div>
+        <div className="flex-grow flex flex-col gap-4">
+          <span className="font-bold text-xl uppercase">{selectedTopic}</span>
+          {questionItems.map((question, i) => (
+            <div
+              key={i}
+              className="w-full border flex flex-col gap-2 border-[#DBE4EF] rounded-lg p-6"
+            >
+              <h3 className="text-2xl font-bold">{question.title}</h3>
+              <p className="text-xl font-medium">{question.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Page() {
   const [periode, setPeriode] = useState<"monthly" | "yearly">("monthly");
   const [collapsedPlan, setCollapsedPlan] = useState<
@@ -321,6 +391,7 @@ export default function Page() {
             );
           })}
         </div>
+        <QuestionSection />
       </NewLayout>
     </>
   );
