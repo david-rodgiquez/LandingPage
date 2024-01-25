@@ -278,7 +278,9 @@ function Section<T extends string>({
   initialSelectedItem,
   isDark,
   setSelectedMenu: setSelectedNavigationMenu,
+  id,
 }: {
+  id?: string;
   isDark?: boolean;
   initialSelectedItem: T;
   title: string;
@@ -313,7 +315,7 @@ function Section<T extends string>({
   return (
     <section
       ref={ref}
-      id={title}
+      id={id || title}
       className={`modules-section w-full ${isDark ? "dark" : ""}`}
     >
       <div className="max-w-7xl px-4 mx-auto w-full py-36">
@@ -546,6 +548,7 @@ export default function Page() {
         <Section
           isDark
           setSelectedMenu={() => setSelectedMenu("PDM")}
+          id="PDM"
           title="Product Data Management"
           description="Some details here Some details here Some details here Some details here Some details here"
           initialSelectedItem="Feature 1"
