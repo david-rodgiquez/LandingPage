@@ -691,14 +691,14 @@ const securities = [
   },
   {
     image: ItarImage,
-    title: "Itar",
+    title: "ITAR Compatible",
     description: "Maximum 2 sentence and the restrictions is 120 symbols",
   },
   {
     image: SelfHostImage,
     title: "Self-host or GovCloud",
     description:
-      "In addition to our nominal cloud-hosted offering, Rollup can be deployed on a dedicated AWS GovCloud, or on-premise.",
+      "Rollup was built from Day 1 with ITAR in-mind. Our professional and enterprise platform options allow you to collaborate on sensitive, controlled projects without comprising on having an incredible user experience.",
   },
   // {
   //   image: ItarImage,
