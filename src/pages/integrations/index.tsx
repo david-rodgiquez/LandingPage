@@ -882,36 +882,85 @@ const programManagements = [
   },
 ];
 
+function IconRollup({
+  className = "h-4 w-4",
+  ...props
+}: ComponentProps<"svg">) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      className={className}
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M32 26.5744C32 26.2574 31.7256 26 31.3879 26H0.6122C0.274451 26 0 26.2574 0 26.5744V31.4256C0 31.7426 0.274451 32 0.6122 32H31.3879C31.7256 32 32 31.7426 32 31.4256V26.5744Z"
+        fill="#0E5A8A"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M32 18.5482C32 18.2456 31.725 18 31.3867 18H0.613179C0.27489 18 0 18.2456 0 18.5482V23.4519C0 23.7545 0.27489 24 0.613179 24H31.3867C31.725 24 32 23.7545 32 23.4519V18.5482Z"
+        fill="#137CBD"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M32 0.625882C32 0.280363 31.7247 0 31.386 0H0.613855C0.275195 0 0 0.280363 0 0.625882V15.3741C0 15.7196 0.275195 16 0.613855 16H31.386C31.7247 16 32 15.7196 32 15.3741V0.625882Z"
+        fill="#48AFF0"
+      />
+    </svg>
+  );
+}
+
+const cadEngineeringToolsTagAndBrand = {
+  tag: "Information Tag",
+  brand: {
+    icon: <IconRollup />,
+    name: "Rollup",
+  },
+};
+
 const cadEngineeringTools = [
   {
     name: "Catia",
     description:
       "You can integrate with Office for the web to enable your users to view and edit Excel, PowerPoint, and Word files directly in the browser.",
     icon: IconImageCatia,
+    ...cadEngineeringToolsTagAndBrand,
   },
   {
     name: "Onshape",
     description:
       "You can integrate with Office for the web to enable your users to view and edit Excel, PowerPoint, and Word files directly in the browser.",
     icon: IconImageOnshape,
+    ...cadEngineeringToolsTagAndBrand,
   },
   {
     name: "Solidworks",
     description:
       "You can integrate with Office for the web to enable your users to view and edit Excel, PowerPoint, and Word files directly in the browser.",
     icon: IconImageSolidworks,
+    ...cadEngineeringToolsTagAndBrand,
   },
   {
     name: "Siemens NX",
     description:
       "You can integrate with Office for the web to enable your users to view and edit Excel, PowerPoint, and Word files directly in the browser.",
     icon: IconImageNx,
+    ...cadEngineeringToolsTagAndBrand,
   },
   {
     name: "Inventor",
     description:
       "You can integrate with Office for the web to enable your users to view and edit Excel, PowerPoint, and Word files directly in the browser.",
     icon: IconImageInventor,
+    ...cadEngineeringToolsTagAndBrand,
   },
 ];
 
@@ -951,6 +1000,11 @@ function SectionFeature({
     name: string;
     description: string;
     icon: Parameters<typeof Image>["0"]["src"];
+    tag?: string;
+    brand?: {
+      icon: React.JSX.Element;
+      name: string;
+    };
   }[];
 }) {
   return (
@@ -964,16 +1018,33 @@ function SectionFeature({
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
         {items.map((item) => (
           <CardWrapper key={item.name} className="flex flex-col gap-4">
-            <div className="flex items-center gap-4">
-              <div className="shadow-[0px_0px_0px_4px_#F4F8FD] border border-[#DBE4EF] h-14 w-14 rounded-lg flex items-center justify-center">
-                <Image
-                  src={item.icon}
-                  quality={100}
-                  alt={item.name}
-                  className="h-9 w-9"
-                />
+            <div className="flex justify-between lg:items-center flex-col md:flex-row flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <div className="shadow-[0px_0px_0px_4px_#F4F8FD] border border-[#DBE4EF] h-14 w-14 rounded-lg flex items-center justify-center">
+                  <Image
+                    src={item.icon}
+                    quality={100}
+                    alt={item.name}
+                    className="h-9 w-9"
+                  />
+                </div>
+                <h3 className="font-semibold text-2xl">{item.name}</h3>
               </div>
-              <h3 className="font-semibold text-2xl">{item.name}</h3>
+              {(item.tag || item.brand) && (
+                <div className="xl:ml-auto flex items-center gap-3">
+                  {item.tag && (
+                    <span className="font-medium border border-[#E5E8EB] px-3 rounded-full py-0.5">
+                      {item.tag}
+                    </span>
+                  )}
+                  {item.brand && (
+                    <div className="border gap-2 border-[#3FA6DA] px-3 py-0.5 rounded-full flex items-center">
+                      {item.brand.icon}
+                      <span className="font-medium">{item.brand.name}</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             <p className="text-xl text-[#404854]">{item.description}</p>
           </CardWrapper>
@@ -1108,7 +1179,7 @@ export default function Page() {
 
         {/* menu */}
         <section className="border-b w-full sticky top-16 md:top-14 bg-[rgba(255,255,255,0.80)] backdrop-blur-[20px] z-10">
-          <div className="max-w-7xl overflow-auto no-scrollbar mx-auto md:px-4 flex ">
+          <div className="max-w-7xl justify-center overflow-auto no-scrollbar mx-auto md:px-4 flex ">
             {menus.map((menu) => (
               <button
                 key={menu.name}
