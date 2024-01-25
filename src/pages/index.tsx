@@ -673,14 +673,14 @@ const integrations = [
   {
     images: [GithubImage, PythonImage, GitlabImage],
     title: "Developer tools",
-    description: "Text description here",
+    description: "Build internal tools on top of Rollup or pull code in from your existing codebases with just a few clicks.",
   },
-  {
-    images: [SmartsheetImage, JamaImage],
-    title: "Program management",
-    description:
-      "Enhance your programmatic with digital threads and traceability..",
-  },
+  // {
+  //   images: [SmartsheetImage, JamaImage],
+  //   title: "Program management",
+  //   description:
+  //     "Enhance your programmatic with digital threads and traceability..",
+  // },
 ];
 
 const securities = [
@@ -856,7 +856,7 @@ const animationItemsOnHover = [
   {
     title: "Keyboard Navigation",
     description:
-      "Jump between pages and contexts, and execution actions in milliseconds",
+      "Jump between pages and contexts, and execute actions in milliseconds",
     riveUrl:
       "https://public.rive.app/hosted/311509/109748/wShhd5THq0GG0QZA44g4Tw.riv",
   },
