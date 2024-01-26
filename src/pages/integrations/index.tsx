@@ -1162,7 +1162,7 @@ export default function Page() {
 
         <section className="relative flex items-center justify-center min-h-[384px] mb-8">
           <div className="h-96 w-96 bg-[90%_center] bg-[url('/img/home-bg-line.svg')] hidden lg:block bg-no-repeat absolute left-8"></div>
-          <div className="max-w-2xl flex flex-col gap-6 mx-auto text-center z-10">
+          <div className="max-w-2xl flex flex-col gap-4 mx-auto text-center z-10">
             <span className="uppercase font-medium text-[#4C90F0] text-xl">
               Integrations
             </span>
