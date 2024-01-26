@@ -42,7 +42,7 @@ const menus = [
     name: "Requirements",
   },
   {
-    icon: IconDigitalThreads,
+    icon: IconAnotation,
     name: "Annotations",
   },
   {
