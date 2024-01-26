@@ -673,7 +673,8 @@ const integrations = [
   {
     images: [GithubImage, PythonImage, GitlabImage],
     title: "Developer tools",
-    description: "Build internal tools on top of Rollup or pull code in from your existing codebases with just a few clicks.",
+    description:
+      "Build internal tools on top of Rollup or pull code in from your existing codebases with just a few clicks.",
   },
   // {
   //   images: [SmartsheetImage, JamaImage],
@@ -895,6 +896,35 @@ const animationItemsOnHover = [
       "https://public.rive.app/hosted/311509/109753/Xy9a6mP-V0qFpUnZaOFTuA.riv",
   },
 ];
+
+const customersLogo = [
+  {
+    logo: ChiplyticsLogo,
+    name: "Chiplytics",
+    url: "https://www.chiplytics.io/",
+  },
+  {
+    logo: SparkmateLogo,
+    name: "Sparkmate",
+    url: "https://www.sparkmate.com/",
+  },
+  {
+    logo: OrangewoodLogo,
+    name: "Orangewood",
+    url: "https://www.orangewood.co/",
+  },
+  {
+    logo: VuecasonLogo,
+    name: "Vuecason",
+    url: "https://www.vuecason.com/",
+  },
+  {
+    logo: NerosLogo,
+    name: "Neros",
+    url: "https://www.neros.tech/",
+  },
+] satisfies { name: string; logo: string; url: string }[];
+
 export default function Home() {
   return (
     <>
@@ -936,36 +966,22 @@ export default function Home() {
             id="customers"
             className="w-full flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-y-0 md:gap-x-8 lg:gap-14 mt-10 md:mt-14 px-4"
           >
-            <Image
-              quality={100}
-              src={ChiplyticsLogo}
-              alt="Chiplytics"
-              className="max-w-[100px] md:max-w-none"
-            />
-            <Image
-              quality={100}
-              src={SparkmateLogo}
-              alt="Sparkmate"
-              className="max-w-[100px] md:max-w-none"
-            />
-            <Image
-              quality={100}
-              src={OrangewoodLogo}
-              alt="Orangewood"
-              className="max-w-[100px] md:max-w-none"
-            />
-            <Image
-              quality={100}
-              src={VuecasonLogo}
-              alt="Vuecason"
-              className="max-w-[100px] md:max-w-none"
-            />
-            <Image
-              quality={100}
-              src={NerosLogo}
-              alt="Neros"
-              className="max-w-[100px] md:max-w-none"
-            />
+            {customersLogo.map((customer) => (
+              <Link
+                key={customer.name}
+                href={customer.url}
+                rel="noopener noreferrer nofollow"
+                target="_blank"
+                className="hover:contrast-200"
+              >
+                <Image
+                  quality={100}
+                  src={customer.logo}
+                  alt={customer.name}
+                  className="max-w-[100px] md:max-w-none"
+                />
+              </Link>
+            ))}
           </div>
 
           <div className="w-full max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-10 md:mt-24 px-4">
