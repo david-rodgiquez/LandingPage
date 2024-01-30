@@ -119,6 +119,13 @@ function getPlanItemByTitle(
     .items;
 }
 
+const questionTopics = [
+  { name: "General", path: "#" },
+  { name: "Onboarding", path: "#" },
+  { name: "Features", path: "#" },
+  { name: "Possibilities", path: "#" },
+] as const;
+
 const questionItem = {
   title: "Question",
   description:
@@ -130,28 +137,50 @@ const questionItems = Array.from<typeof questionItem>({ length: 4 }).fill(
 );
 
 function QuestionSection() {
+  const [selectedTopic, setSelectedTopic] =
+    useState<(typeof questionTopics)[number]["name"]>("General");
+
   return (
-    <div className="relative overflow-x-hidden">
-      <div className="hidden md:block -z-10 absolute bg-[url('/img/home-bg-line.svg')] content-['_'] bg-[bottom_left] w-[520px]  h-[460px] top-36 right-0"></div>
-      <div className="hidden md:block -z-10 absolute bg-[url('/img/home-bg-line.svg')] content-['_'] bg-[center_right] w-[520px]  h-[460px] top-1/3 left-0"></div>
-      <div className="max-w-5xl px-4 w-full mx-auto mt-64 relative ">
-        <h2 className="font-bold text-4xl md:text-5xl">
-          Answers to the most popular questions
-        </h2>
-        <p className="font-bold text-xl mt-2">
-          Some details here Some details here Some details here
-        </p>
-        <div className="w-full flex flex-col gap-4 mt-6 md:mt-10">
+    <div className="max-w-7xl px-4 w-full mx-auto mt-48">
+      <h2 className="font-bold text-4xl md:text-5xl">
+        Answers to the most popular questions
+      </h2>
+      <p className="font-bold text-xl mt-2">
+        Some details here Some details here Some details here
+      </p>
+
+      <div className="w-full flex flex-col md:flex-row mt-6 md:mt-10">
+        <div className="md:flex-[0_0_200px] mb-4 md:mb-0">
+          <span className="text-[#5F6B7C] font-medium ml-3 tracking-wider">
+            Topics
+          </span>
+          <ul className="text-xl flex flex-row overflow-x-auto md:flex-col gap-1 mt-2 font-medium">
+            {questionTopics.map((topic) => (
+              <li key={topic.name}>
+                <button
+                  onClick={() => setSelectedTopic(topic.name)}
+                  className={`px-3 py-1 transition-colors rounded hover:bg-[#EDEFF2] hover:text-[#2D72D2] ${
+                    selectedTopic === topic.name
+                      ? "bg-[#EDEFF2] text-[#2D72D2]"
+                      : ""
+                  } `}
+                >
+                  {topic.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="hidden md:block vertical-line w-[3px] rounded-sm border-r shrink-0 border-dashed border-2 mx-12"></div>
+        <div className="flex-grow flex flex-col gap-4">
+          <span className="font-bold text-xl uppercase">{selectedTopic}</span>
           {questionItems.map((question, i) => (
             <div
               key={i}
-              className="w-full flex gap-4 bg-white p-6 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]"
+              className="w-full border flex flex-col gap-2 border-[#DBE4EF] rounded-lg p-6"
             >
-              <div className="bg-[#16181C] mt-3 h-1.5 w-1.5 shrink-0 rounded-full"></div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold">{question.title}</h3>
-                <p className="text-xl font-medium">{question.description}</p>
-              </div>
+              <h3 className="text-2xl font-bold">{question.title}</h3>
+              <p className="text-xl font-medium">{question.description}</p>
             </div>
           ))}
         </div>
