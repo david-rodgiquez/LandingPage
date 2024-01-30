@@ -162,11 +162,11 @@ body {
   @apply hover:bg-[#E4F0FF];
 }
 .modules-section .menu.active {
-  @apply bg-[#E4F0FF];
+  @apply md:bg-[#E4F0FF];
 }
 .modules-section .menu:hover .square,
 .modules-section .menu.active .square {
-  @apply border-[#215DB0];
+  @apply md:border-[#215DB0];
 }
 .modules-section.dark .menu:not(:hover, .active) .square {
   @apply border-[#ABB3BF];
@@ -175,13 +175,13 @@ body {
   @apply text-[#215DB0];
 }
 .modules-section .menu.active .title-menu {
-  @apply text-[#215DB0];
+  @apply md:text-[#215DB0];
 }
 .modules-section .menu:hover .description-menu {
   @apply text-[#215DB0];
 }
 .modules-section .menu.active .description-menu {
-  @apply text-[#215DB0];
+  @apply md:text-[#215DB0];
 }
 .modules-section.dark .title,
 .modules-section.dark .description {
@@ -190,21 +190,27 @@ body {
 .modules-section.dark {
   @apply bg-[#1C2127];
 }
-.modules-section.dark .menu.active,
 .modules-section.dark .menu:hover {
   @apply bg-[#1B283B];
+}
+.modules-section.dark .menu.active {
+  @apply md:bg-[#1B283B];
 }
 .modules-section.dark .menu .title-menu {
   @apply text-white;
 }
-.modules-section.dark .menu:hover .title-menu,
-.modules-section.dark .menu.active .title-menu {
+.modules-section.dark .menu:hover .title-menu {
   @apply text-[#8ABBFF];
+}
+.modules-section.dark .menu.active .title-menu {
+  @apply md:text-[#8ABBFF];
 }
 .modules-section.dark .menu .description-menu {
   @apply text-[#ABB3BF];
 }
-.modules-section.dark .menu.active .description-menu,
+.modules-section.dark .menu.active .description-menu {
+  @apply md:text-[#8ABBFF];
+}
 .modules-section.dark .menu:hover .description-menu {
   @apply text-[#8ABBFF];
 }
