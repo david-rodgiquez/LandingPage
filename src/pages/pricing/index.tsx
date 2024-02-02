@@ -1,8 +1,23 @@
 import NewLayout from "@/components/NewLayout";
 import IconChevronRight from "@/components/icons/IconChevronRight";
+import {
+  // notionClient,
+  notionHq,
+  notionToMarkdown,
+} from "@/lib/notion";
+import {
+  // GetServerSideProps,
+  GetStaticProps,
+  // InferGetServerSidePropsType,
+  InferGetStaticPropsType,
+} from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { ComponentProps, useState } from "react";
+// import { NotionRenderer } from "react-notion-x";
+// import { inspect } from "util";
+// import { NotionToMarkdown } from "notion-to-md";
+import ReactMarkdown from "react-markdown";
 
 const plans = [
   {
@@ -125,11 +140,22 @@ const questionItem = {
     "Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.Effortlessly evolve your system model from concept to production, seamlessly integrating engineering data and parameters over time.",
 };
 
-const questionItems = Array.from<typeof questionItem>({ length: 4 }).fill(
-  questionItem
+// const questionItems = Array.from<typeof questionItem>({ length: 4 }).fill(
+//   questionItem
+// );
+
+const h2Jsx = (props: React.ComponentProps<"h2">) => (
+  <h2 {...props} className="text-2xl font-bold" />
+);
+const paragraphJsx = (props: React.ComponentProps<"p">) => (
+  <h2 {...props} className="text-xl font-medium" />
 );
 
-function QuestionSection() {
+function QuestionSection({
+  questionMarkdowns,
+}: {
+  questionMarkdowns: string[];
+}) {
   return (
     <div className="relative overflow-x-hidden">
       <div className="hidden md:block -z-10 absolute bg-[url('/img/home-bg-line.svg')] content-['_'] bg-[bottom_left] w-[520px]  h-[460px] top-36 right-0"></div>
@@ -142,7 +168,25 @@ function QuestionSection() {
           Some details here Some details here Some details here
         </p>
         <div className="w-full flex flex-col gap-4 mt-6 md:mt-10">
-          {questionItems.map((question, i) => (
+          {/* {questionMarkdowns.} */}
+          {questionMarkdowns.map((question, i) => (
+            <div
+              key={i}
+              className="w-full flex gap-4 bg-white p-6 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]"
+            >
+              <div className="flex flex-col">
+                <ReactMarkdown
+                  components={{
+                    h2: h2Jsx,
+                    p: paragraphJsx,
+                  }}
+                >
+                  {question}
+                </ReactMarkdown>
+              </div>
+            </div>
+          ))}
+          {/* {questionItems.map((question, i) => (
             <div
               key={i}
               className="w-full flex gap-4 bg-white p-6 border rounded-lg border-[#DBE4EF] shadow-[0px_0px_0px_4px_#F4F8FD]"
@@ -153,14 +197,39 @@ function QuestionSection() {
                 <p className="text-xl font-medium">{question.description}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
   );
 }
 
-export default function Page() {
+export const getStaticProps: GetStaticProps = async (props) => {
+  const { results } = await notionHq.blocks.children.list({
+    block_id: "3133a4726b5447959543bbd2780dab84",
+  });
+
+  const markdown = await notionToMarkdown.blocksToMarkdown(results);
+  const markdowns = markdown
+    .map(
+      (child_page) =>
+        `${child_page.parent}${
+          notionToMarkdown.toMarkdownString(child_page.children).parent ?? ""
+        }`
+    )
+    .filter(Boolean);
+
+  return {
+    revalidate: 60,
+    props: {
+      markdowns,
+    },
+  };
+};
+
+export default function Page(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   const [periode, setPeriode] = useState<"monthly" | "yearly">("monthly");
   const [collapsedPlan, setCollapsedPlan] = useState<
     Array<(typeof plans)[number]["title"]>
@@ -362,7 +431,7 @@ export default function Page() {
             );
           })}
         </div>
-        <QuestionSection />
+        <QuestionSection questionMarkdowns={props.markdowns} />
       </NewLayout>
     </>
   );
